@@ -3,15 +3,15 @@
     "name": "Hotels.com Filter Memory",
     "version": "1.0",
     "description": "Remembers your filter preferences on Hotels.com",
-    "permissions": ["scripting", "storage", "activeTab"],
+    "permissions": ["storage"],
+    "host_permissions": ["https://www.hotels.com/*"],
     "content_scripts": [
       {
         "matches": ["*://www.hotels.com/*"],
-        "js": ["content.js"]
+        "js": ["content.js", "popup.js"]
       }
     ],
     "action": {
       "default_popup": "popup.html"
     }
   }
-  
