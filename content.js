@@ -1,47 +1,42 @@
-function getSelectedFilters() {
-    const filters = {};
-  
-    // Example: checkboxes for star ratings
-    document.querySelectorAll('[data-stid*="star-rating"] input[type="checkbox"]').forEach(input => {
-      filters[input.name] = input.checked;
-    });
-  
-    // Add more filter types here as needed
-    return filters;
-  }
-  
-  function applySavedFilters(saved) {
-    for (const [name, value] of Object.entries(saved)) {
-      const el = document.querySelector(`input[name="${name}"]`);
-      if (el) {
-        el.checked = value;
-        el.dispatchEvent(new Event('change', { bubbles: true }));
-      }
+function addSmartFilterButton() {
+
+    // Check if the button already exists
+    if (document.getElementById("smart-filter-button")) {
+        return;
     }
-  }
-  
-  function saveFilters() {
-    const filters = getSelectedFilters();
-    chrome.storage.local.set({ "hotelFilters": filters });
-  }
-  
-  function loadAndApplyFilters() {
-    chrome.storage.local.get("hotelFilters", (data) => {
-      if (data.hotelFilters) {
-        applySavedFilters(data.hotelFilters);
-      }
-    });
-  }
-  
-  // Save when any checkbox changes
-  document.addEventListener("change", (e) => {
-    if (e.target.matches('input[type="checkbox"]')) {
-      saveFilters();
+
+    // Find the heading with text "Filter by"
+    const headings = document.querySelectorAll('h3');
+    const filterHeading = Array.from(headings).find(h => h.textContent.trim() === 'Filter by');
+
+
+    if (!filterHeading) {
+        return;
     }
-  });
-  
-  // Apply on load
-  window.addEventListener("load", () => {
-    setTimeout(loadAndApplyFilters, 2000); // Wait for filters to render
-  });
-  
+
+    const button = document.createElement("button");
+    button.id = "smart-filter-button";
+  button.textContent = "Smart Filter";
+  button.style.margin = "6px 0px";
+  button.style.padding = "6px 1px";
+  button.style.fontSize = "12px";
+  button.style.cursor = "pointer";
+  button.style.borderRadius = "8px";
+  button.style.border = "1px solid #ccc";
+  button.style.color = "red";
+  button.style.backgroundColor = "#f5f5f5";
+
+
+    // Add any custom click behavior
+    button.addEventListener("click", () => {
+        alert("Smart filter clicked!");
+        // your smart filter logic here
+    });
+
+    filterHeading.insertAdjacentElement("afterend", button);
+}
+
+// Run initially and observe DOM changes
+addSmartFilterButton();
+const observer = new MutationObserver(addSmartFilterButton);
+observer.observe(document.body, { childList: true, subtree: true }); 
