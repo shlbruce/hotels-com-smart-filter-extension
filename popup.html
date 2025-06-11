@@ -1,0 +1,33 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stay Options Filter</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; width: 250px; }
+    h2 { font-size: 16px; margin-bottom: 8px; }
+    .option { display: block; margin: 6px 0; }
+    button { margin-top: 12px; padding: 6px; width: 100%; }
+  </style>
+</head>
+<body>
+  <h2>Stay Options</h2>
+  <form id="stayOptionsForm">
+    <label class="option"><input type="radio" name="stayOption" value="any" checked> Any</label>
+    <label class="option"><input type="radio" name="stayOption" value="hotels"> Hotels</label>
+    <label class="option"><input type="radio" name="stayOption" value="homes"> Homes</label>
+    <button type="submit">Apply to Hotels.com</button>
+  </form>
+
+  <script>
+    document.getElementById("stayOptionsForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const selected = document.querySelector('input[name="stayOption"]:checked')?.value;
+      if (selected) {
+        await chrome.storage.sync.set({ stayOption: selected });
+      }
+    });
+  </script>
+</body>
+</html>
