@@ -46,14 +46,19 @@ const HOTELS_COM_MAP = {
     ocean_view:"Ocean view",
     water_park: "Water park",
     cribs: "Cribs",
-  
-    // Payment Type
-    pay_later: "Reserve now, pay later",
-    gift_card: "Pay with gift card",
+
+    // Availability
+    available_only: "Only show available properties",
   
     // Cancellation
     fully_refundable: "Fully refundable property",
+
+    // Payment Type
+    pay_later: "Reserve now, pay later",
+    gift_card: "Pay with Hotels.com gift card",
   
+    
+
     // Property Type
     hotel: "Hotel",
     resort: "Resort",
@@ -105,9 +110,6 @@ const HOTELS_COM_MAP = {
     budget: "Budget option",
     wedding: "Wedding venue",
   
-    // Availability
-    available_only: "Only show available properties",
-  
     // Discounts
     vip: "VIP Access properties",
     member: "Member prices",
@@ -143,92 +145,95 @@ function applyFiltersInHotelsCom(smartFilters) {
         }
         else if (key === "availability") {
             value.forEach(availability => {
-                const checkbox = document.querySelector(`input[name="availableFilter"][aria-label="${availability}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
+                mappedAvailability = HOTELS_COM_MAP[availability];
+                const checkbox = document.querySelector(`input[name="availableFilter"][aria-label="${mappedAvailability}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
                 }
             });
         }
         else if (key === "cancellation") {
             value.forEach(cancellation => {
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label="${cancellation}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
+                mappedCancellation = HOTELS_COM_MAP[cancellation];
+                const checkbox = document.querySelector(`input[name="paymentType"][aria-label="${mappedCancellation}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
                 }
             });
         }
-        else if (key === "discounts") {
-            value.forEach(discount => {
-                const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${discount}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-            });
-        }
-        else if (key === "guestRating") {
-            const radio = document.querySelector(`input[name="guestRating"][aria-label*="${value}"]`);
-            if (radio) {
-                radio.checked = true;
-            }
-        }
-        else if (key === "maxPrice") {
-            const maxPriceInput = document.getElementById("price-max");
-            if (maxPriceInput) {
-                maxPriceInput.value = value;
-            }
-        }
-        else if (key === "minPrice") {
-            const minPriceInput = document.getElementById("price-min");
-            if (minPriceInput) {
-                minPriceInput.value = value;
-            }
-        }
+        // else if (key === "discounts") {
+        //     value.forEach(discount => {
+        //         const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${discount}"]`);
+        //         if (checkbox) {
+        //             checkbox.checked = true;
+        //         }
+        //     });
+        // }
+        // else if (key === "guestRating") {
+        //     const radio = document.querySelector(`input[name="guestRating"][aria-label*="${value}"]`);
+        //     if (radio) {
+        //         radio.checked = true;
+        //     }
+        // }
+        // else if (key === "maxPrice") {
+        //     const maxPriceInput = document.getElementById("price-max");
+        //     if (maxPriceInput) {
+        //         maxPriceInput.value = value;
+        //     }
+        // }
+        // else if (key === "minPrice") {
+        //     const minPriceInput = document.getElementById("price-min");
+        //     if (minPriceInput) {
+        //         minPriceInput.value = value;
+        //     }
+        // }
         else if (key === "paymentTypes") {
             value.forEach(paymentType => {
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label="${paymentType}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
+                mappedPaymentType = HOTELS_COM_MAP[paymentType];
+                const checkbox = document.querySelector(`input[name="paymentType"][aria-label="${mappedPaymentType}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
                 }
             });
         }
-        else if (key === "propertyBrands") {
-            value.forEach(brand => {
-                const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label="${brand}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-            });
-        }
-        else if (key === "propertyTypes") {
-            value.forEach(type => {
-                const checkbox = document.querySelector(`input[name="lodging"][aria-label="${type}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-            });
-        }
-        else if (key === "starRatings") {
-            value.forEach(rating => {
-                const checkbox = document.querySelector(`input[name="star"][aria-label*="${rating}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-            });
-        }
-        else if (key === "stayOption") {
-            const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${value}"]`);
-            if (radio) {
-                radio.checked = true;
-            }
-        }
-        else if (key === "travelerExperiences") {
-            value.forEach(experience => {
-                const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${experience}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-            });
-        }
+        // else if (key === "propertyBrands") {
+        //     value.forEach(brand => {
+        //         const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label="${brand}"]`);
+        //         if (checkbox) {
+        //             checkbox.checked = true;
+        //         }
+        //     });
+        // }
+        // else if (key === "propertyTypes") {
+        //     value.forEach(type => {
+        //         const checkbox = document.querySelector(`input[name="lodging"][aria-label="${type}"]`);
+        //         if (checkbox) {
+        //             checkbox.checked = true;
+        //         }
+        //     });
+        // }
+        // else if (key === "starRatings") {
+        //     value.forEach(rating => {
+        //         const checkbox = document.querySelector(`input[name="star"][aria-label*="${rating}"]`);
+        //         if (checkbox) {
+        //             checkbox.checked = true;
+        //         }
+        //     });
+        // }
+        // else if (key === "stayOption") {
+        //     const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${value}"]`);
+        //     if (radio) {
+        //         radio.checked = true;
+        //     }
+        // }
+        // else if (key === "travelerExperiences") {
+        //     value.forEach(experience => {
+        //         const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${experience}"]`);
+        //         if (checkbox) {
+        //             checkbox.checked = true;
+        //         }
+        //     });
+        // }
     }
 }
 
