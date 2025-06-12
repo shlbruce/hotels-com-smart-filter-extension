@@ -24,7 +24,102 @@ const HOTELS_COM_MAP = {
     stair_free: "Stair-free path to entrance",
     wheelchair_parking: "Wheelchair accessible parking",
     sign_language: "Sign language-capable staff",
-};
+  
+    // Amenities
+    pool: "Pool",
+    spa: "Spa",
+    airport_shuttle: "Airport shuttle included",
+    casino: "Casino",
+    pet_friendly: "Pet friendly",
+    parking: "Parking",
+    kitchen: "Kitchen",
+    hot_tub: "Hot tub",
+    wifi: "Wifi Included",
+    restaurant: "Restaurant",
+    air_conditioned: "Air conditioned",
+    gym: "Gym",
+    golf_course: "Golf course",
+    bar: "Bar",
+    outdoor_space: "Outdoor space",
+    electric_charger: "Electric car charging station",
+    washer_dryer: "Washer and dryer",
+    ocean_view:"Ocean view",
+    water_park: "Water park",
+    cribs: "Cribs",
+  
+    // Payment Type
+    pay_later: "Reserve now, pay later",
+    gift_card: "Pay with gift card",
+  
+    // Cancellation
+    fully_refundable: "Fully refundable property",
+  
+    // Property Type
+    hotel: "Hotel",
+    resort: "Resort",
+    motel: "Motel",
+    aparthotel: "Aparthotel",
+    apartment: "Apartment",
+    condo_resort: "Condo resort",
+    condo: "Condo",
+    bnb: "Bed & Breakfast",
+    vacation_home: "Private vacation home",
+    cottage: "Cottage",
+    guesthouse: "Guesthouse",
+    safari: "Safari lodge",
+    hostel: "Hostel/Backpacker accommodation",
+  
+    // Property Brand
+    mgm: "MGM Resorts",
+    caesars: "Caesars Entertainment",
+    boyd: "Boyd Gaming",
+    wynn: "Wynn Resorts",
+    hilton: "Hilton Hotels",
+    world_bw: "World Hotels BW",
+    hyatt: "Hyatt Hotels",
+    station: "Station Casinos",
+    hilton_grand: "Hilton Grand Vacations",
+    golden_nugget: "Golden Nugget",
+    trump: "Trump Hotels",
+    curio: "Curio Collection by Hilton",
+    oyo: "OYO Americas",
+    westgate: "Westgate Resorts",
+    doubletree: "Doubletree by Hilton",
+    hampton: "Hampton Inn",
+    motel6: "Motel 6",
+    holiday_inn_express: "Holiday Inn Express",
+    la_quinta: "La Quinta Inn & Suites",
+    best_western_plus: "Best Western Plus",
+    best_western: "Best Western",
+    wyndham: "Wyndham Extra Holidays",
+  
+    // Traveler Experience
+    family_friendly: "Family friendly",
+    adults_only: "Adults only",
+    lgbtq: "LGBTQ welcoming",
+    luxury: "Luxury experience",
+    business: "Business friendly",
+    beach: "Beach access",
+    romantic: "Romantic setting",
+    eco: "Eco-certified",
+    budget: "Budget option",
+    wedding: "Wedding venue",
+  
+    // Availability
+    available_only: "Only show available properties",
+  
+    // Discounts
+    vip: "VIP Access properties",
+    member: "Member prices",
+    discounted: "Discounted properties",
+  
+    // Meals
+    breakfast: "Breakfast included",
+    dinner: "Dinner included",
+    all_inclusive: "All-inclusive meals",
+    lunch: "Lunch included"
+  };
+  
 
 function applyFiltersInHotelsCom(smartFilters) {
     for (const [key, value] of Object.entries(smartFilters)) {
@@ -39,9 +134,10 @@ function applyFiltersInHotelsCom(smartFilters) {
         }
         else if (key === "amenities") {
             value.forEach(amenity => {
-                const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${amenity}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
+                mappedAmenity = HOTELS_COM_MAP[amenity];
+                const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${mappedAmenity}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
                 }
             });
         }
