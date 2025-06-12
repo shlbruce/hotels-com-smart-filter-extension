@@ -3,11 +3,11 @@ function handleSmartFilterClick(event) {
     event.stopPropagation(); // ⛔ Prevents event bubbling
     event.preventDefault();  // ⛔ Prevents default action
 
-    chrome.storage.sync.get(["smartFilters"], function(result) {
+    chrome.storage.sync.get(["smartFilters"], function (result) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
             applyFiltersInHotelsCom(smartFilters);
-            
+
         } else {
             console.warn("No smart filters found in storage.");
         }
@@ -24,8 +24,8 @@ const HOTELS_COM_MAP = {
     stair_free: "Stair-free path to entrance",
     wheelchair_parking: "Wheelchair accessible parking",
     sign_language: "Sign language-capable staff",
-  };
-  
+};
+
 function applyFiltersInHotelsCom(smartFilters) {
     for (const [key, value] of Object.entries(smartFilters)) {
         if (key === "accessibility") {
@@ -163,12 +163,27 @@ function addSmartFilterButton() {
     button.style.border = "1px solid #ccc";
     button.style.color = "red";
     button.style.backgroundColor = "#f5f5f5";
+    button.style.transition = "background-color 0.1s, transform 0.1s";
 
+    // Visual press effect
+    button.addEventListener("mousedown", () => {
+        button.style.backgroundColor = "#ddd";
+        button.style.transform = "scale(0.96)";
+    });
 
-    // Add any custom click behavior
+    const resetButtonStyle = () => {
+        button.style.backgroundColor = "#f5f5f5";
+        button.style.transform = "scale(1)";
+    };
+
+    button.addEventListener("mouseup", resetButtonStyle);
+    button.addEventListener("mouseleave", resetButtonStyle);
+
+    // Your smart filter logic
     button.addEventListener("click", handleSmartFilterClick);
 
     filterHeading.insertAdjacentElement("afterend", button);
+
 }
 
 // Run initially and observe DOM changes
