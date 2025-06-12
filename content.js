@@ -32,8 +32,8 @@ function applyFiltersInHotelsCom(smartFilters) {
             value.forEach(accessibility => {
                 mappedAccessibility = HOTELS_COM_MAP[accessibility];
                 let checkbox = document.querySelector(`input[name='accessibility'][aria-label*='${mappedAccessibility}']`);
-                if (checkbox) {
-                    checkbox.checked = true;
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
                 }
             });
         }
