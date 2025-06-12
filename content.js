@@ -6,7 +6,7 @@ function handleSmartFilterClick(event) {
     chrome.storage.sync.get(["smartFilters"], function(result) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
-            //console.log("Loaded smart filters:", smartFilters);
+            applyFiltersInHotelsCom(smartFilters);
             
         } else {
             console.warn("No smart filters found in storage.");
@@ -14,14 +14,27 @@ function handleSmartFilterClick(event) {
     });
 }
 
+const HOTELS_COM_MAP = {
+    // Accessibility
+    roll_in_shower: "Roll-in shower",
+    elevator: "Elevator",
+    in_room: "In-room accessibility",
+    accessible_bathroom: "Accessible bathroom",
+    service_animals: "Service animals allowed",
+    stair_free: "Stair-free path to entrance",
+    wheelchair_parking: "Wheelchair accessible parking",
+    sign_language: "Sign language-capable staff",
+  };
+  
 function applyFiltersInHotelsCom(smartFilters) {
-    for (const [key, value] of Object.entries(filters)) {
+    for (const [key, value] of Object.entries(smartFilters)) {
         if (key === "accessibility") {
             value.forEach(accessibility => {
-                let checkbox = checkbox = document.querySelector(`input[name="accessibility"][aria-label*="${accessibility}"]`);
-            if (checkbox) {
-                checkbox.checked = true;
-            }
+                mappedAccessibility = HOTELS_COM_MAP[accessibility];
+                let checkbox = document.querySelector(`input[name='accessibility'][aria-label*='${mappedAccessibility}']`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
             });
         }
         else if (key === "amenities") {
