@@ -58,6 +58,12 @@ const HOTELS_COM_MAP = {
     member: "Member Prices",
     discounted: "Discounted properties",
 
+    // Guest Rating
+    guest_rating_any: "Any",
+    guest_rating_9: "Wonderful 9+",
+    guest_rating_8: "Very good 8+",
+    guest_rating_7: "Good 7+",
+
     // Payment Type
     pay_later: "Reserve now, pay later",
     gift_card: "Pay with Hotels.com gift card",
@@ -174,12 +180,13 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "guestRating") {
-        //     const radio = document.querySelector(`input[name="guestRating"][aria-label*="${value}"]`);
-        //     if (radio) {
-        //         radio.checked = true;
-        //     }
-        // }
+        else if (key === "guestRating") {
+            mappedValue = HOTELS_COM_MAP[value];
+            const radio = document.querySelector(`input[name="guestRating"][aria-label*="${mappedValue}"]`);
+            if (radio && !radio.checked) {
+                radio.click(); // Simulate real user interaction
+            }
+        }
         // else if (key === "maxPrice") {
         //     const maxPriceInput = document.getElementById("price-max");
         //     if (maxPriceInput) {
