@@ -53,6 +53,11 @@ const HOTELS_COM_MAP = {
     // Cancellation
     fully_refundable: "Fully refundable property",
 
+    // Discounts
+    vip: "VIP Access properties",
+    member: "Member Prices",
+    discounted: "Discounted properties",
+
     // Payment Type
     pay_later: "Reserve now, pay later",
     gift_card: "Pay with Hotels.com gift card",
@@ -112,10 +117,7 @@ const HOTELS_COM_MAP = {
     budget: "Budget option",
     wedding: "Wedding venue",
   
-    // Discounts
-    vip: "VIP Access properties",
-    member: "Member prices",
-    discounted: "Discounted properties",
+    
   
     // Meals
     breakfast: "Breakfast included",
@@ -163,14 +165,15 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "discounts") {
-        //     value.forEach(discount => {
-        //         const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${discount}"]`);
-        //         if (checkbox) {
-        //             checkbox.checked = true;
-        //         }
-        //     });
-        // }
+        else if (key === "discounts") {
+            value.forEach(discount => {
+                mappedDiscount = HOTELS_COM_MAP[discount];
+                const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${mappedDiscount}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         // else if (key === "guestRating") {
         //     const radio = document.querySelector(`input[name="guestRating"][aria-label*="${value}"]`);
         //     if (radio) {
