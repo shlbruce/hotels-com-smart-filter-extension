@@ -58,20 +58,19 @@ const HOTELS_COM_MAP = {
     gift_card: "Pay with Hotels.com gift card",
   
     
-
     // Property Type
     hotel: "Hotel",
     resort: "Resort",
+    bnb: "Bed & breakfast",
+    condo: "Condo",
     motel: "Motel",
+    vacation_home: "Private vacation home",
     aparthotel: "Aparthotel",
     apartment: "Apartment",
     condo_resort: "Condo resort",
-    condo: "Condo",
-    bnb: "Bed & Breakfast",
-    vacation_home: "Private vacation home",
+    villa: "Villa",
     cottage: "Cottage",
     guesthouse: "Guesthouse",
-    safari: "Safari lodge",
     hostel: "Hostel/Backpacker accommodation",
   
     // Property Brand
@@ -146,7 +145,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "availability") {
             value.forEach(availability => {
                 mappedAvailability = HOTELS_COM_MAP[availability];
-                const checkbox = document.querySelector(`input[name="availableFilter"][aria-label="${mappedAvailability}"]`);
+                const checkbox = document.querySelector(`input[name="availableFilter"][aria-label*="${mappedAvailability}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }
@@ -155,7 +154,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "cancellation") {
             value.forEach(cancellation => {
                 mappedCancellation = HOTELS_COM_MAP[cancellation];
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label="${mappedCancellation}"]`);
+                const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedCancellation}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }
@@ -190,7 +189,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "paymentTypes") {
             value.forEach(paymentType => {
                 mappedPaymentType = HOTELS_COM_MAP[paymentType];
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label="${mappedPaymentType}"]`);
+                const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedPaymentType}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }
@@ -204,14 +203,15 @@ function applyFiltersInHotelsCom(smartFilters) {
         //         }
         //     });
         // }
-        // else if (key === "propertyTypes") {
-        //     value.forEach(type => {
-        //         const checkbox = document.querySelector(`input[name="lodging"][aria-label="${type}"]`);
-        //         if (checkbox) {
-        //             checkbox.checked = true;
-        //         }
-        //     });
-        // }
+        else if (key === "propertyTypes") {
+            value.forEach(type => {
+                mappedType = HOTELS_COM_MAP[type];
+                const checkbox = document.querySelector(`input[name="lodging"][aria-label*="${mappedType}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         // else if (key === "starRatings") {
         //     value.forEach(rating => {
         //         const checkbox = document.querySelector(`input[name="star"][aria-label*="${rating}"]`);
