@@ -187,18 +187,24 @@ function applyFiltersInHotelsCom(smartFilters) {
                 radio.click(); // Simulate real user interaction
             }
         }
-        // else if (key === "maxPrice") {
-        //     const maxPriceInput = document.getElementById("price-max");
-        //     if (maxPriceInput) {
-        //         maxPriceInput.value = value;
-        //     }
-        // }
-        // else if (key === "minPrice") {
-        //     const minPriceInput = document.getElementById("price-min");
-        //     if (minPriceInput) {
-        //         minPriceInput.value = value;
-        //     }
-        // }
+        else if (key === "maxPrice") {
+            const slider = document.querySelector('input[type="range"][aria-label*="Maximum"]');
+
+            if (slider) {
+                slider.value = value;
+                slider.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+            }
+        }
+        else if (key === "minPrice") {
+            const slider = document.querySelector('input[type="range"][aria-label*="Minimum"]');
+            if (slider) {
+                slider.value = value;
+                // Wait 2 seconds, then simulate mouse release
+                setTimeout(() => {
+                    slider.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+                }, 1000);
+            }
+        }
         else if (key === "paymentTypes") {
             value.forEach(paymentType => {
                 mappedPaymentType = HOTELS_COM_MAP[paymentType];
@@ -249,6 +255,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         //     });
         // }
     }
+    
 }
 
 function addSmartFilterButton() {
