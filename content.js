@@ -74,28 +74,31 @@ const HOTELS_COM_MAP = {
     hostel: "Hostel/Backpacker accommodation",
   
     // Property Brand
-    mgm: "MGM Resorts",
+    mgm: "MGM",
     caesars: "Caesars Entertainment",
+    venetian_las_vegas: "Venetian Las Vegas",
     boyd: "Boyd Gaming",
     wynn: "Wynn Resorts",
     hilton: "Hilton Hotels",
     world_bw: "World Hotels BW",
     hyatt: "Hyatt Hotels",
     station: "Station Casinos",
+    conrad: "Conrad",
     hilton_grand: "Hilton Grand Vacations",
     golden_nugget: "Golden Nugget",
     trump: "Trump Hotels",
-    curio: "Curio Collection by Hilton",
-    oyo: "OYO Americas",
+    curio: "Curio Collection",
+    oyo: "OYO AMER",
     westgate: "Westgate Resorts",
-    doubletree: "Doubletree by Hilton",
+    doubletree: "Doubletree",
     hampton: "Hampton Inn",
     motel6: "Motel 6",
-    holiday_inn_express: "Holiday Inn Express",
     la_quinta: "La Quinta Inn & Suites",
+    lxr_hotels_resorts: "LXR Hotels & Resorts",
     best_western_plus: "Best Western Plus",
-    best_western: "Best Western",
-    wyndham: "Wyndham Extra Holidays",
+    holiday_inn_express: "Holiday Inn Express Hotel",
+    wyndham_extra_holidays: "Wyndham Extra Holidays",
+    four_seasons: "Four Seasons",
   
     // Traveler Experience
     family_friendly: "Family friendly",
@@ -195,14 +198,15 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "propertyBrands") {
-        //     value.forEach(brand => {
-        //         const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label="${brand}"]`);
-        //         if (checkbox) {
-        //             checkbox.checked = true;
-        //         }
-        //     });
-        // }
+        else if (key === "propertyBrands") {
+            value.forEach(brand => {
+                mappedBrand = HOTELS_COM_MAP[brand];
+                const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         else if (key === "propertyTypes") {
             value.forEach(type => {
                 mappedType = HOTELS_COM_MAP[type];
