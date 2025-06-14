@@ -191,17 +191,19 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "maxPrice") {
             const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
             const sliderMin = document.querySelector('input[type="range"][aria-label*="Minimum"]');
-            if (sliderMin && sliderMax) {
+            if (sliderMax && value != null) {
                 sliderMax.value = value;
-                
-                sliderMax.dispatchEvent(new Event('input', { bubbles: true }));
+                // don't try to put MouseDown event, it will trigger sliderMax not work. 
+                // I guess mousedown take some time to process, then sliderMax.mouseup event will be too closed to sliderMin.mouseup
+                // then only one mouseup event is executed.
                 sliderMax.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+            }
 
+            if (sliderMin && smartFilters.minPrice != null) {
                 setTimeout(() => {
                     sliderMin.value = smartFilters.minPrice || 0;
-                    sliderMin.dispatchEvent(new Event('input', { bubbles: true }));
                     sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-                }, 50);
+                }, 2000);
             }
         }
         else if (key === "paymentTypes") {
