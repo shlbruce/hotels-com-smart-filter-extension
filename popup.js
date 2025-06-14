@@ -41,7 +41,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
     console.log("smartFilters saved successfully");
   }).catch((err) => {
     console.error("Failed to save smartFilters:", err);
-  });  
+  });
   alert("Preferences saved!");
 });
 
@@ -94,28 +94,42 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 document.getElementById("resetFiltersButton").addEventListener("click", () => {
-  const form = document.getElementById("smartFiltersForm");
+  const confirmModal = document.getElementById("confirmResetModal");
+  const confirmYes = document.getElementById("confirmYes");
+  const confirmNo = document.getElementById("confirmNo");
 
-  // Clear text/number inputs
-  form.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
-    input.value = '';
+  document.getElementById("resetFiltersButton").addEventListener("click", () => {
+    confirmModal.style.display = "flex";
   });
 
-  // Uncheck all checkboxes
-  form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-    checkbox.checked = false;
+  confirmYes.addEventListener("click", () => {
+    const form = document.getElementById("smartFiltersForm");
+
+    // Clear text/number inputs
+    form.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
+      input.value = '';
+    });
+
+    // Uncheck all checkboxes
+    form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.checked = false;
+    });
+
+    // Reset all radio buttons to default
+    form.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.checked = radio.defaultChecked;
+    });
+
+    // Clear storage
+    chrome.storage.sync.remove("smartFilters", () => {
+      console.log("smartFilters reset");
+    });
+
+    confirmModal.style.display = "none";
   });
 
-  // Reset all radio buttons to default (checked on load)
-  form.querySelectorAll('input[type="radio"]').forEach(radio => {
-    radio.checked = radio.defaultChecked;
+  confirmNo.addEventListener("click", () => {
+    confirmModal.style.display = "none";
   });
-
-  // Optional: Clear storage
-  chrome.storage.sync.remove("smartFilters", () => {
-    console.log("smartFilters reset");
-  });
-
-  alert("Filters have been reset!");
 });
 
