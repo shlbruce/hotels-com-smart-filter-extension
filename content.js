@@ -122,19 +122,29 @@ const HOTELS_COM_MAP = {
     wyndham_extra_holidays: "Wyndham Extra Holidays",
     four_seasons: "Four Seasons",
 
+    // Star Ratings
+    starRating_5: "5 stars",
+    starRating_4: "4 stars",
+    starRating_3: "3 stars",
+    starRating_2: "2 stars",
+    starRating_1: "1 star",
+
+    // Stay Option
+    stay_options_any: "Any",
+    stay_options_hotels: "Hotels",
+    stay_options_homes: "Homes",
+
     // Traveler Experience
-    family_friendly: "Family friendly",
-    adults_only: "Adults only",
-    lgbtq: "LGBTQ welcoming",
-    luxury: "Luxury experience",
-    business: "Business friendly",
-    beach: "Beach access",
-    romantic: "Romantic setting",
-    eco: "Eco-certified",
-    budget: "Budget option",
-    wedding: "Wedding venue",
-
-
+    travel_experience_family_friendly: "Family friendly",
+    travel_experience_adults_only: "Adults only",
+    travel_experience_lgbtq: "LGBTQ welcoming",
+    travel_experience_luxury: "Luxury",
+    travel_experience_business: "Business friendly",
+    travel_experience_beach: "Beach",
+    travel_experience_romantic: "Romantic",
+    travel_experience_eco: "Eco-certified",
+    travel_experience_budget: "Budget",
+    travel_experience_wedding: "Wedding",
 
     // Meals
     breakfast: "Breakfast included",
@@ -245,28 +255,31 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "starRatings") {
-        //     value.forEach(rating => {
-        //         const checkbox = document.querySelector(`input[name="star"][aria-label*="${rating}"]`);
-        //         if (checkbox) {
-        //             checkbox.checked = true;
-        //         }
-        //     });
-        // }
-        // else if (key === "stayOption") {
-        //     const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${value}"]`);
-        //     if (radio) {
-        //         radio.checked = true;
-        //     }
-        // }
-        // else if (key === "travelerExperiences") {
-        //     value.forEach(experience => {
-        //         const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${experience}"]`);
-        //         if (checkbox) {
-        //             checkbox.checked = true;
-        //         }
-        //     });
-        // }
+        else if (key === "starRatings") {
+            value.forEach(rating => {
+                mappedRating = HOTELS_COM_MAP[rating];
+                const checkbox = document.querySelector(`input[name="star"][aria-label*="${mappedRating}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
+        else if (key === "stayOption") {
+            mappedValue = HOTELS_COM_MAP[value];
+            const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${mappedValue}"]`);
+            if (radio && !radio.checked) {
+                radio.click(); // Simulate real user interaction
+            }
+        }
+        else if (key === "travelerExperiences") {
+            value.forEach(experience => {
+                mappedExperience = HOTELS_COM_MAP[experience];
+                const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${mappedExperience}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
     }
 
 }
