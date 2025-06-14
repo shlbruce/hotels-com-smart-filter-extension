@@ -196,14 +196,16 @@ function applyFiltersInHotelsCom(smartFilters) {
             }
         }
         else if (key === "minPrice") {
-            const slider = document.querySelector('input[type="range"][aria-label*="Minimum"]');
-            if (slider) {
-                slider.value = value;
-                // Wait 2 seconds, then simulate mouse release
-                setTimeout(() => {
-                    slider.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-                }, 1000);
-            }
+            setTimeout(() => {
+                const slider = document.querySelector('input[type="range"][aria-label*="Minimum"]');
+                if (slider) {
+                    slider.value = value;
+                    // Wait 2 seconds, then simulate mouse release
+                    
+                        slider.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+                    }
+                }
+                , 3000);
         }
         else if (key === "paymentTypes") {
             value.forEach(paymentType => {
