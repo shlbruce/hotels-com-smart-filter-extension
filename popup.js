@@ -92,3 +92,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(`input[name="cancellation"][value="${filters.cancellation}"]`)?.click();
   }
 });
+
+document.getElementById("resetFiltersButton").addEventListener("click", () => {
+  const form = document.getElementById("smartFiltersForm");
+
+  // Clear text/number inputs
+  form.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
+    input.value = '';
+  });
+
+  // Uncheck all checkboxes
+  form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    checkbox.checked = false;
+  });
+
+  // Reset all radio buttons to default (checked on load)
+  form.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.checked = radio.defaultChecked;
+  });
+
+  // Optional: Clear storage
+  chrome.storage.sync.remove("smartFilters", () => {
+    console.log("smartFilters reset");
+  });
+
+  alert("Filters have been reset!");
+});
+
