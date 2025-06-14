@@ -187,25 +187,22 @@ function applyFiltersInHotelsCom(smartFilters) {
                 radio.click(); // Simulate real user interaction
             }
         }
+        // handle minPrice and maxPrice together
         else if (key === "maxPrice") {
-            const slider = document.querySelector('input[type="range"][aria-label*="Maximum"]');
+            const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
+            const sliderMin = document.querySelector('input[type="range"][aria-label*="Minimum"]');
+            if (sliderMin && sliderMax) {
+                sliderMax.value = value;
+                
+                sliderMax.dispatchEvent(new Event('input', { bubbles: true }));
+                sliderMax.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
 
-            if (slider) {
-                slider.value = value;
-                slider.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+                setTimeout(() => {
+                    sliderMin.value = smartFilters.minPrice || 0;
+                    sliderMin.dispatchEvent(new Event('input', { bubbles: true }));
+                    sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+                }, 50);
             }
-        }
-        else if (key === "minPrice") {
-            setTimeout(() => {
-                const slider = document.querySelector('input[type="range"][aria-label*="Minimum"]');
-                if (slider) {
-                    slider.value = value;
-                    // Wait 2 seconds, then simulate mouse release
-                    
-                        slider.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-                    }
-                }
-                , 3000);
         }
         else if (key === "paymentTypes") {
             value.forEach(paymentType => {
