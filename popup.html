@@ -1,64 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <title>Smart Filters</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 10px;
-            width: 900px;
-            height: 1200px;
-            overflow: auto; 
-        }
+  <meta charset="UTF-8" />
+  <title>Smart Filters</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      width: 1200px;
+      height: 900px;
+      overflow: auto;
+    }
 
-        h2 {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
+    h2 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
 
-        .section {
-            margin-bottom: 16px;
-        }
+    .section {
+      margin-bottom: 16px;
+    }
 
-        .price-inputs {
-            display: flex;
-            gap: 8px;
-        }
+    .price-inputs {
+      display: flex;
+      gap: 8px;
+    }
 
-        input[type="number"] {
-            width: 100px;
-        }
+    input[type="number"] {
+      width: 100px;
+    }
 
-        .option,
-        .checkbox {
-            display: block;
-            margin: 4px 0;
-        }
+    .option,
+    .checkbox {
+      display: block;
+      margin: 4px 0;
+    }
 
-        .checkbox input,
-        .option input {
-            margin-right: 6px;
-        }
+    .checkbox input,
+    .option input {
+      margin-right: 6px;
+    }
 
-        .amenities-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
 
-        button {
-            margin-top: 12px;
-            padding: 6px;
-            width: 100%;
-        }
-    </style>
+    button {
+      padding: 6px;
+      width: 100%;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .button-footer {
+      position: sticky;
+      bottom: 0;
+      background: white;
+      padding: 12px 0;
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+    }
+  </style>
 </head>
-
 <body>
-    <h2>Smart Filters</h2>
-    <form id="smartFiltersForm">
+  <h2>Smart Filters</h2>
+  <form id="smartFiltersForm">
+    <div class="form-grid">
         <div class="section">
             <label><strong>Total Price</strong></label>
             <div class="price-inputs">
@@ -250,12 +265,13 @@
                 inclusive</label>
             <label class="checkbox"><input type="checkbox" name="meals" value="lunch" disabled> Lunch included</label>
         </div>
+    </div>
 
-        <button type="submit">Save Filters</button>
-        <button type="button" id="resetFiltersButton">Reset Filters</button>
-
-    </form>
-    <script src="popup.js"></script>
+    <div class="button-footer">
+      <button type="submit">Save Filters</button>
+      <button type="button" id="resetFiltersButton">Reset Filters</button>
+    </div>
+  </form>
+  <script src="popup.js"></script>
 </body>
-
 </html>
