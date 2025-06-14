@@ -5,7 +5,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   const minPrice = document.getElementById("minPrice").value || null;
   const maxPrice = document.getElementById("maxPrice").value || null;
   const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
-  const amenities = [...document.querySelectorAll('.amenities-grid input:checked')].map(cb => cb.value);
+  const amenities = [...document.querySelectorAll('input[name="amenities"]:checked')].map(cb => cb.value);
   const paymentTypes = [...document.querySelectorAll('input[name="paymentType"]:checked')].map(cb => cb.value);
 
   const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   checkOptions("starRating", filters.starRatings);
+  checkOptions("amenities", filters.amenities);
   checkOptions("paymentType", filters.paymentTypes);
   checkOptions("propertyType", filters.propertyTypes);
   checkOptions("propertyBrand", filters.propertyBrands);
@@ -80,13 +81,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   checkOptions("accessibility", filters.accessibility);
   checkOptions("discounts", filters.discounts);
   checkOptions("meals", filters.meals);
-
-  // Amenities handled separately since their inputs lack the name attribute
-  if (Array.isArray(filters.amenities)) {
-    filters.amenities.forEach(val => {
-      document.querySelector(`.amenities-grid input[value="${val}"]`)?.click();
-    });
-  }
 
   // Single checkboxes
   if (filters.availability) {
