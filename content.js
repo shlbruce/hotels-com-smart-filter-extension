@@ -6,7 +6,18 @@ function handleSmartFilterClick(event) {
     chrome.storage.sync.get(["smartFilters"], function (result) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
-            applyFiltersInHotelsCom(smartFilters);
+            const buttons = document.querySelectorAll('button');
+
+            for (const btn of buttons) {
+                if (btn.textContent.trim() === "Remove all filters") {
+                    btn.click();
+                    break;
+                }
+            }
+
+            setTimeout(() => {
+                applyFiltersInHotelsCom(smartFilters);
+            }, 2000);
 
         } else {
             console.warn("No smart filters found in storage.");
@@ -24,7 +35,7 @@ const HOTELS_COM_MAP = {
     stair_free: "Stair-free path to entrance",
     wheelchair_parking: "Wheelchair accessible parking",
     sign_language: "Sign language-capable staff",
-  
+
     // Amenities
     pool: "Pool",
     spa: "Spa",
@@ -43,13 +54,13 @@ const HOTELS_COM_MAP = {
     outdoor_space: "Outdoor space",
     electric_charger: "Electric car charging station",
     washer_dryer: "Washer and dryer",
-    ocean_view:"Ocean view",
+    ocean_view: "Ocean view",
     water_park: "Water park",
     cribs: "Cribs",
 
     // Availability
     available_only: "Only show available properties",
-  
+
     // Cancellation
     fully_refundable: "Fully refundable property",
 
@@ -67,8 +78,8 @@ const HOTELS_COM_MAP = {
     // Payment Type
     pay_later: "Reserve now, pay later",
     gift_card: "Pay with Hotels.com gift card",
-  
-    
+
+
     // Property Type
     hotel: "Hotel",
     resort: "Resort",
@@ -83,7 +94,7 @@ const HOTELS_COM_MAP = {
     cottage: "Cottage",
     guesthouse: "Guesthouse",
     hostel: "Hostel/Backpacker accommodation",
-  
+
     // Property Brand
     mgm: "MGM",
     caesars: "Caesars Entertainment",
@@ -110,7 +121,7 @@ const HOTELS_COM_MAP = {
     holiday_inn_express: "Holiday Inn Express Hotel",
     wyndham_extra_holidays: "Wyndham Extra Holidays",
     four_seasons: "Four Seasons",
-  
+
     // Traveler Experience
     family_friendly: "Family friendly",
     adults_only: "Adults only",
@@ -122,18 +133,19 @@ const HOTELS_COM_MAP = {
     eco: "Eco-certified",
     budget: "Budget option",
     wedding: "Wedding venue",
-  
-    
-  
+
+
+
     // Meals
     breakfast: "Breakfast included",
     dinner: "Dinner included",
     all_inclusive: "All-inclusive meals",
     lunch: "Lunch included"
-  };
-  
+};
+
 
 function applyFiltersInHotelsCom(smartFilters) {
+
     for (const [key, value] of Object.entries(smartFilters)) {
         if (key === "accessibility") {
             value.forEach(accessibility => {
@@ -256,7 +268,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         //     });
         // }
     }
-    
+
 }
 
 function addSmartFilterButton() {
