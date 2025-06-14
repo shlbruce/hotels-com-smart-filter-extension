@@ -42,7 +42,12 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   }).catch((err) => {
     console.error("Failed to save smartFilters:", err);
   });
-  alert("Preferences saved!");
+  const panel = document.getElementById("confirmationPanel");
+  panel.style.display = "block";
+  setTimeout(() => {
+    panel.style.display = "none";
+  }, 2500);
+
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
