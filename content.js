@@ -147,10 +147,10 @@ const HOTELS_COM_MAP = {
     travel_experience_wedding: "Wedding",
 
     // Meals
-    breakfast: "Breakfast included",
-    dinner: "Dinner included",
-    all_inclusive: "All-inclusive meals",
-    lunch: "Lunch included"
+    meal_plan_breakfast: "Breakfast included",
+    meal_plan_dinner: "Dinner included",
+    meal_plan_lunch: "Lunch included",
+    meal_plan_all_inclusive: "All inclusive"
 };
 
 
@@ -227,6 +227,15 @@ function applyFiltersInHotelsCom(smartFilters) {
                     sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
                 }, 2000);
             }
+        }
+        else if (key === "meals") {
+            value.forEach(meal => {
+                mappedMeal = HOTELS_COM_MAP[meal];
+                const checkbox = document.querySelector(`input[name="mealPlan"][aria-label*="${mappedMeal}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
         }
         else if (key === "paymentTypes") {
             value.forEach(paymentType => {
