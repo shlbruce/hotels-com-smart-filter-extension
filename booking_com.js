@@ -158,7 +158,7 @@ const BOOKING_COM_MAP = {
     // Family rooms
     spa: { name: "hotelfacility", aria_label: "Spa" },
     //this is hotel hot tub, not in room hot tub. We need update settings to hotel facility or room facility
-    hot_tub: { name: "hotelfacility", aria_label: "Hot tub/Jacuzzi" }, 
+    hot_tub: { name: "hotelfacility", aria_label: "Hot tub/Jacuzzi" },
     wifi: { name: "hotelfacility", aria_label: "Free Wifi" },
     electric_charger: { name: "hotelfacility", aria_label: "Electric vehicle charging station" },
 
@@ -310,9 +310,6 @@ const BOOKING_COM_MAP = {
 
     // Meals => Meals
     meal_plan_breakfast: { name: "mealplan", aria_label: "Breakfast included" },
-    // meal_plan_dinner: { name: "meal_plan_dinner", aria_label: "Dinner included" },
-    // meal_plan_lunch: { name: "meal_plan_lunch", aria_label: "Lunch included" },
-    // meal_plan_all_inclusive: { name: "meal_plan_all_inclusive", aria_label: "All inclusive" }
 };
 
 
@@ -324,7 +321,7 @@ function applyFiltersInBookingCom(smartFilters) {
         if (key === "accessibility") {
             value.forEach(accessibility => {
                 const mappedAccessibility = BOOKING_COM_MAP[accessibility];
-                if (!mappedAccessibility) return; 
+                if (!mappedAccessibility) return;
                 mappedAccessibility.aria_label.forEach(label => {
                     let checkbox = document.querySelector(`input[name*='${mappedAccessibility.name}'][aria-label*='${label}']`);
                     if (checkbox && !checkbox.checked) {
@@ -336,7 +333,7 @@ function applyFiltersInBookingCom(smartFilters) {
         else if (key === "amenities") {
             value.forEach(amenity => {
                 const mappedAmenity = BOOKING_COM_MAP[amenity];
-                if (!mappedAmenity) return; 
+                if (!mappedAmenity) return;
                 const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -353,31 +350,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // // handle minPrice and maxPrice together
-        else if (key === "maxPrice") {
-            const sliderMax = document.querySelector('input[type="range"][aria-label="Max."]');
-            const sliderMin = document.querySelector('input[type="range"][aria-label="Min."]');
-            if (sliderMax && value != null) {
-                sliderMax.value = value;
-                sliderMax.dispatchEvent(new Event('input', { bubbles: true }));
-                sliderMax.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-
-            if (sliderMin && smartFilters.minPrice != null) {
-                sliderMin.value = smartFilters.minPrice || 0;
-                sliderMin.dispatchEvent(new Event('input', { bubbles: true }));
-                sliderMin.dispatchEvent(new Event('change', { bubbles: true }));
-            }
+        else if (key === "meals") {
+            value.forEach(meal => {
+                const mappedMeal = BOOKING_COM_MAP[meal];
+                if (!mappedMeal) return;
+                const checkbox = document.querySelector(`input[name*="${mappedMeal.name}"][aria-label*="${mappedMeal.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
         }
-        // else if (key === "meals") {
-        //     value.forEach(meal => {
-        //         const mappedMeal = BOOKING_COM_MAP[meal];
-        //         const checkbox = document.querySelector(`input[name="mealPlan"][aria-label*="${mappedMeal}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
         // else if (key === "paymentTypes") {
         //     value.forEach(paymentType => {
         //         const mappedPaymentType = BOOKING_COM_MAP[paymentType];
@@ -408,7 +390,7 @@ function applyFiltersInBookingCom(smartFilters) {
         else if (key === "starRatings") {
             value.forEach(rating => {
                 const mappedRating = BOOKING_COM_MAP[rating];
-                if (!mappedRating) return; 
+                if (!mappedRating) return;
                 const checkbox = document.querySelector(`input[name*="${mappedRating.name}"][aria-label*="${mappedRating.aria_label}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -440,5 +422,25 @@ function applyFiltersInBookingCom(smartFilters) {
         //     });
         // }
     }
+
+    // Handle minPrice and maxPrice here, otherwise when other filters are applied, the price filter will be reset
+    // So add timeout to ensure other filters are applied first
+    setTimeout(() => {
+        // Click the "Apply filters" button
+        // // handle minPrice and maxPrice together
+        const sliderMax = document.querySelector('input[type="range"][aria-label="Max."]');
+        const sliderMin = document.querySelector('input[type="range"][aria-label="Min."]');
+        if (sliderMax && smartFilters.maxPrice != null) {
+            sliderMax.value = smartFilters.maxPrice;
+            sliderMax.dispatchEvent(new Event('input', { bubbles: true }));
+            sliderMax.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        if (sliderMin && smartFilters.minPrice != null) {
+            sliderMin.value = smartFilters.minPrice || 0;
+            sliderMin.dispatchEvent(new Event('input', { bubbles: true }));
+            sliderMin.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    }, 1000);
 
 }
