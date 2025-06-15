@@ -213,9 +213,10 @@ const BOOKING_COM_MAP = {
     guest_rating_7: { name: "review_score", aria_label: "Good: 7+" },
     guest_rating_6: { name: "review_score", aria_label: "Pleasant: 6+" },
 
-    // Payment Type => Reservation policy
-    pay_later: { name: "fc", aria_label: "No prepayment" },
-    // gift_card: { name: "gift_card", aria_label: "Pay with Hotels.com gift card" },
+    // Payment Flexibility => Reservation policy 
+    no_prepayment: { name: "fc", aria_label: "No prepayment" },
+    online_payment: { name: "pmt", aria_label: "Accepts online payments" },
+    apple_pay: { name: "pmt", aria_label: "Apple Pay" },
 
     // Property Type => Property Type
 
@@ -360,15 +361,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "paymentTypes") {
-        //     value.forEach(paymentType => {
-        //         const mappedPaymentType = BOOKING_COM_MAP[paymentType];
-        //         const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedPaymentType}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "paymentFlexibility") {
+            value.forEach(paymentFlexibility => {
+                const mappedPaymentFlexibility = BOOKING_COM_MAP[paymentFlexibility];
+                if (!mappedPaymentFlexibility) return;
+                const checkbox = document.querySelector(`input[name*="${mappedPaymentFlexibility.name}"][aria-label*="${mappedPaymentFlexibility.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         // else if (key === "propertyBrands") {
         //     value.forEach(brand => {
         //         const mappedBrand = BOOKING_COM_MAP[brand];

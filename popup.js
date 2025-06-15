@@ -6,7 +6,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   const maxPrice = document.getElementById("maxPrice").value || null;
   const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
   const amenities = [...document.querySelectorAll('input[name="amenities"]:checked')].map(cb => cb.value);
-  const paymentTypes = [...document.querySelectorAll('input[name="paymentType"]:checked')].map(cb => cb.value);
+  const paymentFlexibility = [...document.querySelectorAll('input[name="paymentFlexibility"]:checked')].map(cb => cb.value);
 
   const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
 
@@ -27,7 +27,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
       maxPrice,
       starRatings,
       amenities,
-      paymentTypes,
+      paymentFlexibility,
       cancellation,
       propertyTypes,
       propertyBrands,
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   checkOptions("starRating", filters.starRatings);
   checkOptions("amenities", filters.amenities);
-  checkOptions("paymentType", filters.paymentTypes);
+  checkOptions("paymentFlexibility", filters.paymentFlexibility);
   checkOptions("propertyType", filters.propertyTypes);
   checkOptions("propertyBrand", filters.propertyBrands);
   checkOptions("travelerExperience", filters.travelerExperiences);
