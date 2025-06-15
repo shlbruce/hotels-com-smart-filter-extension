@@ -75,9 +75,9 @@ const HOTELS_COM_MAP = {
     guest_rating_8: "Very good 8+",
     guest_rating_7: "Good 7+",
 
-    // Payment Type
+    // Payment Flexibility
     pay_later: "Reserve now, pay later",
-    gift_card: "Pay with Hotels.com gift card",
+    hotels_com_gift_card: "Pay with Hotels.com gift card",
 
 
     // Property Type
@@ -160,6 +160,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         if (key === "accessibility") {
             value.forEach(accessibility => {
                 const mappedAccessibility = HOTELS_COM_MAP[accessibility];
+                if (!mappedAccessibility) return;
                 let checkbox = document.querySelector(`input[name='accessibility'][aria-label*='${mappedAccessibility}']`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -169,6 +170,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "amenities") {
             value.forEach(amenity => {
                 const mappedAmenity = HOTELS_COM_MAP[amenity];
+                if (!mappedAmenity) return;
                 const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${mappedAmenity}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -178,6 +180,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "availability") {
             value.forEach(availability => {
                 const mappedAvailability = HOTELS_COM_MAP[availability];
+                if (!mappedAvailability) return;
                 const checkbox = document.querySelector(`input[name="availableFilter"][aria-label*="${mappedAvailability}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -187,6 +190,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "cancellation") {
             value.forEach(cancellation => {
                 const mappedCancellation = HOTELS_COM_MAP[cancellation];
+                if (!mappedCancellation) return;
                 const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedCancellation}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -196,6 +200,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "discounts") {
             value.forEach(discount => {
                 const mappedDiscount = HOTELS_COM_MAP[discount];
+                if (!mappedDiscount) return;
                 const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${mappedDiscount}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -224,16 +229,18 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "meals") {
             value.forEach(meal => {
                 const mappedMeal = HOTELS_COM_MAP[meal];
+                if (!mappedMeal) return;
                 const checkbox = document.querySelector(`input[name="mealPlan"][aria-label*="${mappedMeal}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }
             });
         }
-        else if (key === "paymentTypes") {
-            value.forEach(paymentType => {
-                const mappedPaymentType = HOTELS_COM_MAP[paymentType];
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedPaymentType}"]`);
+        else if (key === "paymentFlexibility") {
+            value.forEach(paymentFlexibility => {
+                const mappedPaymentFlexibility = HOTELS_COM_MAP[paymentFlexibility];
+                if (!mappedPaymentFlexibility) return;
+                const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedPaymentFlexibility}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }
@@ -242,6 +249,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "propertyBrands") {
             value.forEach(brand => {
                 const mappedBrand = HOTELS_COM_MAP[brand];
+                if (!mappedBrand) return;
                 const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -251,6 +259,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "propertyTypes") {
             value.forEach(type => {
                 const mappedType = HOTELS_COM_MAP[type];
+                if (!mappedType) return;
                 const checkbox = document.querySelector(`input[name="lodging"][aria-label*="${mappedType}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -260,6 +269,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "starRatings") {
             value.forEach(rating => {
                 const mappedRating = HOTELS_COM_MAP[rating];
+                if (!mappedRating) return;
                 const checkbox = document.querySelector(`input[name="star"][aria-label*="${mappedRating}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
@@ -268,12 +278,15 @@ function applyFiltersInHotelsCom(smartFilters) {
         }
         else if (key === "stayOption") {
             const mappedValue = HOTELS_COM_MAP[value];
-            const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${mappedValue}"]`);
-            if (radio && !radio.checked) {
-                radio.click(); // Simulate real user interaction
+            if (mappedValue) {
+                const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${mappedValue}"]`);
+                if (radio && !radio.checked) {
+                    radio.click(); // Simulate real user interaction
+                }
             }
 
             const mappedGuestRating = HOTELS_COM_MAP[smartFilters.guestRating];
+            if (!mappedGuestRating) return;
             const radioGuestRating = document.querySelector(`input[name="guestRating"][aria-label*="${mappedGuestRating}"]`);
             if (radioGuestRating && !radioGuestRating.checked) {
                 setTimeout(() => {
@@ -284,6 +297,7 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "travelerExperiences") {
             value.forEach(experience => {
                 const mappedExperience = HOTELS_COM_MAP[experience];
+                if (!mappedExperience) return;
                 const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${mappedExperience}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
