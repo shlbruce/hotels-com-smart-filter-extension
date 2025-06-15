@@ -7,8 +7,8 @@ function init() {
         return;
     }
     else if (hostname === "www.booking.com") {
-        console.log("Smart Filter Button will be added.");
-        return
+        addSmartFilterButtonOnBookingCom();
+        return;
     }
     
 }
