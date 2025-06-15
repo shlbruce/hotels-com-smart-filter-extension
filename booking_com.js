@@ -240,9 +240,9 @@ const BOOKING_COM_MAP = {
     
     // Property Brand => Brands
 
-    hampton: { name: "chaincode", aria_label: "Hampton Inn" },
-    hilton: { name: "chaincode", aria_label: "Hilton Hotels & Resorts" },
-    hyatt: { name: "chaincode", aria_label: ["Hyatt Regency", "Hyatt Place", "Hyatt Place", "Hyatt House"] },
+    hampton: { name: "chaincode", aria_label: ["Hampton Inn"] },
+    hilton: { name: "chaincode", aria_label: ["Hilton Hotels & Resorts"] },
+    hyatt: { name: "chaincode", aria_label: ["Hyatt Regency", "Hyatt Place", "Hyatt House"] },
     // Homewood Suites by Hilton
     // Best Western
     // Courtyard by Marriott
@@ -371,15 +371,19 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "propertyBrands") {
-        //     value.forEach(brand => {
-        //         const mappedBrand = BOOKING_COM_MAP[brand];
-        //         const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "propertyBrands") {
+            value.forEach(brand => {
+                const mappedBrand = BOOKING_COM_MAP[brand];
+                if (!mappedBrand) return;
+                mappedBrand.aria_label.forEach(label => {
+                    const checkbox = document.querySelector(`input[name*="${mappedBrand.name}"][aria-label*="${label}"]`);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                }
+                );
+            });
+        }
         // else if (key === "propertyTypes") {
         //     value.forEach(type => {
         //         const mappedType = BOOKING_COM_MAP[type];
