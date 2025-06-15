@@ -87,134 +87,214 @@ function handleSmartFilterClickOnBookingCom(event) {
         }
     });
 }
-
 const BOOKING_COM_MAP = {
-    // Accessibility
-    roll_in_shower: "Roll-in shower",
-    elevator: "Elevator",
-    in_room: "In-room accessibility",
-    accessible_bathroom: "Accessible bathroom",
-    service_animals: "Service animals allowed",
-    stair_free: "Stair-free path to entrance",
-    wheelchair_parking: "Wheelchair accessible parking",
-    sign_language: "Sign language-capable staff",
 
-    // Amenities
-    pool: "Pool",
-    spa: "Spa",
-    airport_shuttle: "Airport shuttle included",
-    casino: "Casino",
-    pet_friendly: "Pet friendly",
-    parking: "Parking",
-    kitchen: "Kitchen",
-    hot_tub: "Hot tub",
-    wifi: "Wifi Included",
-    restaurant: "Restaurant",
-    air_conditioned: "Air conditioned",
-    gym: "Gym",
-    golf_course: "Golf course",
-    bar: "Bar",
-    outdoor_space: "Outdoor space",
-    electric_charger: "Electric car charging station",
-    washer_dryer: "Washer and dryer",
-    ocean_view: "Ocean view",
-    water_park: "Water park",
-    cribs: "Cribs",
+    // Room Accessibility
 
-    // Availability
-    available_only: "Only show available properties",
+    // Entire unit located on ground floor
+    // Adapted bath
+    // Walk-in shower
+    // Emergency cord in bathroom
+    // Shower chair
 
-    // Cancellation
-    fully_refundable: "Fully refundable property",
+    //  Property Accessibility
+    
+    // Toilet with grab rails
+    // Raised toilet
+    // Lowered sink
+    // Bathroom emergency cord
+    // Visual aids (Braille)
+    // Visual aids (tactile signs)
+    // Auditory guidance
 
-    // Discounts
-    vip: "VIP Access properties",
-    member: "Member Prices",
-    discounted: "Discounted properties",
+    //  Accessibility => Room Accessibility and Property Accessibility
+    roll_in_shower: {
+        name: "accessible_room_facilities",
+        aria_label: ["Roll-in shower"]
+    },
+    elevator: {
+        name: "accessible_room_facilities",
+        aria_label: ["Upper floors accessible by elevator"]
+    },
+    in_room: {
+        name: "accessible_room_facilities",
+        aria_label: ["Entire unit wheelchair accessible"]
+    },
+    accessible_bathroom: {
+        name: "accessible_room_facilities",
+        aria_label: ["Toilet with grab rails", "Raised toilet", "Lower sink"]
+    },
+    // service_animals: {
+    //     name: "service_animals",
+    //     aria_label: "Service animals allowed"
+    // },
+    // stair_free: {
+    //     name: "stair_free",
+    //     aria_label: "Stair-free path to entrance"
+    // },
+    wheelchair_parking: {
+        name: "hotelfacility",
+        aria_label: "Wheelchair accessible"
+    },
+    // sign_language: {
+    //     name: "sign_language",
+    //     aria_label: "Sign language-capable staff"
+    // },
 
-    // Guest Rating
-    guest_rating_any: "Any",
-    guest_rating_9: "Wonderful 9+",
-    guest_rating_8: "Very good 8+",
-    guest_rating_7: "Good 7+",
+    // Amenities => Amenities  
+    parking: { name: "hotelfacility", aria_label: "Parking" },
+    pool: { name: "hotelfacility", aria_label: "Swimming pool" },
+    restaurant: { name: "hotelfacility", aria_label: "Restaurant" },
+    // Room service
+    // 24-hour front desk
+    gym: { name: "hotelfacility", aria_label: "Fitness center" },
+    // Non-smoking rooms
+    airport_shuttle: { name: "hotelfacility", aria_label: "Airport shuttle" },
+    // Family rooms
+    spa: { name: "hotelfacility", aria_label: "Spa" },
+    //this is hotel hot tub, not in room hot tub. We need update settings to hotel facility or room facility
+    hot_tub: { name: "hotelfacility", aria_label: "Hot tub/Jacuzzi" }, 
+    wifi: { name: "hotelfacility", aria_label: "Free Wifi" },
+    electric_charger: { name: "hotelfacility", aria_label: "Electric vehicle charging station" },
 
-    // Payment Type
-    pay_later: "Reserve now, pay later",
-    gift_card: "Pay with Hotels.com gift card",
+    // Amenities => Room amenities
+    air_conditioned: { name: "roomfacility", aria_label: "Air conditioning" },
+    // Private bathroom
+    ocean_view: { name: "roomfacility", aria_label: "Sea view" },
+    // Private pool
+    // Hot tub (this is in room hot-tub)
+    washer_dryer: { name: "roomfacility", aria_label: "Washing machine" },
+    // View
+    // Refrigerator
+    // Upper floors accessible by elevator (this is in room facility)
+    // Flat-screen TV
+    // Toilet
+    // Lake view
+    // Towels
+    // Shower
+    // Bathtub
+    // Complimentary evening snacks and drinks in the executive lounge
+    // Sauna
+    // Fireplace
+    // Linens
+    // Barbecue
+    // Computer
+    // Game console
+    // TV
+    // Fax
+    // Reading light
 
+    // amenities => Kitchen
+    kitchen: { name: "kitchen", aria_label: "Private kitchen" },
 
-    // Property Type
-    hotel: "Hotel",
-    resort: "Resort",
-    bnb: "Bed & breakfast",
-    condo: "Condo",
-    motel: "Motel",
-    vacation_home: "Private vacation home",
-    aparthotel: "Aparthotel",
-    apartment: "Apartment",
-    condo_resort: "Condo resort",
-    villa: "Villa",
-    cottage: "Cottage",
-    guesthouse: "Guesthouse",
-    hostel: "Hostel/Backpacker accommodation",
+    // casino: { name: "casino", aria_label: "Casino" },
 
-    // Property Brand
-    mgm: "MGM",
-    caesars: "Caesars Entertainment",
-    venetian_las_vegas: "Venetian Las Vegas",
-    boyd: "Boyd Gaming",
-    wynn: "Wynn Resorts",
-    hilton: "Hilton Hotels",
-    world_bw: "World Hotels BW",
-    hyatt: "Hyatt Hotels",
-    station: "Station Casinos",
-    conrad: "Conrad",
-    hilton_grand: "Hilton Grand Vacations",
-    golden_nugget: "Golden Nugget",
-    trump: "Trump Hotels",
-    curio: "Curio Collection",
-    oyo: "OYO AMER",
-    westgate: "Westgate Resorts",
-    doubletree: "Doubletree",
-    hampton: "Hampton Inn",
-    motel6: "Motel 6",
-    la_quinta: "La Quinta Inn & Suites",
-    lxr_hotels_resorts: "LXR Hotels & Resorts",
-    best_western_plus: "Best Western Plus",
-    holiday_inn_express: "Holiday Inn Express Hotel",
-    wyndham_extra_holidays: "Wyndham Extra Holidays",
-    four_seasons: "Four Seasons",
+    // amenities => Travel group
+    pet_friendly: { name: "stay_type", aria_label: "Pet friendly" },
+    
+    // 
+    // golf_course: { name: "golf_course", aria_label: "Golf course" },
+    // bar: { name: "bar", aria_label: "Bar" },
+    // outdoor_space: { name: "outdoor_space", aria_label: "Outdoor space" },
+    // water_park: { name: "water_park", aria_label: "Water park" },
+    // cribs: { name: "cribs", aria_label: "Cribs" },
 
-    // Star Ratings
-    starRating_5: "5 stars",
-    starRating_4: "4 stars",
-    starRating_3: "3 stars",
-    starRating_2: "2 stars",
-    starRating_1: "1 star",
+    // // Availability
+    // available_only: { name: "available_only", aria_label: "Only show available properties" },
 
-    // Stay Option
-    stay_options_any: "Any",
-    stay_options_hotels: "Hotels",
-    stay_options_homes: "Homes",
+    // Cancellation => Reservation policy
+    //fully_refundable or Free cancellation not complete same, need update the settings, then we can map here. 
+    fully_refundable: { name: "fc", aria_label: "Free cancellation" },
 
-    // Traveler Experience
-    travel_experience_family_friendly: "Family friendly",
-    travel_experience_adults_only: "Adults only",
-    travel_experience_lgbtq: "LGBTQ welcoming",
-    travel_experience_luxury: "Luxury",
-    travel_experience_business: "Business friendly",
-    travel_experience_beach: "Beach",
-    travel_experience_romantic: "Romantic",
-    travel_experience_eco: "Eco-certified",
-    travel_experience_budget: "Budget",
-    travel_experience_wedding: "Wedding",
+    // // Discounts
+    // vip: { name: "vip", aria_label: "VIP Access properties" },
+    // member: { name: "member", aria_label: "Member Prices" },
+    // discounted: { name: "discounted", aria_label: "Discounted properties" },
 
-    // Meals
-    meal_plan_breakfast: "Breakfast included",
-    meal_plan_dinner: "Dinner included",
-    meal_plan_lunch: "Lunch included",
-    meal_plan_all_inclusive: "All inclusive"
+    // // Guest Rating
+    // guest_rating_any: { name: "guest_rating_any", aria_label: "Any" },
+    // guest_rating_9: { name: "guest_rating_9", aria_label: "Wonderful 9+" },
+    // guest_rating_8: { name: "guest_rating_8", aria_label: "Very good 8+" },
+    // guest_rating_7: { name: "guest_rating_7", aria_label: "Good 7+" },
+
+    // Payment Type => Reservation policy
+    pay_later: { name: "fc", aria_label: "No prepayment" },
+    // gift_card: { name: "gift_card", aria_label: "Pay with Hotels.com gift card" },
+
+    // // Property Type
+    // hotel: { name: "hotel", aria_label: "Hotel" },
+    // resort: { name: "resort", aria_label: "Resort" },
+    // bnb: { name: "bnb", aria_label: "Bed & breakfast" },
+    // condo: { name: "condo", aria_label: "Condo" },
+    // motel: { name: "motel", aria_label: "Motel" },
+    // vacation_home: { name: "vacation_home", aria_label: "Private vacation home" },
+    // aparthotel: { name: "aparthotel", aria_label: "Aparthotel" },
+    // apartment: { name: "apartment", aria_label: "Apartment" },
+    // condo_resort: { name: "condo_resort", aria_label: "Condo resort" },
+    // villa: { name: "villa", aria_label: "Villa" },
+    // cottage: { name: "cottage", aria_label: "Cottage" },
+    // guesthouse: { name: "guesthouse", aria_label: "Guesthouse" },
+    // hostel: { name: "hostel", aria_label: "Hostel/Backpacker accommodation" },
+
+    // // Property Brand
+    // mgm: { name: "mgm", aria_label: "MGM" },
+    // caesars: { name: "caesars", aria_label: "Caesars Entertainment" },
+    // venetian_las_vegas: { name: "venetian_las_vegas", aria_label: "Venetian Las Vegas" },
+    // boyd: { name: "boyd", aria_label: "Boyd Gaming" },
+    // wynn: { name: "wynn", aria_label: "Wynn Resorts" },
+    // hilton: { name: "hilton", aria_label: "Hilton Hotels" },
+    // world_bw: { name: "world_bw", aria_label: "World Hotels BW" },
+    // hyatt: { name: "hyatt", aria_label: "Hyatt Hotels" },
+    // station: { name: "station", aria_label: "Station Casinos" },
+    // conrad: { name: "conrad", aria_label: "Conrad" },
+    // hilton_grand: { name: "hilton_grand", aria_label: "Hilton Grand Vacations" },
+    // golden_nugget: { name: "golden_nugget", aria_label: "Golden Nugget" },
+    // trump: { name: "trump", aria_label: "Trump Hotels" },
+    // curio: { name: "curio", aria_label: "Curio Collection" },
+    // oyo: { name: "oyo", aria_label: "OYO AMER" },
+    // westgate: { name: "westgate", aria_label: "Westgate Resorts" },
+    // doubletree: { name: "doubletree", aria_label: "Doubletree" },
+    // hampton: { name: "hampton", aria_label: "Hampton Inn" },
+    // motel6: { name: "motel6", aria_label: "Motel 6" },
+    // la_quinta: { name: "la_quinta", aria_label: "La Quinta Inn & Suites" },
+    // lxr_hotels_resorts: { name: "lxr_hotels_resorts", aria_label: "LXR Hotels & Resorts" },
+    // best_western_plus: { name: "best_western_plus", aria_label: "Best Western Plus" },
+    // holiday_inn_express: { name: "holiday_inn_express", aria_label: "Holiday Inn Express Hotel" },
+    // wyndham_extra_holidays: { name: "wyndham_extra_holidays", aria_label: "Wyndham Extra Holidays" },
+    // four_seasons: { name: "four_seasons", aria_label: "Four Seasons" },
+
+    // // Star Ratings
+    // starRating_5: { name: "starRating_5", aria_label: "5 stars" },
+    // starRating_4: { name: "starRating_4", aria_label: "4 stars" },
+    // starRating_3: { name: "starRating_3", aria_label: "3 stars" },
+    // starRating_2: { name: "starRating_2", aria_label: "2 stars" },
+    // starRating_1: { name: "starRating_1", aria_label: "1 star" },
+
+    // // Stay Option
+    // stay_options_any: { name: "stay_options_any", aria_label: "Any" },
+    // stay_options_hotels: { name: "stay_options_hotels", aria_label: "Hotels" },
+    // stay_options_homes: { name: "stay_options_homes", aria_label: "Homes" },
+
+    // Traveler Experience  => Travel group
+    travel_experience_adults_only: { name: "stay_type", aria_label: "Adults only" },
+
+    // travel_experience_family_friendly: { name: "travel_experience_family_friendly", aria_label: "Family friendly" },
+    // travel_experience_lgbtq: { name: "travel_experience_lgbtq", aria_label: "LGBTQ welcoming" },
+    // travel_experience_luxury: { name: "travel_experience_luxury", aria_label: "Luxury" },
+    // travel_experience_business: { name: "travel_experience_business", aria_label: "Business friendly" },
+    // travel_experience_beach: { name: "travel_experience_beach", aria_label: "Beach" },
+    // travel_experience_romantic: { name: "travel_experience_romantic", aria_label: "Romantic" },
+    // travel_experience_eco: { name: "travel_experience_eco", aria_label: "Eco-certified" },
+    // travel_experience_budget: { name: "travel_experience_budget", aria_label: "Budget" },
+    // travel_experience_wedding: { name: "travel_experience_wedding", aria_label: "Wedding" },
+
+    // Meals => Meals
+    meal_plan_breakfast: { name: "mealplan", aria_label: "Breakfast included" },
+    // meal_plan_dinner: { name: "meal_plan_dinner", aria_label: "Dinner included" },
+    // meal_plan_lunch: { name: "meal_plan_lunch", aria_label: "Lunch included" },
+    // meal_plan_all_inclusive: { name: "meal_plan_all_inclusive", aria_label: "All inclusive" }
 };
+
 
 
 function applyFiltersInBookingCom(smartFilters) {
