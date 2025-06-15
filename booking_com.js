@@ -19,7 +19,7 @@ function addSmartFilterButtonOnBookingCom() {
 
     const button = document.createElement("button");
     button.id = "smart-filter-button";
-    button.textContent = "Smart Filter";
+    button.textContent = "Apply your filters";
 
     // Compact styling
     button.style.width = "auto";
