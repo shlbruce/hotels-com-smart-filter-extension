@@ -211,40 +211,67 @@ const BOOKING_COM_MAP = {
     // member: { name: "member", aria_label: "Member Prices" },
     // discounted: { name: "discounted", aria_label: "Discounted properties" },
 
-    // // Guest Rating
-    // guest_rating_any: { name: "guest_rating_any", aria_label: "Any" },
-    // guest_rating_9: { name: "guest_rating_9", aria_label: "Wonderful 9+" },
-    // guest_rating_8: { name: "guest_rating_8", aria_label: "Very good 8+" },
-    // guest_rating_7: { name: "guest_rating_7", aria_label: "Good 7+" },
+
+    // Guest Rating => Guest review score
+
+    guest_rating_9: { name: "review_score", aria_label: "Wonderful: 9+" },
+    guest_rating_8: { name: "review_score", aria_label: "Very Good: 8+" },
+    guest_rating_7: { name: "review_score", aria_label: "Good: 7+" },
+    guest_rating_6: { name: "review_score", aria_label: "Pleasant: 6+" },
 
     // Payment Type => Reservation policy
     pay_later: { name: "fc", aria_label: "No prepayment" },
     // gift_card: { name: "gift_card", aria_label: "Pay with Hotels.com gift card" },
 
-    // // Property Type
-    // hotel: { name: "hotel", aria_label: "Hotel" },
-    // resort: { name: "resort", aria_label: "Resort" },
-    // bnb: { name: "bnb", aria_label: "Bed & breakfast" },
-    // condo: { name: "condo", aria_label: "Condo" },
-    // motel: { name: "motel", aria_label: "Motel" },
-    // vacation_home: { name: "vacation_home", aria_label: "Private vacation home" },
-    // aparthotel: { name: "aparthotel", aria_label: "Aparthotel" },
-    // apartment: { name: "apartment", aria_label: "Apartment" },
-    // condo_resort: { name: "condo_resort", aria_label: "Condo resort" },
-    // villa: { name: "villa", aria_label: "Villa" },
-    // cottage: { name: "cottage", aria_label: "Cottage" },
-    // guesthouse: { name: "guesthouse", aria_label: "Guesthouse" },
-    // hostel: { name: "hostel", aria_label: "Hostel/Backpacker accommodation" },
+    // Property Type => Property Type
 
-    // // Property Brand
+    hotel: { name: "ht_", aria_label: "Hotels" },
+    // Entire homes & apartments
+    apartment: { name: "ht_", aria_label: "Apartments" },
+    hostel: { name: "ht_", aria_label: "Hostels" },
+    guesthouse: { name: "ht_", aria_label: "Guesthouses" },
+    vacation_home: { name: "ht_", aria_label: "Vacation Homes" },
+    bnb: { name: "ht_", aria_label: "Bed and Breakfasts" },
+    motel: { name: "ht_", aria_label: "Motels" },
+    // Homestays
+    resort: { name: "ht_", aria_label: "Resorts" },
+    villa: { name: "ht_", aria_label: "Villas" },
+
+    // condo: { name: "condo", aria_label: "Condo" },
+    // aparthotel: { name: "aparthotel", aria_label: "Aparthotel" },
+    // condo_resort: { name: "condo_resort", aria_label: "Condo resort" },
+    // cottage: { name: "cottage", aria_label: "Cottage" },
+    
+    
+    // Property Brand => Brands
+
+    hampton: { name: "chaincode", aria_label: "Hampton Inn" },
+    hilton: { name: "chaincode", aria_label: "Hilton Hotels & Resorts" },
+    hyatt: { name: "chaincode", aria_label: ["Hyatt Regency", "Hyatt Place", "Hyatt Place", "Hyatt House"] },
+    // Homewood Suites by Hilton
+    // Best Western
+    // Courtyard by Marriott
+    // Hilton Garden Inn
+    // Autograph Collection
+    // Sonesta Hotels
+    // Holiday Inn Hotels & Resorts
+    // Curio Collection by Hilton
+    // Westin
+    // Travelodge by Wyndham
+    // Sofitel
+    // InterContinental Hotels & Resorts
+    // Crowne Plaza Hotels & Resorts
+    // Marriott Hotels & Resorts
+    // Eurostars Hotels
+
     // mgm: { name: "mgm", aria_label: "MGM" },
     // caesars: { name: "caesars", aria_label: "Caesars Entertainment" },
     // venetian_las_vegas: { name: "venetian_las_vegas", aria_label: "Venetian Las Vegas" },
     // boyd: { name: "boyd", aria_label: "Boyd Gaming" },
     // wynn: { name: "wynn", aria_label: "Wynn Resorts" },
-    // hilton: { name: "hilton", aria_label: "Hilton Hotels" },
+    
     // world_bw: { name: "world_bw", aria_label: "World Hotels BW" },
-    // hyatt: { name: "hyatt", aria_label: "Hyatt Hotels" },
+    
     // station: { name: "station", aria_label: "Station Casinos" },
     // conrad: { name: "conrad", aria_label: "Conrad" },
     // hilton_grand: { name: "hilton_grand", aria_label: "Hilton Grand Vacations" },
@@ -254,7 +281,7 @@ const BOOKING_COM_MAP = {
     // oyo: { name: "oyo", aria_label: "OYO AMER" },
     // westgate: { name: "westgate", aria_label: "Westgate Resorts" },
     // doubletree: { name: "doubletree", aria_label: "Doubletree" },
-    // hampton: { name: "hampton", aria_label: "Hampton Inn" },
+    
     // motel6: { name: "motel6", aria_label: "Motel 6" },
     // la_quinta: { name: "la_quinta", aria_label: "La Quinta Inn & Suites" },
     // lxr_hotels_resorts: { name: "lxr_hotels_resorts", aria_label: "LXR Hotels & Resorts" },
@@ -263,12 +290,11 @@ const BOOKING_COM_MAP = {
     // wyndham_extra_holidays: { name: "wyndham_extra_holidays", aria_label: "Wyndham Extra Holidays" },
     // four_seasons: { name: "four_seasons", aria_label: "Four Seasons" },
 
-    // // Star Ratings
-    // starRating_5: { name: "starRating_5", aria_label: "5 stars" },
-    // starRating_4: { name: "starRating_4", aria_label: "4 stars" },
-    // starRating_3: { name: "starRating_3", aria_label: "3 stars" },
-    // starRating_2: { name: "starRating_2", aria_label: "2 stars" },
-    // starRating_1: { name: "starRating_1", aria_label: "1 star" },
+    // Star Ratings => Property rating
+    starRating_5: { name: "class=", aria_label: "5 stars" },
+    starRating_4: { name: "class=", aria_label: "4 stars" },
+    starRating_3: { name: "class=", aria_label: "3 stars" },
+    starRating_2: { name: "class=", aria_label: "2 stars" },
 
     // // Stay Option
     // stay_options_any: { name: "stay_options_any", aria_label: "Any" },
