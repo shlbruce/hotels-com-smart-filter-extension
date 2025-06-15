@@ -193,9 +193,6 @@ const BOOKING_COM_MAP = {
     kitchen: { name: "kitchen", aria_label: "Private kitchen" },
 
     // casino: { name: "casino", aria_label: "Casino" },
-
-    // amenities => Travel group
-    pet_friendly: { name: "stay_type", aria_label: "Pet friendly" },
     
     // 
     // golf_course: { name: "golf_course", aria_label: "Golf course" },
@@ -289,6 +286,7 @@ const BOOKING_COM_MAP = {
 
     // Traveler Experience  => Travel group
     travel_experience_adults_only: { name: "stay_type", aria_label: "Adults only" },
+    pet_friendly: { name: "stay_type", aria_label: "Pet friendly" },
 
     // Meals => Meals
     meal_plan_breakfast: { name: "mealplan", aria_label: "Breakfast included" },
