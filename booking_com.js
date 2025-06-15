@@ -13,6 +13,9 @@ function addSmartFilterButtonOnBookingCom() {
         return;
     }
 
+    const rect = filterHeading.getBoundingClientRect();
+    markFilterSideBar(rect);
+
     const container = document.createElement("div");
     container.id = "smart-filter-container";
     container.style.display = "inline-block"; // optional: makes container shrink-wrap the button
@@ -56,6 +59,17 @@ function addSmartFilterButtonOnBookingCom() {
     button.addEventListener("click", handleSmartFilterClickOnBookingCom);
 
     filterHeading.insertAdjacentElement("beforebegin", container);
+}
+
+function markFilterSideBar(filterHeadingRect) {
+    const filtersDivs = document.querySelectorAll('div[aria-label="Filters"]');
+    filtersDivs.forEach((div, index) => {
+        const rect = div.getBoundingClientRect();
+        if (doesRectCover(rect, filterHeadingRect)) {
+            div.id = "this-filter-sidebar";
+            return;
+        }
+    });
 }
 
 function handleSmartFilterClickOnBookingCom(event) {
@@ -327,16 +341,6 @@ function applyFiltersInBookingCom(smartFilters) {
 
     for (const [key, value] of Object.entries(smartFilters)) {
 
-
-        /*
-        const mappedRating = BOOKING_COM_MAP[rating];
-                if (!mappedRating) return; 
-                const checkbox = document.querySelector(`input[name*="${mappedRating.name}"][aria-label*="${mappedRating.aria_label}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
-        */
-
         if (key === "accessibility") {
             value.forEach(accessibility => {
                 const mappedAccessibility = BOOKING_COM_MAP[accessibility];
@@ -349,15 +353,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 });
             });
         }
-        // else if (key === "amenities") {
-        //     value.forEach(amenity => {
-        //         const mappedAmenity = BOOKING_COM_MAP[amenity];
-        //         const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${mappedAmenity}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "amenities") {
+            value.forEach(amenity => {
+                const mappedAmenity = BOOKING_COM_MAP[amenity];
+                if (!mappedAmenity) return; 
+                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         // else if (key === "availability") {
         //     value.forEach(availability => {
         //         const mappedAvailability = BOOKING_COM_MAP[availability];

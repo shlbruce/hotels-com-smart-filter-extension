@@ -10,7 +10,7 @@
             "*://www.hotels.com/*",
             "*://www.booking.com/*"
         ],
-        "js": ["booking_com.js", "content.js", "help.js", "hotels_com.js", "popup.js"]
+        "js": ["booking_com.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
       }
     ],
     "action": {
