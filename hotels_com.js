@@ -41,7 +41,6 @@ const HOTELS_COM_MAP = {
     spa: "Spa",
     airport_shuttle: "Airport shuttle included",
     casino: "Casino",
-    pet_friendly: "Pet friendly",
     parking: "Parking",
     kitchen: "Kitchen",
     hot_tub: "Hot tub",
@@ -135,16 +134,17 @@ const HOTELS_COM_MAP = {
     stay_options_homes: "Homes",
 
     // Traveler Experience
-    travel_experience_family_friendly: "Family friendly",
-    travel_experience_adults_only: "Adults only",
-    travel_experience_lgbtq: "LGBTQ welcoming",
-    travel_experience_luxury: "Luxury",
-    travel_experience_business: "Business friendly",
-    travel_experience_beach: "Beach",
-    travel_experience_romantic: "Romantic",
-    travel_experience_eco: "Eco-certified",
-    travel_experience_budget: "Budget",
-    travel_experience_wedding: "Wedding",
+    travel_experience_family_friendly: { name: "travelerType", aria_label: "Family friendly" },
+    travel_experience_pet_friendly: { name: "amenities", aria_label: "Pet friendly" },
+    travel_experience_adults_only: { name: "travelerType", aria_label: "Adults only" },
+    travel_experience_lgbtq: { name: "travelerType", aria_label: "LGBTQ welcoming" },
+    travel_experience_luxury: { name: "travelerType", aria_label: "Luxury" },
+    travel_experience_business: { name: "travelerType", aria_label: "Business friendly" },
+    travel_experience_beach: { name: "travelerType", aria_label: "Beach" },
+    travel_experience_romantic: { name: "travelerType", aria_label: "Romantic" },
+    travel_experience_eco: { name: "travelerType", aria_label: "Eco-certified" },
+    travel_experience_budget: { name: "travelerType", aria_label: "Budget" },
+    travel_experience_wedding: { name: "travelerType", aria_label: "Wedding" },
 
     // Meals
     meal_plan_breakfast: "Breakfast included",
@@ -298,7 +298,7 @@ function applyFiltersInHotelsCom(smartFilters) {
             value.forEach(experience => {
                 const mappedExperience = HOTELS_COM_MAP[experience];
                 if (!mappedExperience) return;
-                const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${mappedExperience}"]`);
+                const checkbox = document.querySelector(`input[name="${mappedExperience.name}"][aria-label*="${mappedExperience.aria_label}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }

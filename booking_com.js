@@ -286,7 +286,7 @@ const BOOKING_COM_MAP = {
 
     // Traveler Experience  => Travel group
     travel_experience_adults_only: { name: "stay_type", aria_label: "Adults only" },
-    pet_friendly: { name: "stay_type", aria_label: "Pet friendly" },
+    travel_experience_pet_friendly: { name: "stay_type", aria_label: "Pet friendly" },
 
     // Meals => Meals
     meal_plan_breakfast: { name: "mealplan", aria_label: "Breakfast included" },
