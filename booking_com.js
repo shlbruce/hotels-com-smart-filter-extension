@@ -354,24 +354,21 @@ function applyFiltersInBookingCom(smartFilters) {
             });
         }
         // // handle minPrice and maxPrice together
-        // else if (key === "maxPrice") {
-        //     const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
-        //     const sliderMin = document.querySelector('input[type="range"][aria-label*="Minimum"]');
-        //     if (sliderMax && value != null) {
-        //         sliderMax.value = value;
-        //         // don't try to put MouseDown event, it will trigger sliderMax not work. 
-        //         // I guess mousedown take some time to process, then sliderMax.mouseup event will be too closed to sliderMin.mouseup
-        //         // then only one mouseup event is executed.
-        //         sliderMax.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-        //     }
+        else if (key === "maxPrice") {
+            const sliderMax = document.querySelector('input[type="range"][aria-label="Max."]');
+            const sliderMin = document.querySelector('input[type="range"][aria-label="Min."]');
+            if (sliderMax && value != null) {
+                sliderMax.value = value;
+                sliderMax.dispatchEvent(new Event('input', { bubbles: true }));
+                sliderMax.dispatchEvent(new Event('change', { bubbles: true }));
+            }
 
-        //     if (sliderMin && smartFilters.minPrice != null) {
-        //         setTimeout(() => {
-        //             sliderMin.value = smartFilters.minPrice || 0;
-        //             sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-        //         }, 2000);
-        //     }
-        // }
+            if (sliderMin && smartFilters.minPrice != null) {
+                sliderMin.value = smartFilters.minPrice || 0;
+                sliderMin.dispatchEvent(new Event('input', { bubbles: true }));
+                sliderMin.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        }
         // else if (key === "meals") {
         //     value.forEach(meal => {
         //         const mappedMeal = BOOKING_COM_MAP[meal];
