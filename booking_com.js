@@ -207,14 +207,7 @@ const BOOKING_COM_MAP = {
     // Cancellation => Reservation policy
     free_cancellation: { name: "fc", aria_label: "Free cancellation" },
 
-    // // Discounts
-    // vip: { name: "vip", aria_label: "VIP Access properties" },
-    // member: { name: "member", aria_label: "Member Prices" },
-    // discounted: { name: "discounted", aria_label: "Discounted properties" },
-
-
     // Guest Rating => Guest review score
-
     guest_rating_9: { name: "review_score", aria_label: "Wonderful: 9+" },
     guest_rating_8: { name: "review_score", aria_label: "Very Good: 8+" },
     guest_rating_7: { name: "review_score", aria_label: "Good: 7+" },
@@ -360,15 +353,6 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "discounts") {
-        //     value.forEach(discount => {
-        //         const mappedDiscount = BOOKING_COM_MAP[discount];
-        //         const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${mappedDiscount}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
         // // handle minPrice and maxPrice together
         // else if (key === "maxPrice") {
         //     const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
