@@ -326,15 +326,29 @@ const BOOKING_COM_MAP = {
 function applyFiltersInBookingCom(smartFilters) {
 
     for (const [key, value] of Object.entries(smartFilters)) {
-        // if (key === "accessibility") {
-        //     value.forEach(accessibility => {
-        //         const mappedAccessibility = BOOKING_COM_MAP[accessibility];
-        //         let checkbox = document.querySelector(`input[name='accessibility'][aria-label*='${mappedAccessibility}']`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+
+
+        /*
+        const mappedRating = BOOKING_COM_MAP[rating];
+                if (!mappedRating) return; 
+                const checkbox = document.querySelector(`input[name*="${mappedRating.name}"][aria-label*="${mappedRating.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+        */
+
+        if (key === "accessibility") {
+            value.forEach(accessibility => {
+                const mappedAccessibility = BOOKING_COM_MAP[accessibility];
+                if (!mappedAccessibility) return; 
+                mappedAccessibility.aria_label.forEach(label => {
+                    let checkbox = document.querySelector(`input[name*='${mappedAccessibility.name}'][aria-label*='${label}']`);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                });
+            });
+        }
         // else if (key === "amenities") {
         //     value.forEach(amenity => {
         //         const mappedAmenity = BOOKING_COM_MAP[amenity];
@@ -426,7 +440,7 @@ function applyFiltersInBookingCom(smartFilters) {
         //         }
         //     });
         // }
-        if (key === "starRatings") {
+        else if (key === "starRatings") {
             value.forEach(rating => {
                 const mappedRating = BOOKING_COM_MAP[rating];
                 if (!mappedRating) return; 
