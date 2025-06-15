@@ -61,17 +61,6 @@ function addSmartFilterButtonOnBookingCom() {
     filterHeading.insertAdjacentElement("beforebegin", container);
 }
 
-function markFilterSideBar(filterHeadingRect) {
-    const filtersDivs = document.querySelectorAll('div[aria-label="Filters"]');
-    filtersDivs.forEach((div, index) => {
-        const rect = div.getBoundingClientRect();
-        if (doesRectCover(rect, filterHeadingRect)) {
-            div.id = "this-filter-sidebar";
-            return;
-        }
-    });
-}
-
 function handleSmartFilterClickOnBookingCom(event) {
 
     event.stopPropagation(); // ⛔ Prevents event bubbling
