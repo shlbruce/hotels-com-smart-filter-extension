@@ -287,23 +287,8 @@ const BOOKING_COM_MAP = {
     starRating_3: { name: "class=", aria_label: "3 stars" },
     starRating_2: { name: "class=", aria_label: "2 stars" },
 
-    // // Stay Option
-    // stay_options_any: { name: "stay_options_any", aria_label: "Any" },
-    // stay_options_hotels: { name: "stay_options_hotels", aria_label: "Hotels" },
-    // stay_options_homes: { name: "stay_options_homes", aria_label: "Homes" },
-
     // Traveler Experience  => Travel group
     travel_experience_adults_only: { name: "stay_type", aria_label: "Adults only" },
-
-    // travel_experience_family_friendly: { name: "travel_experience_family_friendly", aria_label: "Family friendly" },
-    // travel_experience_lgbtq: { name: "travel_experience_lgbtq", aria_label: "LGBTQ welcoming" },
-    // travel_experience_luxury: { name: "travel_experience_luxury", aria_label: "Luxury" },
-    // travel_experience_business: { name: "travel_experience_business", aria_label: "Business friendly" },
-    // travel_experience_beach: { name: "travel_experience_beach", aria_label: "Beach" },
-    // travel_experience_romantic: { name: "travel_experience_romantic", aria_label: "Romantic" },
-    // travel_experience_eco: { name: "travel_experience_eco", aria_label: "Eco-certified" },
-    // travel_experience_budget: { name: "travel_experience_budget", aria_label: "Budget" },
-    // travel_experience_wedding: { name: "travel_experience_wedding", aria_label: "Wedding" },
 
     // Meals => Meals
     meal_plan_breakfast: { name: "mealplan", aria_label: "Breakfast included" },
@@ -347,6 +332,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
+        // else if (key === "guestRating") {
+        //     value.forEach(rating => {
+        //         const mappedRating = BOOKING_COM_MAP[rating];
+        //         if (!mappedRating) return;
+        //         const checkbox = document.querySelector(`input[name*="${mappedRating.name}"][aria-label*="${mappedRating.aria_label}"]`);
+        //         if (checkbox && !checkbox.checked) {
+        //             checkbox.click();
+        //         }
+        //     });
+        // }
         else if (key === "meals") {
             value.forEach(meal => {
                 const mappedMeal = BOOKING_COM_MAP[meal];
@@ -400,30 +395,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "stayOption") {
-        //     const mappedValue = BOOKING_COM_MAP[value];
-        //     const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${mappedValue}"]`);
-        //     if (radio && !radio.checked) {
-        //         radio.click(); // Simulate real user interaction
-        //     }
-
-        //     const mappedGuestRating = BOOKING_COM_MAP[smartFilters.guestRating];
-        //     const radioGuestRating = document.querySelector(`input[name="guestRating"][aria-label*="${mappedGuestRating}"]`);
-        //     if (radioGuestRating && !radioGuestRating.checked) {
-        //         setTimeout(() => {
-        //             radioGuestRating.click(); // Simulate real user interaction
-        //         }, 2000);
-        //     }
-        // }
-        // else if (key === "travelerExperiences") {
-        //     value.forEach(experience => {
-        //         const mappedExperience = BOOKING_COM_MAP[experience];
-        //         const checkbox = document.querySelector(`input[name="travelerType"][aria-label*="${mappedExperience}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "travelerExperiences") {
+            value.forEach(experience => {
+                const mappedExperience = BOOKING_COM_MAP[experience];
+                if (!mappedExperience) return;
+                const checkbox = document.querySelector(`input[name*="${mappedExperience.name}"][aria-label*="${mappedExperience.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
     }
 
     // Handle minPrice and maxPrice here, otherwise when other filters are applied, the price filter will be reset
