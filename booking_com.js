@@ -80,6 +80,15 @@ function handleSmartFilterClickOnBookingCom(event) {
                 clearFiltersBtn.click();
             }
             else {
+                // document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                //     if (cb.checked) {
+                //         cb.click();
+                //     }
+                //   });
+                const checkbox = document.querySelector(`input[name*="stay_type"][aria-label*="Pet friendly"]`);
+                if (checkbox && checkbox.checked) {
+                    checkbox.click();
+                }
                 console.warn("Clear filters button not found.");
             }
 
