@@ -53,7 +53,37 @@ function addSmartFilterButtonOnBookingCom() {
     button.addEventListener("mouseleave", resetButtonStyle);
 
     // Your smart filter logic
-    button.addEventListener("click", handleSmartFilterClickOnHotelsCom);
+    button.addEventListener("click", handleSmartFilterClickOnBookingCom);
 
     filterHeading.insertAdjacentElement("beforebegin", container);
+}
+
+function handleSmartFilterClickOnBookingCom(event) {
+
+    event.stopPropagation(); // ⛔ Prevents event bubbling
+    event.preventDefault();  // ⛔ Prevents default action
+
+    chrome.storage.sync.get(["smartFilters"], function (result) {
+        const smartFilters = result.smartFilters;
+        if (smartFilters) {
+            const buttons = document.querySelectorAll("button");
+            const clearFiltersBtn = Array.from(buttons).find(btn =>
+                btn.textContent.trim() === "Clear filters"
+            );
+
+            if (clearFiltersBtn) {
+                clearFiltersBtn.click();
+            }
+            else {
+                console.warn("Clear filters button not found.");
+            }
+
+            setTimeout(() => {
+                //applyFiltersInHotelsCom(smartFilters);
+            }, 2000);
+
+        } else {
+            console.warn("No smart filters found in storage.");
+        }
+    });
 }
