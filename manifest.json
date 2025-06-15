@@ -4,11 +4,13 @@
     "version": "1.0",
     "description": "Remembers your filter preferences on Hotels.com",
     "permissions": ["storage"],
-    "host_permissions": ["https://www.hotels.com/*"],
     "content_scripts": [
       {
-        "matches": ["*://www.hotels.com/*"],
-        "js": ["content.js", "popup.js"]
+        "matches": [
+            "*://www.hotels.com/*",
+            "*://www.booking.com/*"
+        ],
+        "js": ["content.js", "hotels_com.js", "popup.js"]
       }
     ],
     "action": {
