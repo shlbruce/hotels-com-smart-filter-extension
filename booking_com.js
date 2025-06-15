@@ -218,7 +218,9 @@ const BOOKING_COM_MAP = {
     online_payment: { name: "pmt", aria_label: "Accepts online payments" },
     apple_pay: { name: "pmt", aria_label: "Apple Pay" },
 
+    //
     // Property Type => Property Type
+    //
 
     hotel: { name: "ht_", aria_label: "Hotels" },
     // Entire homes & apartments
@@ -231,12 +233,6 @@ const BOOKING_COM_MAP = {
     // Homestays
     resort: { name: "ht_", aria_label: "Resorts" },
     villa: { name: "ht_", aria_label: "Villas" },
-
-    // condo: { name: "condo", aria_label: "Condo" },
-    // aparthotel: { name: "aparthotel", aria_label: "Aparthotel" },
-    // condo_resort: { name: "condo_resort", aria_label: "Condo resort" },
-    // cottage: { name: "cottage", aria_label: "Cottage" },
-    
     
     // Property Brand => Brands
 
@@ -384,15 +380,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 );
             });
         }
-        // else if (key === "propertyTypes") {
-        //     value.forEach(type => {
-        //         const mappedType = BOOKING_COM_MAP[type];
-        //         const checkbox = document.querySelector(`input[name="lodging"][aria-label*="${mappedType}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "propertyTypes") {
+            value.forEach(type => {
+                const mappedType = BOOKING_COM_MAP[type];
+                if (!mappedType) return;
+                const checkbox = document.querySelector(`input[name*="${mappedType.name}"][aria-label*="${mappedType.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         else if (key === "starRatings") {
             value.forEach(rating => {
                 const mappedRating = BOOKING_COM_MAP[rating];
