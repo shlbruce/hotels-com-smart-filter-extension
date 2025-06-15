@@ -204,12 +204,8 @@ const BOOKING_COM_MAP = {
     // water_park: { name: "water_park", aria_label: "Water park" },
     // cribs: { name: "cribs", aria_label: "Cribs" },
 
-    // // Availability
-    // available_only: { name: "available_only", aria_label: "Only show available properties" },
-
     // Cancellation => Reservation policy
-    //fully_refundable or Free cancellation not complete same, need update the settings, then we can map here. 
-    fully_refundable: { name: "fc", aria_label: "Free cancellation" },
+    free_cancellation: { name: "fc", aria_label: "Free cancellation" },
 
     // // Discounts
     // vip: { name: "vip", aria_label: "VIP Access properties" },
@@ -354,24 +350,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "availability") {
-        //     value.forEach(availability => {
-        //         const mappedAvailability = BOOKING_COM_MAP[availability];
-        //         const checkbox = document.querySelector(`input[name="availableFilter"][aria-label*="${mappedAvailability}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
-        // else if (key === "cancellation") {
-        //     value.forEach(cancellation => {
-        //         const mappedCancellation = BOOKING_COM_MAP[cancellation];
-        //         const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedCancellation}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "cancellation") {
+            value.forEach(cancellation => {
+                const mappedCancellation = BOOKING_COM_MAP[cancellation];
+                if (!mappedCancellation) return;
+                const checkbox = document.querySelector(`input[name*="${mappedCancellation.name}"][aria-label*="${mappedCancellation.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         // else if (key === "discounts") {
         //     value.forEach(discount => {
         //         const mappedDiscount = BOOKING_COM_MAP[discount];
