@@ -163,25 +163,33 @@ const BOOKING_COM_MAP = {
         name: "accessible_facilities",
         aria_label: ["Visual aids (tactile signs)"]
     },
+    wheelchair: {
+        name: "hotelfacility",
+        aria_label: ["Wheelchair accessible"]
+    },
 
+    // Property Amenities
 
-    // Property Amenities  
+    airport_shuttle: { name: "hotelfacility", aria_label: "Airport shuttle" },
+    bar: { name: "hotelfacility", aria_label: "Bar" },
+    casino: { name: "hotelfacility", aria_label: "Casino" },
+    electric_charger: { name: "hotelfacility", aria_label: "Electric vehicle charging station" },
+    family_rooms: { name: "hotelfacility", aria_label: "Family rooms" },
+    front_desk_24h: { name: "hotelfacility", aria_label: "24-hour front desk" },
+    golf_course: { name: "hotelfacility", aria_label: "Golf course" },
+    gym: { name: "hotelfacility", aria_label: "Fitness center" },
+    //this is hotel hot tub, not in room hot tub.
+    hot_tub: { name: "hotelfacility", aria_label: "Hot tub/Jacuzzi" },
+    non_smoking_rooms: { name: "hotelfacility", aria_label: "Non-smoking rooms" },
     parking: { name: "hotelfacility", aria_label: "Parking" },
     pool: { name: "hotelfacility", aria_label: "Swimming pool" },
     restaurant: { name: "hotelfacility", aria_label: "Restaurant" },
-    // Room service
-    // 24-hour front desk
-    gym: { name: "hotelfacility", aria_label: "Fitness center" },
-    // Non-smoking rooms
-    airport_shuttle: { name: "hotelfacility", aria_label: "Airport shuttle" },
-    // Family rooms
+    room_service: { name: "hotelfacility", aria_label: "Room service" },
     spa: { name: "hotelfacility", aria_label: "Spa" },
-    //this is hotel hot tub, not in room hot tub. We need update settings to hotel facility or room facility
-    hot_tub: { name: "hotelfacility", aria_label: "Hot tub/Jacuzzi" },
-    wifi: { name: "hotelfacility", aria_label: "Free Wifi" },
-    electric_charger: { name: "hotelfacility", aria_label: "Electric vehicle charging station" },
+    water_park: { name: "hotelfacility", aria_label: "Water park" },
 
     // Amenities => Room amenities
+    wifi: { name: "hotelfacility", aria_label: "Free Wifi" },
     air_conditioned: { name: "roomfacility", aria_label: "Air conditioning" },
     // Private bathroom
     ocean_view: { name: "roomfacility", aria_label: "Sea view" },
@@ -341,7 +349,7 @@ function applyFiltersInBookingCom(smartFilters) {
                 });
             });
         }
-        else if (key === "amenities") {
+        else if (key === "propertyAmenities") {
             value.forEach(amenity => {
                 const mappedAmenity = BOOKING_COM_MAP[amenity];
                 if (!mappedAmenity) return;
