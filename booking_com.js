@@ -108,10 +108,6 @@ const BOOKING_COM_MAP = {
         name: "accessible_room_facilities",
         aria_label: ["Roll-in shower"]
     },
-    elevator: {
-        name: "accessible_room_facilities",
-        aria_label: ["Upper floors accessible by elevator"]
-    },
     in_room: {
         name: "accessible_room_facilities",
         aria_label: ["Entire unit wheelchair accessible"]
@@ -120,39 +116,31 @@ const BOOKING_COM_MAP = {
         name: "accessible_room_facilities",
         aria_label: ["Toilet with grab rails", "Raised toilet", "Lower sink"]
     },
-    // service_animals: {
-    //     name: "service_animals",
-    //     aria_label: "Service animals allowed"
-    // },
-    // stair_free: {
-    //     name: "stair_free",
-    //     aria_label: "Stair-free path to entrance"
-    // },
-    wheelchair_parking: {
-        name: "hotelfacility",
-        aria_label: "Wheelchair accessible"
-    },
-    // sign_language: {
-    //     name: "sign_language",
-    //     aria_label: "Sign language-capable staff"
-    // },
 
-    //  Property Accessibility
-    toilet_grab_rails: {
+    // Property Accessibility
+    auditory_guidance: {
         name: "accessible_facilities",
-        aria_label: ["Toilet with grab rails"]
+        aria_label: ["Auditory guidance"]
     },
-    raised_toilet: {
+    bathroom_emergency_cord: {
         name: "accessible_facilities",
-        aria_label: ["Raised toilet"]
+        aria_label: ["Bathroom emergency cord"]
+    },
+    elevator: {
+        name: "accessible_room_facilities",
+        aria_label: ["Upper floors accessible by elevator"]
     },
     lowered_sink: {
         name: "accessible_facilities",
         aria_label: ["Lowered sink"]
     },
-    bathroom_emergency_cord: {
+    raised_toilet: {
         name: "accessible_facilities",
-        aria_label: ["Bathroom emergency cord"]
+        aria_label: ["Raised toilet"]
+    },
+    toilet_grab_rails: {
+        name: "accessible_facilities",
+        aria_label: ["Toilet with grab rails"]
     },
     visual_braille: {
         name: "accessible_facilities",
@@ -162,10 +150,7 @@ const BOOKING_COM_MAP = {
         name: "accessible_facilities",
         aria_label: ["Visual aids (tactile signs)"]
     },
-    auditory_guidance: {
-        name: "accessible_facilities",
-        aria_label: ["Auditory guidance"]
-    },
+
 
     // Amenities => Amenities  
     parking: { name: "hotelfacility", aria_label: "Parking" },
