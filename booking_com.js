@@ -103,16 +103,6 @@ const BOOKING_COM_MAP = {
     // Emergency cord in bathroom
     // Shower chair
 
-    //  Property Accessibility
-    
-    Toilet with grab rails
-    Raised toilet
-    Lowered sink
-    Bathroom emergency cord
-    Visual aids (Braille)
-    Visual aids (tactile signs)
-    Auditory guidance
-
     //  Accessibility => Room Accessibility and Property Accessibility
     roll_in_shower: {
         name: "accessible_room_facilities",
@@ -146,6 +136,36 @@ const BOOKING_COM_MAP = {
     //     name: "sign_language",
     //     aria_label: "Sign language-capable staff"
     // },
+
+    //  Property Accessibility
+    toilet_grab_rails: {
+        name: "accessible_facilities",
+        aria_label: ["Toilet with grab rails"]
+    },
+    raised_toilet: {
+        name: "accessible_facilities",
+        aria_label: ["Raised toilet"]
+    },
+    lowered_sink: {
+        name: "accessible_facilities",
+        aria_label: ["Lowered sink"]
+    },
+    bathroom_emergency_cord: {
+        name: "accessible_facilities",
+        aria_label: ["Bathroom emergency cord"]
+    },
+    visual_braille: {
+        name: "accessible_facilities",
+        aria_label: ["Visual aids (Braille)"]
+    },
+    visual_tactile: {
+        name: "accessible_facilities",
+        aria_label: ["Visual aids (tactile signs)"]
+    },
+    auditory_guidance: {
+        name: "accessible_facilities",
+        aria_label: ["Auditory guidance"]
+    },
 
     // Amenities => Amenities  
     parking: { name: "hotelfacility", aria_label: "Parking" },
@@ -194,7 +214,7 @@ const BOOKING_COM_MAP = {
     kitchen: { name: "kitchen", aria_label: "Private kitchen" },
 
     // casino: { name: "casino", aria_label: "Casino" },
-    
+
     // 
     // golf_course: { name: "golf_course", aria_label: "Golf course" },
     // bar: { name: "bar", aria_label: "Bar" },
@@ -231,7 +251,7 @@ const BOOKING_COM_MAP = {
     resort: { name: "ht_", aria_label: "Resorts" },
     vacation_home: { name: "ht_", aria_label: "Vacation Homes" },
     villa: { name: "ht_", aria_label: "Villas" },
-    
+
     // Property Brand => Brands
 
     hampton: { name: "chaincode", aria_label: ["Hampton Inn"] },
@@ -258,9 +278,9 @@ const BOOKING_COM_MAP = {
     // venetian_las_vegas: { name: "venetian_las_vegas", aria_label: "Venetian Las Vegas" },
     // boyd: { name: "boyd", aria_label: "Boyd Gaming" },
     // wynn: { name: "wynn", aria_label: "Wynn Resorts" },
-    
+
     // world_bw: { name: "world_bw", aria_label: "World Hotels BW" },
-    
+
     // station: { name: "station", aria_label: "Station Casinos" },
     // conrad: { name: "conrad", aria_label: "Conrad" },
     // hilton_grand: { name: "hilton_grand", aria_label: "Hilton Grand Vacations" },
@@ -270,7 +290,7 @@ const BOOKING_COM_MAP = {
     // oyo: { name: "oyo", aria_label: "OYO AMER" },
     // westgate: { name: "westgate", aria_label: "Westgate Resorts" },
     // doubletree: { name: "doubletree", aria_label: "Doubletree" },
-    
+
     // motel6: { name: "motel6", aria_label: "Motel 6" },
     // la_quinta: { name: "la_quinta", aria_label: "La Quinta Inn & Suites" },
     // lxr_hotels_resorts: { name: "lxr_hotels_resorts", aria_label: "LXR Hotels & Resorts" },
@@ -300,6 +320,18 @@ function applyFiltersInBookingCom(smartFilters) {
     for (const [key, value] of Object.entries(smartFilters)) {
 
         if (key === "accessibility") {
+            value.forEach(accessibility => {
+                const mappedAccessibility = BOOKING_COM_MAP[accessibility];
+                if (!mappedAccessibility) return;
+                mappedAccessibility.aria_label.forEach(label => {
+                    let checkbox = document.querySelector(`input[name*='${mappedAccessibility.name}'][aria-label*='${label}']`);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                });
+            });
+        }
+        else if (key === "propertyAccessibility") {
             value.forEach(accessibility => {
                 const mappedAccessibility = BOOKING_COM_MAP[accessibility];
                 if (!mappedAccessibility) return;
