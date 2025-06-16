@@ -6,7 +6,8 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   const minPrice = document.getElementById("minPrice").value || null;
   const maxPrice = document.getElementById("maxPrice").value || null;
   const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
-  const amenities = [...document.querySelectorAll('input[name="amenities"]:checked')].map(cb => cb.value);
+  const propertyAmenities = [...document.querySelectorAll('input[name="propertyAmenities"]:checked')].map(cb => cb.value);
+  const roomAmenities = [...document.querySelectorAll('input[name="roomAmenities"]:checked')].map(cb => cb.value);
   const paymentFlexibility = [...document.querySelectorAll('input[name="paymentFlexibility"]:checked')].map(cb => cb.value);
   const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
   const propertyTypes = [...document.querySelectorAll('input[name="propertyType"]:checked')].map(cb => cb.value);
@@ -25,7 +26,8 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
       minPrice,
       maxPrice,
       starRatings,
-      amenities,
+      propertyAmenities,
+      roomAmenities,
       paymentFlexibility,
       cancellation,
       propertyTypes,
@@ -72,7 +74,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   checkOptions("accessibility", filters.accessibility);
   checkOptions("propertyAccessibility", filters.propertyAccessibility); // 👈 NEW
-  checkOptions("amenities", filters.amenities);
+  checkOptions("propertyAmenities", filters.propertyAmenities);
+  checkOptions("roomAmenities", filters.roomAmenities);
   checkOptions("cancellation", filters.cancellation);
   checkOptions("discounts", filters.discounts);
   checkOptions("guestRating", filters.guestRatings);

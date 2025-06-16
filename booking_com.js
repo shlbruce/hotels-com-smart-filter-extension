@@ -165,7 +165,7 @@ const BOOKING_COM_MAP = {
     },
 
 
-    // Amenities => Amenities  
+    // Property Amenities  
     parking: { name: "hotelfacility", aria_label: "Parking" },
     pool: { name: "hotelfacility", aria_label: "Swimming pool" },
     restaurant: { name: "hotelfacility", aria_label: "Restaurant" },
