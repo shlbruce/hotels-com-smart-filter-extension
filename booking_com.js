@@ -97,24 +97,37 @@ const BOOKING_COM_MAP = {
 
     // Room Accessibility
 
-    // Entire unit located on ground floor
-    // Adapted bath
-    // Walk-in shower
-    // Emergency cord in bathroom
-    // Shower chair
-
-    //  Accessibility => Room Accessibility and Property Accessibility
-    roll_in_shower: {
+    accessible_bathroom: {
         name: "accessible_room_facilities",
-        aria_label: ["Roll-in shower"]
+        aria_label: ["Toilet with grab rails", "Raised toilet", "Lower sink"]
+    },
+    adapted_bath: {
+        name: "accessible_room_facilities",
+        aria_label: ["Adapted bath"]
+    },
+    emergency_cord_bathroom: {
+        name: "accessible_room_facilities",
+        aria_label: ["Emergency cord in bathroom"]
+    },
+    entire_unit_ground_floor: {
+        name: "accessible_room_facilities",
+        aria_label: ["Entire unit located on ground floor"]
     },
     in_room: {
         name: "accessible_room_facilities",
         aria_label: ["Entire unit wheelchair accessible"]
     },
-    accessible_bathroom: {
+    roll_in_shower: {
         name: "accessible_room_facilities",
-        aria_label: ["Toilet with grab rails", "Raised toilet", "Lower sink"]
+        aria_label: ["Roll-in shower"]
+    },
+    shower_chair: {
+        name: "accessible_room_facilities",
+        aria_label: ["Shower chair"]
+    },
+    walk_in_shower: {
+        name: "accessible_room_facilities",
+        aria_label: ["Walk-in shower"]
     },
 
     // Property Accessibility
