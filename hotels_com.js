@@ -26,11 +26,14 @@ function handleSmartFilterClickOnHotelsCom(event) {
 }
 
 const HOTELS_COM_MAP = {
-    // Accessibility
+    // Room Accessibility
     roll_in_shower: "Roll-in shower",
-    elevator: "Elevator",
     in_room: "In-room accessibility",
     accessible_bathroom: "Accessible bathroom",
+    
+
+    // Property Accessibility
+    elevator: "Elevator",
     service_animals: "Service animals allowed",
     stair_free: "Stair-free path to entrance",
     wheelchair_parking: "Wheelchair accessible parking",
@@ -158,6 +161,16 @@ function applyFiltersInHotelsCom(smartFilters) {
 
     for (const [key, value] of Object.entries(smartFilters)) {
         if (key === "accessibility") {
+            value.forEach(accessibility => {
+                const mappedAccessibility = HOTELS_COM_MAP[accessibility];
+                if (!mappedAccessibility) return;
+                let checkbox = document.querySelector(`input[name='accessibility'][aria-label*='${mappedAccessibility}']`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
+        else if (key === "propertyAccessibility") {
             value.forEach(accessibility => {
                 const mappedAccessibility = HOTELS_COM_MAP[accessibility];
                 if (!mappedAccessibility) return;
@@ -344,9 +357,9 @@ function addSmartFilterButtonOnHotelsCom() {
 
     const button = document.createElement("button");
     button.id = "smart-filter-button";
-    button.textContent = "Smart Filter";
+    button.textContent = "Apply your filters";
     button.style.margin = "6px 0px";
-    button.style.padding = "6px 1px";
+    button.style.padding = "6px 2px";
     button.style.fontSize = "12px";
     button.style.cursor = "pointer";
     button.style.borderRadius = "8px";
