@@ -331,16 +331,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
-        // else if (key === "guestRating") {
-        //     value.forEach(rating => {
-        //         const mappedRating = BOOKING_COM_MAP[rating];
-        //         if (!mappedRating) return;
-        //         const checkbox = document.querySelector(`input[name*="${mappedRating.name}"][aria-label*="${mappedRating.aria_label}"]`);
-        //         if (checkbox && !checkbox.checked) {
-        //             checkbox.click();
-        //         }
-        //     });
-        // }
+        else if (key === "guestRatings") {
+            value.forEach(rating => {
+                const mappedRating = BOOKING_COM_MAP[rating];
+                if (!mappedRating) return;
+                const checkbox = document.querySelector(`input[name*="${mappedRating.name}"][aria-label*="${mappedRating.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         else if (key === "meals") {
             value.forEach(meal => {
                 const mappedMeal = BOOKING_COM_MAP[meal];
