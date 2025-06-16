@@ -27,21 +27,33 @@ const FILTER_MARKS = [
     { keyword: "filter_group_chaincode", id: "this-filter-brands" },
     { keyword: "filter_group_accessible_facilities", id: "this-filter-property-accessibility" },
     { keyword: "filter_group_accessible_room_facilities", id: "this-filter-room-Accessibility" }
-  ];
-  
-  function markFilters(filterSidebar) {
+];
+
+function markFilters(filterSidebar) {
     FILTER_MARKS.forEach(({ keyword, id }) => {
-      const div = filterSidebar.querySelector(`div[id*="${keyword}"]`);
-      if (div) {
-        div.id = id;
-      } else {
-        console.log(`${id} not found`);
-      }
+        const div = filterSidebar.querySelector(`div[id*="${keyword}"]`);
+        if (div) {
+            div.id = id;
+        } else {
+            console.log(`${id} not found`);
+        }
     });
-  }
-  
+}
 
+function uncheckAllFilters() {
+    FILTER_MARKS.forEach(({ id }) => {
+        const section = document.getElementById(id);
+        if (!section) {
+            console.log(`Section not found: ${id}`);
+            return;
+        }
 
+        const checkboxes = section.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach(checkbox => {
+            checkbox.click(); // Simulate unchecking
+        });
+    });
+}
 
 
 function clickShowAll() {
