@@ -1,5 +1,6 @@
 document.getElementById("smartFiltersForm").addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const stayOption = document.querySelector('input[name="stayOption"]:checked')?.value;
   const guestRatings = [...document.querySelectorAll('input[name="guestRating"]:checked')].map(cb => cb.value);
   const minPrice = document.getElementById("minPrice").value || null;
@@ -7,15 +8,13 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
   const amenities = [...document.querySelectorAll('input[name="amenities"]:checked')].map(cb => cb.value);
   const paymentFlexibility = [...document.querySelectorAll('input[name="paymentFlexibility"]:checked')].map(cb => cb.value);
-
   const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
-
   const propertyTypes = [...document.querySelectorAll('input[name="propertyType"]:checked')].map(cb => cb.value);
   const propertyBrands = [...document.querySelectorAll('input[name="propertyBrand"]:checked')].map(cb => cb.value);
-
   const travelerExperiences = [...document.querySelectorAll('input[name="travelerExperience"]:checked')].map(cb => cb.value);
   const availability = [...document.querySelectorAll('input[name="availability"]:checked')].map(cb => cb.value);
   const accessibility = [...document.querySelectorAll('input[name="accessibility"]:checked')].map(cb => cb.value);
+  const propertyAccessibility = [...document.querySelectorAll('input[name="propertyAccessibility"]:checked')].map(cb => cb.value);
   const discounts = [...document.querySelectorAll('input[name="discounts"]:checked')].map(cb => cb.value);
   const meals = [...document.querySelectorAll('input[name="meals"]:checked')].map(cb => cb.value);
 
@@ -34,6 +33,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
       travelerExperiences,
       availability,
       accessibility,
+      propertyAccessibility,
       discounts,
       meals
     }
@@ -42,13 +42,14 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   }).catch((err) => {
     console.error("Failed to save smartFilters:", err);
   });
+
   const panel = document.getElementById("confirmationPanel");
   panel.style.display = "block";
   setTimeout(() => {
     panel.style.display = "none";
   }, 2500);
-
 });
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await chrome.storage.sync.get("smartFilters");
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   checkOptions("accessibility", filters.accessibility);
+  checkOptions("propertyAccessibility", filters.propertyAccessibility); // 👈 NEW
   checkOptions("amenities", filters.amenities);
   checkOptions("cancellation", filters.cancellation);
   checkOptions("discounts", filters.discounts);
@@ -80,13 +82,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   checkOptions("propertyType", filters.propertyTypes);
   checkOptions("starRating", filters.starRatings);
   checkOptions("travelerExperience", filters.travelerExperiences);
-  
 
-  // Single checkboxes
   if (filters.availability) {
     document.querySelector(`input[name="availability"][value="${filters.availability}"]`)?.click();
   }
 });
+
 
 document.getElementById("resetFiltersButton").addEventListener("click", () => {
   const confirmModal = document.getElementById("confirmResetModal");
@@ -100,22 +101,18 @@ document.getElementById("resetFiltersButton").addEventListener("click", () => {
   confirmYes.addEventListener("click", () => {
     const form = document.getElementById("smartFiltersForm");
 
-    // Clear text/number inputs
     form.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
       input.value = '';
     });
 
-    // Uncheck all checkboxes
     form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
       checkbox.checked = false;
     });
 
-    // Reset all radio buttons to default
     form.querySelectorAll('input[type="radio"]').forEach(radio => {
       radio.checked = radio.defaultChecked;
     });
 
-    // Clear storage
     chrome.storage.sync.remove("smartFilters", () => {
       console.log("smartFilters reset");
     });
@@ -127,4 +124,3 @@ document.getElementById("resetFiltersButton").addEventListener("click", () => {
     confirmModal.style.display = "none";
   });
 });
-

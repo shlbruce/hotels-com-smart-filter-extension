@@ -105,13 +105,13 @@ const BOOKING_COM_MAP = {
 
     //  Property Accessibility
     
-    // Toilet with grab rails
-    // Raised toilet
-    // Lowered sink
-    // Bathroom emergency cord
-    // Visual aids (Braille)
-    // Visual aids (tactile signs)
-    // Auditory guidance
+    Toilet with grab rails
+    Raised toilet
+    Lowered sink
+    Bathroom emergency cord
+    Visual aids (Braille)
+    Visual aids (tactile signs)
+    Auditory guidance
 
     //  Accessibility => Room Accessibility and Property Accessibility
     roll_in_shower: {
