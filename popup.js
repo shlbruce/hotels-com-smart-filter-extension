@@ -69,24 +69,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   };
 
-  checkOptions("starRating", filters.starRatings);
-  checkOptions("guestRating", filters.guestRatings);
-  checkOptions("amenities", filters.amenities);
-  checkOptions("paymentFlexibility", filters.paymentFlexibility);
-  checkOptions("propertyType", filters.propertyTypes);
-  checkOptions("propertyBrand", filters.propertyBrands);
-  checkOptions("travelerExperience", filters.travelerExperiences);
   checkOptions("accessibility", filters.accessibility);
+  checkOptions("amenities", filters.amenities);
+  checkOptions("cancellation", filters.cancellation);
   checkOptions("discounts", filters.discounts);
+  checkOptions("guestRating", filters.guestRatings);
   checkOptions("meals", filters.meals);
+  checkOptions("paymentFlexibility", filters.paymentFlexibility);
+  checkOptions("propertyBrand", filters.propertyBrands);
+  checkOptions("propertyType", filters.propertyTypes);
+  checkOptions("starRating", filters.starRatings);
+  checkOptions("travelerExperience", filters.travelerExperiences);
+  
 
   // Single checkboxes
   if (filters.availability) {
     document.querySelector(`input[name="availability"][value="${filters.availability}"]`)?.click();
-  }
-
-  if (filters.cancellation) {
-    document.querySelector(`input[name="cancellation"][value="${filters.cancellation}"]`)?.click();
   }
 });
 
