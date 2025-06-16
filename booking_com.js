@@ -189,6 +189,8 @@ const BOOKING_COM_MAP = {
     water_park: { name: "hotelfacility", aria_label: "Water park" },
 
     // Room amenities
+    //Sofa bed
+    //Microwave
 
     air_conditioned: {
         name: "roomfacility",
@@ -199,7 +201,7 @@ const BOOKING_COM_MAP = {
         aria_label: "Barbecue"
     },
     bathtub: {
-        name: "bathroom",
+        name: "roomfacility",
         aria_label: "Bathtub"
     },
     cribs: {
@@ -243,7 +245,7 @@ const BOOKING_COM_MAP = {
         aria_label: "Outdoor space"
     },
     private_bathroom: {
-        name: "bathroom",
+        name: "roomfacility",
         aria_label: "Private bathroom"
     },
     private_pool: {
@@ -255,7 +257,7 @@ const BOOKING_COM_MAP = {
         aria_label: "Reading light"
     },
     refrigerator: {
-        name: "kitchen",
+        name: "roomfacility",
         aria_label: "Refrigerator"
     },
     sauna: {
@@ -263,15 +265,15 @@ const BOOKING_COM_MAP = {
         aria_label: "Sauna"
     },
     shower: {
-        name: "bathroom",
+        name: "roomfacility",
         aria_label: "Shower"
     },
     toilet: {
-        name: "bathroom",
+        name: "roomfacility",
         aria_label: "Toilet"
     },
     towels: {
-        name: "bathroom",
+        name: "roomfacility",
         aria_label: "Towels"
     },
     view: {
