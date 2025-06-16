@@ -1,7 +1,7 @@
 document.getElementById("smartFiltersForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const stayOption = document.querySelector('input[name="stayOption"]:checked')?.value;
-  const guestRating = document.querySelector('input[name="guestRating"]:checked')?.value;
+  const guestRatings = [...document.querySelectorAll('input[name="guestRating"]:checked')].map(cb => cb.value);
   const minPrice = document.getElementById("minPrice").value || null;
   const maxPrice = document.getElementById("maxPrice").value || null;
   const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
@@ -22,7 +22,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   await chrome.storage.sync.set({
     smartFilters: {
       stayOption,
-      guestRating,
+      guestRatings,
       minPrice,
       maxPrice,
       starRatings,
@@ -61,18 +61,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(`input[name="stayOption"][value="${filters.stayOption}"]`)?.click();
   }
 
-  if (filters.guestRating) {
-    document.querySelector(`input[name="guestRating"][value="${filters.guestRating}"]`)?.click();
-  }
-
   const checkOptions = (name, values) => {
     if (!Array.isArray(values)) return;
     values.forEach(val => {
+      console.log(`Checking ${name} with value: ${val}`);
       document.querySelector(`input[name="${name}"][value="${val}"]`)?.click();
     });
   };
 
   checkOptions("starRating", filters.starRatings);
+  checkOptions("guestRating", filters.guestRatings);
   checkOptions("amenities", filters.amenities);
   checkOptions("paymentFlexibility", filters.paymentFlexibility);
   checkOptions("propertyType", filters.propertyTypes);
