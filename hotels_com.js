@@ -207,6 +207,33 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
+        else if (key === "guestRatings") {
+            if (value.length === 0) {
+                const checkbox = document.querySelector(`input[name="guestRating"][aria-label*="guest_rating_any"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+                continue;
+            }
+            const minRating = value.reduce((min, current) => {
+                const currentNum = parseInt(current.split('_').pop(), 10);
+                const minNum = parseInt(min.split('_').pop(), 10);
+                return currentNum < minNum ? current : min;
+            });
+
+            const mappedGuestRating = HOTELS_COM_MAP[minRating];
+            let checkbox;
+            if (!mappedGuestRating) {
+                checkbox = document.querySelector(`input[name="guestRating"][aria-label*="guest_rating_any"]`);
+
+            }
+            else {
+                checkbox = document.querySelector(`input[name="guestRating"][aria-label*="${mappedGuestRating}"]`);
+            }
+            if (checkbox && !checkbox.checked) {
+                checkbox.click();
+            }
+        }
         // handle minPrice and maxPrice together
         else if (key === "maxPrice") {
             const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
@@ -283,15 +310,6 @@ function applyFiltersInHotelsCom(smartFilters) {
                 if (radio && !radio.checked) {
                     radio.click(); // Simulate real user interaction
                 }
-            }
-
-            const mappedGuestRating = HOTELS_COM_MAP[smartFilters.guestRating];
-            if (!mappedGuestRating) return;
-            const radioGuestRating = document.querySelector(`input[name="guestRating"][aria-label*="${mappedGuestRating}"]`);
-            if (radioGuestRating && !radioGuestRating.checked) {
-                setTimeout(() => {
-                    radioGuestRating.click(); // Simulate real user interaction
-                }, 2000);
             }
         }
         else if (key === "travelerExperiences") {
