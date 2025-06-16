@@ -59,8 +59,6 @@ function addSmartFilterButtonOnBookingCom() {
     button.addEventListener("click", handleSmartFilterClickOnBookingCom);
 
     filterHeading.insertAdjacentElement("beforebegin", container);
-
-    clickShowAll();
 }
 
 function handleSmartFilterClickOnBookingCom(event) {
@@ -83,6 +81,8 @@ function handleSmartFilterClickOnBookingCom(event) {
                 uncheckAllFilters();
                 console.warn("Clear filters button not found.");
             }
+
+            clickShowAll();
 
             setTimeout(() => {
                 applyFiltersInBookingCom(smartFilters);
@@ -188,45 +188,109 @@ const BOOKING_COM_MAP = {
     spa: { name: "hotelfacility", aria_label: "Spa" },
     water_park: { name: "hotelfacility", aria_label: "Water park" },
 
-    // Amenities => Room amenities
-    wifi: { name: "hotelfacility", aria_label: "Free Wifi" },
-    air_conditioned: { name: "roomfacility", aria_label: "Air conditioning" },
-    // Private bathroom
-    ocean_view: { name: "roomfacility", aria_label: "Sea view" },
-    // Private pool
-    // Hot tub (this is in room hot-tub)
-    washer_dryer: { name: "roomfacility", aria_label: "Washing machine" },
-    // View
-    // Refrigerator
-    // Upper floors accessible by elevator (this is in room facility)
-    // Flat-screen TV
-    // Toilet
-    // Lake view
-    // Towels
-    // Shower
-    // Bathtub
-    // Complimentary evening snacks and drinks in the executive lounge
-    // Sauna
-    // Fireplace
-    // Linens
-    // Barbecue
-    // Computer
-    // Game console
-    // TV
-    // Fax
-    // Reading light
+    // Room amenities
 
-    // amenities => Kitchen
-    kitchen: { name: "kitchen", aria_label: "Private kitchen" },
-
-    // casino: { name: "casino", aria_label: "Casino" },
-
-    // 
-    // golf_course: { name: "golf_course", aria_label: "Golf course" },
-    // bar: { name: "bar", aria_label: "Bar" },
-    // outdoor_space: { name: "outdoor_space", aria_label: "Outdoor space" },
-    // water_park: { name: "water_park", aria_label: "Water park" },
-    // cribs: { name: "cribs", aria_label: "Cribs" },
+    air_conditioned: {
+        name: "roomfacility",
+        aria_label: "Air conditioning"
+    },
+    barbecue: {
+        name: "roomfacility",
+        aria_label: "Barbecue"
+    },
+    bathtub: {
+        name: "bathroom",
+        aria_label: "Bathtub"
+    },
+    cribs: {
+        name: "roomfacility",
+        aria_label: "Cribs"
+    },
+    elevator_access: {
+        name: "roomfacility",
+        aria_label: "Upper floors accessible by elevator"
+    },
+    fireplace: {
+        name: "roomfacility",
+        aria_label: "Fireplace"
+    },
+    flat_screen_tv: {
+        name: "roomfacility",
+        aria_label: "Flat-screen TV"
+    },
+    game_console: {
+        name: "roomfacility",
+        aria_label: "Game console"
+    },
+    hot_tub: {
+        name: "roomfacility",
+        aria_label: "Hot tub"
+    },
+    kitchen: {
+        name: "kitchen",
+        aria_label: "Private kitchen"
+    },
+    lake_view: {
+        name: "roomfacility",
+        aria_label: "Lake view"
+    },
+    ocean_view: {
+        name: "roomfacility",
+        aria_label: "Sea view"
+    },
+    outdoor_space: {
+        name: "roomfacility",
+        aria_label: "Outdoor space"
+    },
+    private_bathroom: {
+        name: "bathroom",
+        aria_label: "Private bathroom"
+    },
+    private_pool: {
+        name: "roomfacility",
+        aria_label: "Private pool"
+    },
+    reading_light: {
+        name: "roomfacility",
+        aria_label: "Reading light"
+    },
+    refrigerator: {
+        name: "kitchen",
+        aria_label: "Refrigerator"
+    },
+    sauna: {
+        name: "roomfacility",
+        aria_label: "Sauna"
+    },
+    shower: {
+        name: "bathroom",
+        aria_label: "Shower"
+    },
+    toilet: {
+        name: "bathroom",
+        aria_label: "Toilet"
+    },
+    towels: {
+        name: "bathroom",
+        aria_label: "Towels"
+    },
+    view: {
+        name: "roomfacility",
+        aria_label: "View"
+    },
+    washer_dryer: {
+        name: "roomfacility",
+        aria_label: "Washer and dryer"
+    },
+    washing_machine: {
+        name: "roomfacility",
+        aria_label: "Washing machine"
+    },
+    wifi: {
+        name: "hotelfacility",
+        aria_label: "Free Wifi"
+    },
+    
 
     // Cancellation => Reservation policy
     free_cancellation: { name: "fc", aria_label: "Free cancellation" },
@@ -350,6 +414,16 @@ function applyFiltersInBookingCom(smartFilters) {
             });
         }
         else if (key === "propertyAmenities") {
+            value.forEach(amenity => {
+                const mappedAmenity = BOOKING_COM_MAP[amenity];
+                if (!mappedAmenity) return;
+                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
+        else if (key === "roomAmenities") {
             value.forEach(amenity => {
                 const mappedAmenity = BOOKING_COM_MAP[amenity];
                 if (!mappedAmenity) return;
