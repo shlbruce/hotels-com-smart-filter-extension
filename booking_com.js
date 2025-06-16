@@ -220,16 +220,16 @@ const BOOKING_COM_MAP = {
     // Property Type => Property Type
     //
 
-    hotel: { name: "ht_", aria_label: "Hotels" },
-    // Entire homes & apartments
     apartment: { name: "ht_", aria_label: "Apartments" },
-    hostel: { name: "ht_", aria_label: "Hostels" },
-    guesthouse: { name: "ht_", aria_label: "Guesthouses" },
-    vacation_home: { name: "ht_", aria_label: "Vacation Homes" },
     bnb: { name: "ht_", aria_label: "Bed and Breakfasts" },
+    entire_home: { name: "privacy_type", aria_label: "Entire homes & apartments" },
+    guesthouse: { name: "ht_", aria_label: "Guesthouses" },
+    hostel: { name: "ht_", aria_label: "Hostels" },
+    homestay: { name: "ht_", aria_label: "Homestays" },
+    hotel: { name: "ht_", aria_label: "Hotels" },
     motel: { name: "ht_", aria_label: "Motels" },
-    // Homestays
     resort: { name: "ht_", aria_label: "Resorts" },
+    vacation_home: { name: "ht_", aria_label: "Vacation Homes" },
     villa: { name: "ht_", aria_label: "Villas" },
     
     // Property Brand => Brands
