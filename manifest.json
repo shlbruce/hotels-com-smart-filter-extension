@@ -8,7 +8,8 @@
       {
         "matches": [
             "*://www.hotels.com/*",
-            "*://www.booking.com/*"
+            "*://www.booking.com/*",
+            "*://www.expedia.com/*"
         ],
         "js": ["booking_com.js", "booking_com_helper.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
       }

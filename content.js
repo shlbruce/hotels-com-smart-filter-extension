@@ -6,11 +6,14 @@ function init() {
         addSmartFilterButtonOnHotelsCom();
         return;
     }
+    else if (hostname === "www.expedia.com") {
+        addSmartFilterButtonOnHotelsCom();
+        return;
+    }
     else if (hostname === "www.booking.com") {
         addSmartFilterButtonOnBookingCom();
         return;
-    }
-    
+    } 
 }
 
 // Run initially and observe DOM changes
