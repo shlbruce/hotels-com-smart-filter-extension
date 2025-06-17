@@ -292,7 +292,7 @@ const BOOKING_COM_MAP = {
         name: "hotelfacility",
         aria_label: "Free Wifi"
     },
-    
+
 
     // Cancellation => Reservation policy
     free_cancellation: { name: "fc", aria_label: "Free cancellation" },
@@ -326,50 +326,111 @@ const BOOKING_COM_MAP = {
 
     // Property Brand => Brands
 
-    hampton: { name: "chaincode", aria_label: ["Hampton Inn"] },
-    hilton: { name: "chaincode", aria_label: ["Hilton Hotels & Resorts"] },
-    hyatt: { name: "chaincode", aria_label: ["Hyatt Regency", "Hyatt Place", "Hyatt House"] },
-    // Homewood Suites by Hilton
-    // Best Western
-    // Courtyard by Marriott
-    // Hilton Garden Inn
-    // Autograph Collection
-    // Sonesta Hotels
-    // Holiday Inn Hotels & Resorts
-    // Curio Collection by Hilton
-    // Westin
-    // Travelodge by Wyndham
-    // Sofitel
-    // InterContinental Hotels & Resorts
-    // Crowne Plaza Hotels & Resorts
-    // Marriott Hotels & Resorts
-    // Eurostars Hotels
+    autograph_collection: {
+        name: "chaincode",
+        aria_label: ["Autograph Collection"]
+    },
+    best_western: {
+        name: "chaincode",
+        aria_label: ["Best Western"]
+    },
+    best_western_plus: {
+        name: "chaincode",
+        aria_label: ["Best Western Plus"]
+    },
+    courtyard_marriott: {
+        name: "chaincode",
+        aria_label: ["Courtyard by Marriott"]
+    },
+    crowne_plaza: {
+        name: "chaincode",
+        aria_label: ["Crowne Plaza Hotels & Resorts"]
+    },
+    curio_collection_hilton: {
+        name: "chaincode",
+        aria_label: ["Curio Collection by Hilton"]
+    },
+    doubletree: {
+        name: "chaincode",
+        aria_label: ["Doubletree"]
+    },
+    eurostars: {
+        name: "chaincode",
+        aria_label: ["Eurostars Hotels"]
+    },
+    hampton: {
+        name: "chaincode",
+        aria_label: ["Hampton Inn"]
+    },
+    hilton: {
+        name: "chaincode",
+        aria_label: ["Hilton Hotels & Resorts"]
+    },
+    hilton_garden_inn: {
+        name: "chaincode",
+        aria_label: ["Hilton Garden Inn"]
+    },
+    holiday_inn: {
+        name: "chaincode",
+        aria_label: ["Holiday Inn Hotels & Resorts"]
+    },
+    holiday_inn_express: {
+        name: "chaincode",
+        aria_label: ["Holiday Inn Express Hotel"]
+    },
+    homewood_suites: {
+        name: "chaincode",
+        aria_label: ["Homewood Suites by Hilton"]
+    },
+    hyatt_regency: {
+        name: "chaincode",
+        aria_label: ["Hyatt Regency"]
+    },
+    hyatt_place: {
+        name: "chaincode",
+        aria_label: ["Hyatt Place"]
+    },
+    hyatt_house: {
+        name: "chaincode",
+        aria_label: ["Hyatt House"]
+    },
+    intercontinental: {
+        name: "chaincode",
+        aria_label: ["InterContinental Hotels & Resorts"]
+    },
+    la_quinta: {
+        name: "chaincode",
+        aria_label: ["La Quinta Inn & Suites"]
+    },
+    lxr_hotels_resorts: {
+        name: "chaincode",
+        aria_label: ["LXR Hotels & Resorts"]
+    },
+    marriott: {
+        name: "chaincode",
+        aria_label: ["Marriott Hotels & Resorts"]
+    },
+    renaissance: {
+        name: "chaincode",
+        aria_label: ["Renaissance Hotels & Resorts"]
+    },
+    sonesta: {
+        name: "chaincode",
+        aria_label: ["Sonesta Hotels"]
+    },
+    sofitel: {
+        name: "chaincode",
+        aria_label: ["Sofitel"]
+    },
+    travelodge: {
+        name: "chaincode",
+        aria_label: ["Travelodge by Wyndham"]
+    },
+    westin: {
+        name: "chaincode",
+        aria_label: ["Westin"]
+    },
 
-    // mgm: { name: "mgm", aria_label: "MGM" },
-    // caesars: { name: "caesars", aria_label: "Caesars Entertainment" },
-    // venetian_las_vegas: { name: "venetian_las_vegas", aria_label: "Venetian Las Vegas" },
-    // boyd: { name: "boyd", aria_label: "Boyd Gaming" },
-    // wynn: { name: "wynn", aria_label: "Wynn Resorts" },
-
-    // world_bw: { name: "world_bw", aria_label: "World Hotels BW" },
-
-    // station: { name: "station", aria_label: "Station Casinos" },
-    // conrad: { name: "conrad", aria_label: "Conrad" },
-    // hilton_grand: { name: "hilton_grand", aria_label: "Hilton Grand Vacations" },
-    // golden_nugget: { name: "golden_nugget", aria_label: "Golden Nugget" },
-    // trump: { name: "trump", aria_label: "Trump Hotels" },
-    // curio: { name: "curio", aria_label: "Curio Collection" },
-    // oyo: { name: "oyo", aria_label: "OYO AMER" },
-    // westgate: { name: "westgate", aria_label: "Westgate Resorts" },
-    // doubletree: { name: "doubletree", aria_label: "Doubletree" },
-
-    // motel6: { name: "motel6", aria_label: "Motel 6" },
-    // la_quinta: { name: "la_quinta", aria_label: "La Quinta Inn & Suites" },
-    // lxr_hotels_resorts: { name: "lxr_hotels_resorts", aria_label: "LXR Hotels & Resorts" },
-    // best_western_plus: { name: "best_western_plus", aria_label: "Best Western Plus" },
-    // holiday_inn_express: { name: "holiday_inn_express", aria_label: "Holiday Inn Express Hotel" },
-    // wyndham_extra_holidays: { name: "wyndham_extra_holidays", aria_label: "Wyndham Extra Holidays" },
-    // four_seasons: { name: "four_seasons", aria_label: "Four Seasons" },
 
     // Star Ratings => Property rating
     starRating_5: { name: "class=", aria_label: "5 stars" },
