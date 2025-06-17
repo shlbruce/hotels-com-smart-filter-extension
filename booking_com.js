@@ -311,6 +311,14 @@ const BOOKING_COM_MAP = {
         aria_label: "Free Wifi"
     },
 
+    //
+    //Bed Preference
+    //
+
+    twin_beds: { name: "tdb", aria_label: "Twin beds" },
+    double_bed: { name: "tdb", aria_label: "Double bed" },
+    king_bed: { name: "tdb", aria_label: "King bed" },
+    queen_bed: { name: "tdb", aria_label: "Queen bed" },
 
     // Cancellation => Reservation policy
     free_cancellation: { name: "fc", aria_label: "Free cancellation" },
@@ -509,6 +517,16 @@ function applyFiltersInBookingCom(smartFilters) {
                 const mappedAmenity = BOOKING_COM_MAP[amenity];
                 if (!mappedAmenity) return;
                 const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
+        else if (key === "bedPreference") {
+            value.forEach(preference => {
+                const mappedPreference = BOOKING_COM_MAP[preference];
+                if (!mappedPreference) return;
+                const checkbox = document.querySelector(`input[name*="${mappedPreference.name}"][aria-label*="${mappedPreference.aria_label}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }

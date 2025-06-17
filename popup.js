@@ -8,6 +8,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
   const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
   const propertyAmenities = [...document.querySelectorAll('input[name="propertyAmenities"]:checked')].map(cb => cb.value);
   const roomAmenities = [...document.querySelectorAll('input[name="roomAmenities"]:checked')].map(cb => cb.value);
+  const bedPreference = [...document.querySelectorAll('input[name="bedPreference"]:checked')].map(cb => cb.value);
   const paymentFlexibility = [...document.querySelectorAll('input[name="paymentFlexibility"]:checked')].map(cb => cb.value);
   const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
   const propertyTypes = [...document.querySelectorAll('input[name="propertyType"]:checked')].map(cb => cb.value);
@@ -28,6 +29,7 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
       starRatings,
       propertyAmenities,
       roomAmenities,
+      bedPreference,
       paymentFlexibility,
       cancellation,
       propertyTypes,
@@ -76,6 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   checkOptions("propertyAccessibility", filters.propertyAccessibility); // 👈 NEW
   checkOptions("propertyAmenities", filters.propertyAmenities);
   checkOptions("roomAmenities", filters.roomAmenities);
+  checkOptions("bedPreference", filters.bedPreference);
   checkOptions("cancellation", filters.cancellation);
   checkOptions("discounts", filters.discounts);
   checkOptions("guestRating", filters.guestRatings);
