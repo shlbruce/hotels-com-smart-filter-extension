@@ -12,7 +12,7 @@
             "*://www.expedia.com/*",
             "*://www.agoda.com/*"
         ],
-        "js": ["agoda_com.js", "booking_com.js", "booking_com_helper.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
+        "js": ["agoda_com.js", "agoda_com_helper.js", "booking_com.js", "booking_com_helper.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
       }
     ],
     "action": {

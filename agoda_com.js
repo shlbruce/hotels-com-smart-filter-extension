@@ -53,11 +53,12 @@ function handleSmartFilterClickOnAgodaCom(event) {
     chrome.storage.sync.get(["smartFilters"], function (result) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
-            const clearButton = document.querySelector(span[label="CLEAR"]);
+            const clearButton = document.querySelector('span[label = "CLEAR"]');
             if (clearButton) {
                 clearButton.click();
             }
 
+            markFilters()
             setTimeout(() => {
                 applyFiltersInAgodaCom(smartFilters);
             }, 2000);
@@ -129,20 +130,39 @@ const AGODA_COM_MAP = {
     hotels_com_gift_card: "Pay with Hotels.com gift card",
 
 
+    //     Apartment/Flat
+    // Capsule hotel
+    // Entire House
+    // Guesthouse/bed and breakfast
+    // Homestay
+    // Hostel
+    // Inn
+    // Motel
+    // Resort
+    // Resort villa
+    // Serviced apartment
+    // Villa
+
+    //
     // Property Type
-    hotel: "Hotel",
-    resort: "Resort",
-    bnb: "Bed & breakfast",
-    condo: "Condo",
-    motel: "Motel",
-    vacation_home: "Private vacation home",
-    aparthotel: "Aparthotel",
-    apartment: "Apartment",
-    condo_resort: "Condo resort",
-    villa: "Villa",
-    cottage: "Cottage",
-    guesthouse: "Guesthouse",
-    hostel: "Hostel/Backpacker accommodation",
+    //
+
+    // apartment: "Apartment",
+    // aparthotel: "Aparthotel",
+    // bnb: "Bed & breakfast",
+    // condo: "Condo",
+    // condo_resort: "Condo resort",
+    // cottage: "Cottage",
+    // guesthouse: "Guesthouse",
+    // hostel: "Hostel/Backpacker accommodation",
+    hotel: {
+        name: "filter-menu-AccomdType",
+        text: "Hotel"
+    },
+    // motel: "Motel",
+    // resort: "Resort",
+    // vacation_home: "Private vacation home",
+    // villa: "Villa"
 
     // Property Brand
     aloft: "aloft",
