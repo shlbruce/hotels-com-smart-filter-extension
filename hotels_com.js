@@ -39,26 +39,30 @@ const HOTELS_COM_MAP = {
     wheelchair_parking: "Wheelchair accessible parking",
     sign_language: "Sign language-capable staff",
 
-    // Amenities
-    pool: "Pool",
-    spa: "Spa",
+    //
+    // Property Amenities
+    //
     airport_shuttle: "Airport shuttle included",
-    casino: "Casino",
-    parking: "Parking",
-    kitchen: "Kitchen",
-    hot_tub: "Hot tub",
-    wifi: "Wifi Included",
-    restaurant: "Restaurant",
-    air_conditioned: "Air conditioned",
-    gym: "Gym",
-    golf_course: "Golf course",
     bar: "Bar",
-    outdoor_space: "Outdoor space",
+    casino: "Casino",
     electric_charger: "Electric car charging station",
+    golf_course: "Golf course",
+    gym: "Gym",
+    parking: "Parking",
+    pool: "Pool",
+    restaurant: "Restaurant",
+    spa: "Spa",
     washer_dryer: "Washer and dryer",
-    ocean_view: "Ocean view",
     water_park: "Water park",
+
+    // Room amenities
+    air_conditioned: "Air conditioned",
     cribs: "Cribs",
+    hot_tub: "Hot tub",
+    kitchen: "Kitchen",
+    ocean_view: "Ocean view",
+    outdoor_space: "Outdoor space",
+    wifi: "Wifi Included",
 
     // Availability
     available_only: "Only show available properties",
@@ -207,7 +211,17 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
-        else if (key === "amenities") {
+        else if (key === "propertyAmenities") {
+            value.forEach(amenity => {
+                const mappedAmenity = HOTELS_COM_MAP[amenity];
+                if (!mappedAmenity) return;
+                const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${mappedAmenity}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
+        else if (key === "roomAmenities") {
             value.forEach(amenity => {
                 const mappedAmenity = HOTELS_COM_MAP[amenity];
                 if (!mappedAmenity) return;
