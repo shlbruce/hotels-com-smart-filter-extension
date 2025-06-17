@@ -30,7 +30,7 @@ const HOTELS_COM_MAP = {
     roll_in_shower: "Roll-in shower",
     in_room: "In-room accessibility",
     accessible_bathroom: "Accessible bathroom",
-    
+
 
     // Property Accessibility
     elevator: "Elevator",
@@ -98,31 +98,58 @@ const HOTELS_COM_MAP = {
     hostel: "Hostel/Backpacker accommodation",
 
     // Property Brand
-    mgm: "MGM",
-    caesars: "Caesars Entertainment",
-    venetian_las_vegas: "Venetian Las Vegas",
-    boyd: "Boyd Gaming",
-    wynn: "Wynn Resorts",
-    hilton: "Hilton Hotels",
-    world_bw: "World Hotels BW",
-    hyatt: "Hyatt Hotels",
-    station: "Station Casinos",
-    conrad: "Conrad",
-    hilton_grand: "Hilton Grand Vacations",
-    golden_nugget: "Golden Nugget",
-    trump: "Trump Hotels",
-    curio: "Curio Collection",
-    oyo: "OYO AMER",
-    westgate: "Westgate Resorts",
-    doubletree: "Doubletree",
-    hampton: "Hampton Inn",
-    motel6: "Motel 6",
-    la_quinta: "La Quinta Inn & Suites",
-    lxr_hotels_resorts: "LXR Hotels & Resorts",
+    aloft: "aloft",
+    autograph_collection: "Autograph Collection",
+    best_western: "Best Western",
     best_western_plus: "Best Western Plus",
-    holiday_inn_express: "Holiday Inn Express Hotel",
-    wyndham_extra_holidays: "Wyndham Extra Holidays",
+    boyd: "Boyd Gaming",
+    caesars: "Caesars Entertainment",
+    club_quarters: "Club Quarters",
+    conrad: "Conrad",
+    country_inn: "Country Inn & Suites - by Choice Hotels",
+    courtyard_marriott: "Courtyard",
+    crowne_plaza: "Crowne Plaza Hotels & Resorts",
+    curio_collection_hilton: "Curio Collection",
+    doubletree: "Doubletree",
+    embassy_suites: "Embassy Suites",
+    eurostars: "Eurostars Hotels",
+    extended_stay_america: "Extended Stay America Suites",
+    fairfield_inn: "Fairfield Inn",
     four_seasons: "Four Seasons",
+    golden_nugget: "Golden Nugget",
+    hampton: "Hampton Inn",
+    hilton: "Hilton Hotels",
+    hilton_garden_inn: "Hilton Garden Inn",
+    hilton_grand: "Hilton Grand Vacations",
+    holiday_inn: "Holiday Inn",
+    holiday_inn_express: "Holiday Inn Express Hotel",
+    homewood_suites: "Homewood Suites by Hilton",
+    hyatt: "Hyatt Hotels",
+    hyatt_house: "Hyatt House",
+    hyatt_place: "Hyatt Place",
+    hyatt_regency: "Hyatt Regency",
+    intercontinental: "InterContinental Hotels & Resorts",
+    la_quinta: "La Quinta Inn & Suites",
+    loews: "Loews",
+    lxr_hotels_resorts: "LXR Hotels & Resorts",
+    marriott: "Marriott Hotels & Resorts",
+    mgm: "MGM",
+    motel6: "Motel 6",
+    oyo: "OYO AMER",
+    renaissance: "Renaissance",
+    sofitel: "Sofitel",
+    sonesta: "Sonesta Hotels",
+    springhill_suites: "SpringHill Suites",
+    station: "Station Casinos",
+    super8: "Super 8",
+    trump: "Trump Hotels",
+    travelodge: "Travelodge by Wyndham",
+    venetian_las_vegas: "Venetian Las Vegas",
+    westgate: "Westgate Resorts",
+    westin: "Westin",
+    world_bw: "World Hotels BW",
+    wynn: "Wynn Resorts",
+    wyndham_extra_holidays: "Wyndham Extra Holidays",
 
     // Star Ratings
     starRating_5: "5 stars",
@@ -290,9 +317,23 @@ function applyFiltersInHotelsCom(smartFilters) {
             value.forEach(brand => {
                 const mappedBrand = HOTELS_COM_MAP[brand];
                 if (!mappedBrand) return;
-                const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
+                if (mappedBrand === "Holiday Inn") {
+                    const checkboxes = document.querySelectorAll(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
+                    for (const checkbox of checkboxes) {
+                        const label = checkbox.getAttribute("aria-label") || "";
+                        if (!label.startsWith("Holiday Inn Express")) {
+                            if (!checkbox.checked) {
+                                checkbox.click();
+                            }
+                            break;
+                        }
+                    }
+                }
+                else {
+                    const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
                 }
             });
         }
