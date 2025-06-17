@@ -9,9 +9,10 @@
         "matches": [
             "*://www.hotels.com/*",
             "*://www.booking.com/*",
-            "*://www.expedia.com/*"
+            "*://www.expedia.com/*",
+            "*://www.agoda.com/*"
         ],
-        "js": ["booking_com.js", "booking_com_helper.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
+        "js": ["agoda_com.js", "booking_com.js", "booking_com_helper.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
       }
     ],
     "action": {

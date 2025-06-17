@@ -14,6 +14,10 @@ function init() {
         addSmartFilterButtonOnBookingCom();
         return;
     } 
+    else if (hostname === "www.agoda.com") {
+        addSmartFilterButtonOnAgodaCom();
+        return
+    }
 }
 
 // Run initially and observe DOM changes
