@@ -89,7 +89,7 @@ const HOTELS_COM_MAP = {
     // Property Type
     hotel: "Hotel",
     resort: "Resort",
-    bnb: "Bed & breakfast",
+    bed_and_breakfast: "Bed & breakfast",
     condo: "Condo",
     motel: "Motel",
     vacation_home: "Private vacation home",

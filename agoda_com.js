@@ -130,39 +130,56 @@ const AGODA_COM_MAP = {
     hotels_com_gift_card: "Pay with Hotels.com gift card",
 
 
-    //     Apartment/Flat
+    // 
     // Capsule hotel
-    // Entire House
-    // Guesthouse/bed and breakfast
-    // Homestay
-    // Hostel
     // Inn
-    // Motel
-    // Resort
     // Resort villa
     // Serviced apartment
-    // Villa
 
     //
     // Property Type
     //
 
-    // apartment: "Apartment",
-    // aparthotel: "Aparthotel",
-    // bnb: "Bed & breakfast",
-    // condo: "Condo",
-    // condo_resort: "Condo resort",
-    // cottage: "Cottage",
-    // guesthouse: "Guesthouse",
-    // hostel: "Hostel/Backpacker accommodation",
+    apartment: {
+        name: "this-filter-property-type",
+        text: "Apartment/Flat"
+    },
+    bed_and_breakfast: {
+        name: "this-filter-property-type",
+        text: "Guesthouse/bed and breakfast"
+    },
+    entire_home: {
+        name: "this-filter-property-type",
+        text: "Entire House"
+    },
+    guesthouse: {
+        name: "this-filter-property-type",
+        text: "Guesthouse/bed and breakfast"
+    },
+    Homestays: {
+        name: "this-filter-property-type",
+        text: "Homestay"
+    },
+    hostel: {
+        name: "this-filter-property-type",
+        text: "Hostel"
+    },
     hotel: {
         name: "this-filter-property-type",
         text: "Hotel"
     },
-    // motel: "Motel",
-    // resort: "Resort",
-    // vacation_home: "Private vacation home",
-    // villa: "Villa"
+    motel: {
+        name: "this-filter-property-type",
+        text: "Motel"
+    },
+    resort: {
+        name: "this-filter-property-type",
+        text: "Resort"
+    },
+    villa: {
+        name: "this-filter-property-type",
+        text: "Villa"
+    },
 
     // Property Brand
     aloft: "aloft",
