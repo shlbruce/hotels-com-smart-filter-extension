@@ -189,8 +189,6 @@ const BOOKING_COM_MAP = {
     water_park: { name: "hotelfacility", aria_label: "Water park" },
 
     // Room amenities
-    //Sofa bed
-    //Microwave
 
     air_conditioned: {
         name: "roomfacility",
@@ -236,13 +234,29 @@ const BOOKING_COM_MAP = {
         name: "roomfacility",
         aria_label: "Lake view"
     },
+    microwave: {
+        name: "roomfacility",
+        aria_label: "Microwave"
+    },
     ocean_view: {
         name: "roomfacility",
         aria_label: "Sea view"
     },
-    outdoor_space: {
-        name: "roomfacility",
-        aria_label: "Outdoor space"
+    outdoor_space_balcony: {
+        name: "outdoor_facilities",
+        aria_label: "Balcony"
+    },
+    outdoor_space_garden: {
+        name: "outdoor_facilities",
+        aria_label: "Garden"
+    },
+    outdoor_space_patio: {
+        name: "outdoor_facilities",
+        aria_label: "Patio"
+    },
+    outdoor_space_terrace: {
+        name: "outdoor_facilities",
+        aria_label: "Terrace"
     },
     private_bathroom: {
         name: "roomfacility",
@@ -267,6 +281,10 @@ const BOOKING_COM_MAP = {
     shower: {
         name: "roomfacility",
         aria_label: "Shower"
+    },
+    sofa_bed: {
+        name: "roomfacility",
+        aria_label: "Sofa bed"
     },
     toilet: {
         name: "roomfacility",
