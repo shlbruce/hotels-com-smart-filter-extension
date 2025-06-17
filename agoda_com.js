@@ -156,7 +156,7 @@ const AGODA_COM_MAP = {
     // guesthouse: "Guesthouse",
     // hostel: "Hostel/Backpacker accommodation",
     hotel: {
-        name: "filter-menu-AccomdType",
+        name: "this-filter-property-type",
         text: "Hotel"
     },
     // motel: "Motel",
@@ -294,16 +294,6 @@ function applyFiltersInAgodaCom(smartFilters) {
                 }
             });
         }
-        else if (key === "availability") {
-            value.forEach(availability => {
-                const mappedAvailability = AGODA_COM_MAP[availability];
-                if (!mappedAvailability) return;
-                const checkbox = document.querySelector(`input[name="availableFilter"][aria-label*="${mappedAvailability}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
-            });
-        }
         else if (key === "cancellation") {
             value.forEach(cancellation => {
                 const mappedCancellation = AGODA_COM_MAP[cancellation];
@@ -418,10 +408,17 @@ function applyFiltersInAgodaCom(smartFilters) {
             value.forEach(type => {
                 const mappedType = AGODA_COM_MAP[type];
                 if (!mappedType) return;
-                const checkbox = document.querySelector(`input[name="lodging"][aria-label*="${mappedType}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "starRatings") {
