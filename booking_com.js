@@ -14,7 +14,7 @@ function addSmartFilterButtonOnBookingCom() {
     }
 
     const rect = filterHeading.getBoundingClientRect();
-    markFilterSideBar(rect);
+    markFilterSideBarBookingCom(rect);
 
     const container = document.createElement("div");
     container.id = "smart-filter-container";
@@ -78,11 +78,11 @@ function handleSmartFilterClickOnBookingCom(event) {
                 clearFiltersBtn.click();
             }
             else {
-                uncheckAllFilters();
+                uncheckAllFiltersBookingCom();
                 console.warn("Clear filters button not found.");
             }
 
-            clickShowAll();
+            clickShowAllBookingCom();
 
             setTimeout(() => {
                 applyFiltersInBookingCom(smartFilters);
@@ -315,7 +315,7 @@ const BOOKING_COM_MAP = {
     //Bed Preference
     //
 
-    twin_beds: { name: "tdb", aria_label: "Twin beds" },
+    single_twin_beds: { name: "tdb", aria_label: "Twin beds" },
     double_bed: { name: "tdb", aria_label: "Double bed" },
     king_bed: { name: "tdb", aria_label: "King bed" },
     queen_bed: { name: "tdb", aria_label: "Queen bed" },

@@ -1,17 +1,17 @@
-function markFilterSideBar(filterHeadingRect) {
+function markFilterSideBarBookingCom(filterHeadingRect) {
     const filtersDivs = document.querySelectorAll('div[aria-label="Filters"]');
     filtersDivs.forEach((div, index) => {
         const rect = div.getBoundingClientRect();
         if (doesRectCover(rect, filterHeadingRect)) {
             div.id = "this-filter-sidebar";
 
-            markFilters(div);
+            markFiltersBookingCom(div);
             return;
         }
     });
 }
 
-const FILTER_MARKS = [
+const FILTER_MARKS_BOOKING_COM = [
     { keyword: "filter_group_hotelfacility", id: "this-filter-amenities" },
     { keyword: "filter_group_ht_id", id: "this-filter-property-type" },
     { keyword: "filter_group_kitchen", id: "this-filter-kitchen" },
@@ -29,8 +29,8 @@ const FILTER_MARKS = [
     { keyword: "filter_group_accessible_room_facilities", id: "this-filter-room-Accessibility" }
 ];
 
-function markFilters(filterSidebar) {
-    FILTER_MARKS.forEach(({ keyword, id }) => {
+function markFiltersBookingCom(filterSidebar) {
+    FILTER_MARKS_BOOKING_COM.forEach(({ keyword, id }) => {
         const div = filterSidebar.querySelector(`div[id*="${keyword}"]`);
         if (div) {
             div.id = id;
@@ -40,8 +40,8 @@ function markFilters(filterSidebar) {
     });
 }
 
-function uncheckAllFilters() {
-    FILTER_MARKS.forEach(({ id }) => {
+function uncheckAllFiltersBookingCom() {
+    FILTER_MARKS_BOOKING_COM.forEach(({ id }) => {
         const section = document.getElementById(id);
         if (!section) {
             console.log(`Section not found: ${id}`);
@@ -56,7 +56,7 @@ function uncheckAllFilters() {
 }
 
 
-function clickShowAll() {
+function clickShowAllBookingCom() {
     const filterSiderBar = document.getElementById("this-filter-sidebar");
     if (!filterSiderBar) return;
 

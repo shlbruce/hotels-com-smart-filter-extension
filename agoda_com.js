@@ -217,6 +217,17 @@ const AGODA_COM_MAP = {
     },
 
 
+
+    //
+    //Bed Preference
+    //
+
+    single_twin_beds: { name: "this-filter-bed-type", text: "Single/twin" },
+    double_bed: { name: "this-filter-bed-type", text: "Double" },
+    king_bed: { name: "this-filter-bed-type", text: "King" },
+    queen_bed: { name: "this-filter-bed-type", text: "Queen" },
+
+
     // Cancellation => Payment options
     free_cancellation: {
         name: "this-filter-payment-options",
@@ -448,6 +459,23 @@ function applyFiltersInAgodaCom(smartFilters) {
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
                 }
+            });
+        }
+        else if (key === "bedPreference") {
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "propertyAccessibility") {
