@@ -77,27 +77,85 @@ const AGODA_COM_MAP = {
 
 
     // Property Accessibility
-    elevator: "Elevator",
-    service_animals: "Service animals allowed",
-    stair_free: "Stair-free path to entrance",
-    wheelchair_parking: "Wheelchair accessible parking",
-    sign_language: "Sign language-capable staff",
+
+    facilities_disabled_guests: {
+        name: "this-filter-property-amenities",
+        text: "Facilities for disabled guests"
+    },
+    // elevator: "Elevator",
+    // service_animals: "Service animals allowed",
+    // stair_free: "Stair-free path to entrance",
+    // wheelchair_parking: "Wheelchair accessible parking",
+    // sign_language: "Sign language-capable staff",
+
 
     //
     // Property Amenities
     //
-    airport_shuttle: "Airport shuttle included",
-    bar: "Bar",
-    casino: "Casino",
-    electric_charger: "Electric car charging station",
-    golf_course: "Golf course",
-    gym: "Gym",
-    parking: "Parking",
-    pool: "Pool",
-    restaurant: "Restaurant",
-    spa: "Spa",
-    washer_dryer: "Washer and dryer",
-    water_park: "Water park",
+    airport_shuttle: {
+        name: "this-filter-property-amenities",
+        text: "Airport transfer"
+    },
+    bar: {
+        name: "this-filter-property-amenities",
+        text: "Air conditioning"
+    },
+    casino: {
+        name: "this-filter-property-amenities",
+        text: "Air conditioning"
+    },
+    electric_charger: {
+        name: "this-filter-property-amenities",
+        text: "Air conditioning"
+    },
+    front_desk_24h: {
+        name: "this-filter-property-amenities",
+        text: "Front desk [24-hour]"
+    },
+    golf_course: {
+        name: "this-filter-property-amenities",
+        text: "Golf course"
+    },
+    gym: {
+        name: "this-filter-property-amenities",
+        text: "Gym/fitness"
+    },
+    non_smoking_rooms: {
+        name: "this-filter-property-amenities",
+        text: "Non-smoking"
+    },
+    night_club: {
+        name: "this-filter-property-amenities",
+        text: "Nightclub"
+    },
+    parking: {
+        name: "this-filter-property-amenities",
+        text: "Car park"
+    },
+    pool: {
+        name: "this-filter-property-amenities",
+        text: "Swimming pool"
+    },
+    restaurant: {
+        name: "this-filter-property-amenities",
+        text: "Restaurants"
+    },
+    smoking_area: {
+        name: "this-filter-property-amenities",
+        text: "Smoking area"
+    },
+    spa: {
+        name: "this-filter-property-amenities",
+        text: "Spa/sauna"
+    },
+    washer_dryer: {
+        name: "this-filter-property-amenities",
+        text: "Air conditioning"
+    },
+    water_park: {
+        name: "this-filter-property-amenities",
+        text: "Air conditioning"
+    },
 
     // Room amenities
     air_conditioned: {
@@ -143,10 +201,6 @@ const AGODA_COM_MAP = {
     television: {
         name: "this-filter-room-amenities",
         text: "TV"
-    },
-    travel_experience_pet_friendly: { 
-        name: "this-filter-room-amenities", 
-        text: "Pets allowed in room" 
     },
     washing_machine: {
         name: "this-filter-room-amenities",
@@ -343,12 +397,21 @@ const AGODA_COM_MAP = {
     stay_options_homes: "Homes",
 
     // Traveler Experience
-    // travel_experience_family_friendly: { name: "travelerType", aria_label: "Family friendly" },
-    // travel_experience_pet_friendly: { name: "amenities", aria_label: "Pet friendly" },
+    travel_experience_family_friendly: {
+        name: "this-filter-property-amenities",
+        text: "Family/child friendly"
+    },
+    travel_experience_pet_friendly: { 
+        name: "this-filter-room-amenities", 
+        text: "Pets allowed in room" 
+    },
+    travel_experience_business:{
+        name: "this-filter-property-amenities",
+        text: "Business facilities"
+    },
     // travel_experience_adults_only: { name: "travelerType", aria_label: "Adults only" },
     // travel_experience_lgbtq: { name: "travelerType", aria_label: "LGBTQ welcoming" },
     // travel_experience_luxury: { name: "travelerType", aria_label: "Luxury" },
-    // travel_experience_business: { name: "travelerType", aria_label: "Business friendly" },
     // travel_experience_beach: { name: "travelerType", aria_label: "Beach" },
     // travel_experience_romantic: { name: "travelerType", aria_label: "Romantic" },
     // travel_experience_eco: { name: "travelerType", aria_label: "Eco-certified" },
@@ -377,23 +440,37 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
         }
         else if (key === "propertyAccessibility") {
-            value.forEach(accessibility => {
-                const mappedAccessibility = AGODA_COM_MAP[accessibility];
-                if (!mappedAccessibility) return;
-                let checkbox = document.querySelector(`input[name='accessibility'][aria-label*='${mappedAccessibility}']`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "propertyAmenities") {
-            value.forEach(amenity => {
-                const mappedAmenity = AGODA_COM_MAP[amenity];
-                if (!mappedAmenity) return;
-                const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${mappedAmenity}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "roomAmenities") {
