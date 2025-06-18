@@ -134,11 +134,22 @@ const AGODA_COM_MAP = {
     discounted: "Discounted properties",
 
     // Guest Rating
-    guest_rating_any: "Any",
-    guest_rating_9: "Wonderful 9+",
-    guest_rating_8: "Very good 8+",
-    guest_rating_7: "Good 7+",
-    
+    guest_rating_9: {
+        name: "this-filter-guest-review-score",
+        text: "9+ Exceptional"
+    },
+    guest_rating_8: {
+        name: "this-filter-guest-review-score",
+        text: "8+ Excellent"
+    },
+    guest_rating_7: {
+        name: "this-filter-guest-review-score",
+        text: "7+ Very good"
+    },
+    guest_rating_6: {
+        name: "this-filter-guest-review-score",
+        text: "6+ Good"
+    },
 
     //
     // Property Type
@@ -360,10 +371,6 @@ function applyFiltersInAgodaCom(smartFilters) {
         }
         else if (key === "guestRatings") {
             if (value.length === 0) {
-                const checkbox = document.querySelector(`input[name="guestRating"][aria-label*="guest_rating_any"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
                 continue;
             }
             const minRating = value.reduce((min, current) => {
@@ -372,18 +379,20 @@ function applyFiltersInAgodaCom(smartFilters) {
                 return currentNum < minNum ? current : min;
             });
 
-            const mappedGuestRating = AGODA_COM_MAP[minRating];
-            let checkbox;
-            if (!mappedGuestRating) {
-                checkbox = document.querySelector(`input[name="guestRating"][aria-label*="guest_rating_any"]`);
+            const mappedType = AGODA_COM_MAP[minRating];
+            if (!mappedType) return;
 
-            }
-            else {
-                checkbox = document.querySelector(`input[name="guestRating"][aria-label*="${mappedGuestRating}"]`);
-            }
-            if (checkbox && !checkbox.checked) {
-                checkbox.click();
-            }
+            const filterSection = document.getElementById(mappedType.name);
+            filterSection.querySelectorAll('li').forEach(liElement => {
+                const text = liElement.innerText.trim();
+                const cleaned = text.replace(/\s+/g, ' ');
+                if (cleaned.startsWith(mappedType.text)) {
+                    const checkbox = liElement.querySelector('input[type="radio"]');
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                }
+            });
         }
         // handle minPrice and maxPrice together
         else if (key === "maxPrice") {
