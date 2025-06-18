@@ -129,13 +129,6 @@ const AGODA_COM_MAP = {
     pay_later: "Reserve now, pay later",
     hotels_com_gift_card: "Pay with Hotels.com gift card",
 
-
-    // 
-    // Capsule hotel
-    // Inn
-    // Resort villa
-    // Serviced apartment
-
     //
     // Property Type
     //
@@ -148,6 +141,10 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-type",
         text: "Guesthouse/bed and breakfast"
     },
+    capsule_hotel: {
+        name: "this-filter-property-type",
+        text: "Capsule hotel"
+    },
     entire_home: {
         name: "this-filter-property-type",
         text: "Entire House"
@@ -156,7 +153,7 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-type",
         text: "Guesthouse/bed and breakfast"
     },
-    Homestays: {
+    homestay: {
         name: "this-filter-property-type",
         text: "Homestay"
     },
@@ -168,6 +165,10 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-type",
         text: "Hotel"
     },
+    inn: {
+        name: "this-filter-property-type",
+        text: "Inn"
+    },
     motel: {
         name: "this-filter-property-type",
         text: "Motel"
@@ -175,6 +176,14 @@ const AGODA_COM_MAP = {
     resort: {
         name: "this-filter-property-type",
         text: "Resort"
+    },
+    resort_villa: {
+        name: "this-filter-property-type",
+        text: "Resort villa"
+    },
+    serviced_apartment: {
+        name: "this-filter-property-type",
+        text: "Serviced apartment"
     },
     villa: {
         name: "this-filter-property-type",
