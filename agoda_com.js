@@ -100,13 +100,62 @@ const AGODA_COM_MAP = {
     water_park: "Water park",
 
     // Room amenities
-    air_conditioned: "Air conditioned",
-    cribs: "Cribs",
-    hot_tub: "Hot tub",
-    kitchen: "Kitchen",
-    ocean_view: "Ocean view",
-    outdoor_space: "Outdoor space",
-    wifi: "Wifi Included",
+    air_conditioned: {
+        name: "this-filter-room-amenities",
+        text: "Air conditioning"
+    },
+    bathtub: {
+        name: "this-filter-room-amenities",
+        text: "Bathtub"
+    },
+    coffee_tea_maker: {
+        name: "this-filter-room-amenities",
+        text: "Coffee/tea maker"
+    },
+    heating: {
+        name: "this-filter-room-amenities",
+        text: "Heating"
+    },
+    ironing_facilities: {
+        name: "this-filter-room-amenities",
+        text: "Ironing facilities"
+    },
+    kitchen: {
+        name: "this-filter-room-amenities",
+        text: "Kitchen"
+    },
+    outdoor_space_balcony: {
+        name: "this-filter-room-amenities",
+        text: "Balcony/terrace"
+    },
+    outdoor_space_terrace: {
+        name: "this-filter-room-amenities",
+        aria_label: "Balcony/terrace"
+    },
+    private_pool: {
+        name: "this-filter-room-amenities",
+        text: "Private pool"
+    },
+    refrigerator: {
+        name: "this-filter-room-amenities",
+        text: "Refrigerator"
+    },
+    television: {
+        name: "this-filter-room-amenities",
+        text: "TV"
+    },
+    travel_experience_pet_friendly: { 
+        name: "this-filter-room-amenities", 
+        text: "Pets allowed in room" 
+    },
+    washing_machine: {
+        name: "this-filter-room-amenities",
+        text: "Washing machine"
+    },
+    wifi: {
+        name: "this-filter-room-amenities",
+        text: "Internet access"
+    },
 
 
     // Cancellation => Payment options
@@ -294,17 +343,17 @@ const AGODA_COM_MAP = {
     stay_options_homes: "Homes",
 
     // Traveler Experience
-    travel_experience_family_friendly: { name: "travelerType", aria_label: "Family friendly" },
-    travel_experience_pet_friendly: { name: "amenities", aria_label: "Pet friendly" },
-    travel_experience_adults_only: { name: "travelerType", aria_label: "Adults only" },
-    travel_experience_lgbtq: { name: "travelerType", aria_label: "LGBTQ welcoming" },
-    travel_experience_luxury: { name: "travelerType", aria_label: "Luxury" },
-    travel_experience_business: { name: "travelerType", aria_label: "Business friendly" },
-    travel_experience_beach: { name: "travelerType", aria_label: "Beach" },
-    travel_experience_romantic: { name: "travelerType", aria_label: "Romantic" },
-    travel_experience_eco: { name: "travelerType", aria_label: "Eco-certified" },
-    travel_experience_budget: { name: "travelerType", aria_label: "Budget" },
-    travel_experience_wedding: { name: "travelerType", aria_label: "Wedding" },
+    // travel_experience_family_friendly: { name: "travelerType", aria_label: "Family friendly" },
+    // travel_experience_pet_friendly: { name: "amenities", aria_label: "Pet friendly" },
+    // travel_experience_adults_only: { name: "travelerType", aria_label: "Adults only" },
+    // travel_experience_lgbtq: { name: "travelerType", aria_label: "LGBTQ welcoming" },
+    // travel_experience_luxury: { name: "travelerType", aria_label: "Luxury" },
+    // travel_experience_business: { name: "travelerType", aria_label: "Business friendly" },
+    // travel_experience_beach: { name: "travelerType", aria_label: "Beach" },
+    // travel_experience_romantic: { name: "travelerType", aria_label: "Romantic" },
+    // travel_experience_eco: { name: "travelerType", aria_label: "Eco-certified" },
+    // travel_experience_budget: { name: "travelerType", aria_label: "Budget" },
+    // travel_experience_wedding: { name: "travelerType", aria_label: "Wedding" },
 
     // Meals
     meal_plan_breakfast: "Breakfast included",
@@ -348,13 +397,21 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
         }
         else if (key === "roomAmenities") {
-            value.forEach(amenity => {
-                const mappedAmenity = AGODA_COM_MAP[amenity];
-                if (!mappedAmenity) return;
-                const checkbox = document.querySelector(`input[name="amenities"][aria-label*="${mappedAmenity}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            const filterSection = document.getElementById("this-filter-room-amenities");
+            const allLi = filterSection.querySelectorAll('li');
+
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+                allLi.forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "cancellation") {
@@ -523,13 +580,20 @@ function applyFiltersInAgodaCom(smartFilters) {
             }
         }
         else if (key === "travelerExperiences") {
-            value.forEach(experience => {
-                const mappedExperience = AGODA_COM_MAP[experience];
-                if (!mappedExperience) return;
-                const checkbox = document.querySelector(`input[name="${mappedExperience.name}"][aria-label*="${mappedExperience.aria_label}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
     }
