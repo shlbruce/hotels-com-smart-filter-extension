@@ -121,6 +121,10 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-amenities",
         text: "Gym/fitness"
     },
+    internet: {
+        name: "this-filter-property-amenities",
+        text: "Internet"
+    },
     non_smoking_rooms: {
         name: "this-filter-property-amenities",
         text: "Non-smoking"
@@ -402,10 +406,16 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-amenities",
         text: "Family/child friendly"
     },
-    travel_experience_pet_friendly: { 
-        name: "this-filter-room-amenities", 
-        text: "Pets allowed in room" 
-    },
+    travel_experience_pet_friendly: [
+        { 
+            name: "this-filter-room-amenities", 
+            text: "Pets allowed in room" 
+        },
+        {
+            name: "this-filter-property-amenities",
+            text: "Pets allowed"
+        }
+    ],
     travel_experience_business:{
         name: "this-filter-property-amenities",
         text: "Business facilities"
@@ -659,21 +669,29 @@ function applyFiltersInAgodaCom(smartFilters) {
         }
         else if (key === "travelerExperiences") {
             value.forEach(type => {
-                const mappedType = AGODA_COM_MAP[type];
-                if (!mappedType) return;
-
-                const filterSection = document.getElementById(mappedType.name);
-                filterSection.querySelectorAll('li').forEach(liElement => {
-                    const text = liElement.innerText.trim();
-                    if (text.startsWith(mappedType.text)) {
-                        const checkbox = liElement.querySelector('input[type="checkbox"]');
-                        if (checkbox && !checkbox.checked) {
-                            checkbox.click();
+                let mappedTypes = AGODA_COM_MAP[type];
+                if (!mappedTypes) return;
+            
+                // Normalize to an array if it's a single object
+                if (!Array.isArray(mappedTypes)) {
+                    mappedTypes = [mappedTypes];
+                }
+            
+                mappedTypes.forEach(mappedType => {
+                    const filterSection = document.getElementById(mappedType.name);
+                    if (!filterSection) return;
+            
+                    filterSection.querySelectorAll('li').forEach(liElement => {
+                        const text = liElement.innerText.trim();
+                        if (text.startsWith(mappedType.text)) {
+                            const checkbox = liElement.querySelector('input[type="checkbox"]');
+                            if (checkbox && !checkbox.checked) {
+                                checkbox.click();
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            });            
         }
     }
-
 }
