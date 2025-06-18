@@ -26,3 +26,14 @@ function markFilters() {
         }
     });
 }
+
+function clickShowAll() {
+    let filterPropertyAmenities = document.getElementById("this-filter-property-amenities");
+    if (!filterPropertyAmenities) return;
+
+    filterPropertyAmenities = filterPropertyAmenities.parentElement;
+    const button = filterPropertyAmenities.querySelector('button[aria-label*="more for Property facilities"]');
+    if (button) {
+        button.click();
+    }
+}

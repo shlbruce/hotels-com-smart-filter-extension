@@ -59,6 +59,7 @@ function handleSmartFilterClickOnAgodaCom(event) {
             }
 
             markFilters()
+            clickShowAll();
             setTimeout(() => {
                 applyFiltersInAgodaCom(smartFilters);
             }, 2000);
