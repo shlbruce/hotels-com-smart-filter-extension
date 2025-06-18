@@ -267,11 +267,26 @@ const AGODA_COM_MAP = {
     wyndham_extra_holidays: "Wyndham Extra Holidays",
 
     // Star Ratings
-    starRating_5: "5 stars",
-    starRating_4: "4 stars",
-    starRating_3: "3 stars",
-    starRating_2: "2 stars",
-    starRating_1: "1 star",
+    starRating_5: {
+        name: "this-filter-property-rating",
+        text: "5-Star rating"
+    },
+    starRating_4: {
+        name: "this-filter-property-rating",
+        text: "4-Star rating"
+    },
+    starRating_3: {
+        name: "this-filter-property-rating",
+        text: "3-Star rating"
+    },
+    starRating_2: {
+        name: "this-filter-property-rating",
+        text: "2-Star rating"
+    },
+    starRating_1: {
+        name: "this-filter-property-rating",
+        text: "1-Star rating"
+    },
 
     // Stay Option
     stay_options_any: "Any",
@@ -482,13 +497,20 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
         }
         else if (key === "starRatings") {
-            value.forEach(rating => {
-                const mappedRating = AGODA_COM_MAP[rating];
-                if (!mappedRating) return;
-                const checkbox = document.querySelector(`input[name="star"][aria-label*="${mappedRating}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "stayOption") {
