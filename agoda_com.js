@@ -108,11 +108,25 @@ const AGODA_COM_MAP = {
     outdoor_space: "Outdoor space",
     wifi: "Wifi Included",
 
-    // Availability
-    available_only: "Only show available properties",
 
-    // Cancellation
-    fully_refundable: "Fully refundable property",
+    // Cancellation => Payment options
+    free_cancellation: {
+        name: "this-filter-payment-options",
+        text: "Free cancellation"
+    },
+    // Payment Flexibility  =>Payment options
+    pay_at_hotel: {
+        name: "this-filter-payment-options",
+        text: "Pay at the hotel"
+    },
+    pay_later: {
+        name: "this-filter-payment-options",
+        text: "Book now, pay later"
+    },
+    pay_now: {
+        name: "this-filter-payment-options",
+        text: "Pay now"
+    },
 
     // Discounts
     vip: "VIP Access properties",
@@ -124,10 +138,7 @@ const AGODA_COM_MAP = {
     guest_rating_9: "Wonderful 9+",
     guest_rating_8: "Very good 8+",
     guest_rating_7: "Good 7+",
-
-    // Payment Flexibility
-    pay_later: "Reserve now, pay later",
-    hotels_com_gift_card: "Pay with Hotels.com gift card",
+    
 
     //
     // Property Type
@@ -321,13 +332,20 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
         }
         else if (key === "cancellation") {
-            value.forEach(cancellation => {
-                const mappedCancellation = AGODA_COM_MAP[cancellation];
-                if (!mappedCancellation) return;
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedCancellation}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "discounts") {
@@ -397,13 +415,20 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
         }
         else if (key === "paymentFlexibility") {
-            value.forEach(paymentFlexibility => {
-                const mappedPaymentFlexibility = AGODA_COM_MAP[paymentFlexibility];
-                if (!mappedPaymentFlexibility) return;
-                const checkbox = document.querySelector(`input[name="paymentType"][aria-label*="${mappedPaymentFlexibility}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
             });
         }
         else if (key === "propertyBrands") {
