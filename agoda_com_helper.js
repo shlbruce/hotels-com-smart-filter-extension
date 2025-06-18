@@ -1,4 +1,4 @@
-const FILTER_MARKS = [
+const FILTER_MARKS_AGODA = [
     
     { keyword: "filter-menu-AccomdType", id: "this-filter-property-type" },
     { keyword: "filter-menu-PaymentOptions", id: "this-filter-payment-options" },
@@ -12,9 +12,9 @@ const FILTER_MARKS = [
     { keyword: "filter-menu-BrandsAndChains", id: "this-filter-property-brand" },
 ];
 
-function markFilters() {
+function markFiltersAgoda() {
     const filterSidebar = document.getElementById("searchPageLeftColumn");
-    FILTER_MARKS.forEach(({ keyword, id }) => {
+    FILTER_MARKS_AGODA.forEach(({ keyword, id }) => {
         const legend = document.querySelector(`legend[id="${keyword}"]`);
         if (legend) {
             const fieldset = legend.parentElement;
@@ -27,7 +27,7 @@ function markFilters() {
     });
 }
 
-function clickShowAll() {
+function clickShowAllAgoda() {
     let filterPropertyAmenities = document.getElementById("this-filter-property-amenities");
     if (!filterPropertyAmenities) return;
 

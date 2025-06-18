@@ -58,8 +58,8 @@ function handleSmartFilterClickOnAgodaCom(event) {
                 clearButton.click();
             }
 
-            markFilters()
-            clickShowAll();
+            markFiltersAgoda()
+            clickShowAllAgoda();
             setTimeout(() => {
                 applyFiltersInAgodaCom(smartFilters);
             }, 2000);
