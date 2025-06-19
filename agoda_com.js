@@ -71,23 +71,68 @@ function handleSmartFilterClickOnAgodaCom(event) {
 }
 
 const AGODA_COM_MAP = {
-    // Room Accessibility
-    roll_in_shower: "Roll-in shower",
-    in_room: "In-room accessibility",
-    accessible_bathroom: "Accessible bathroom",
 
+    //
+    //Bed Preference
+    //
 
+    single_twin_beds: { name: "this-filter-bed-type", text: "Single/twin" },
+    double_bed: { name: "this-filter-bed-type", text: "Double" },
+    king_bed: { name: "this-filter-bed-type", text: "King" },
+    queen_bed: { name: "this-filter-bed-type", text: "Queen" },
+
+    //
+    // Cancellation => Payment options
+    //
+
+    free_cancellation: {
+        name: "this-filter-payment-options",
+        text: "Free cancellation"
+    },
+
+    //
+    // Guest Rating
+    //
+    guest_rating_9: {
+        name: "this-filter-guest-review-score",
+        text: "9+ Exceptional"
+    },
+    guest_rating_8: {
+        name: "this-filter-guest-review-score",
+        text: "8+ Excellent"
+    },
+    guest_rating_7: {
+        name: "this-filter-guest-review-score",
+        text: "7+ Very good"
+    },
+    guest_rating_6: {
+        name: "this-filter-guest-review-score",
+        text: "6+ Good"
+    },
+
+    //
+    // Payment Flexibility  =>Payment options
+    //
+    pay_at_hotel: {
+        name: "this-filter-payment-options",
+        text: "Pay at the hotel"
+    },
+    pay_later: {
+        name: "this-filter-payment-options",
+        text: "Book now, pay later"
+    },
+    pay_now: {
+        name: "this-filter-payment-options",
+        text: "Pay now"
+    },
+
+    //
     // Property Accessibility
-
+    //
     facilities_disabled_guests: {
         name: "this-filter-property-amenities",
         text: "Facilities for disabled guests"
     },
-    // elevator: "Elevator",
-    // service_animals: "Service animals allowed",
-    // stair_free: "Stair-free path to entrance",
-    // wheelchair_parking: "Wheelchair accessible parking",
-    // sign_language: "Sign language-capable staff",
 
 
     //
@@ -170,114 +215,6 @@ const AGODA_COM_MAP = {
         text: "Air conditioning"
     },
 
-    // Room amenities
-    air_conditioned: {
-        name: "this-filter-room-amenities",
-        text: "Air conditioning"
-    },
-    bathtub: {
-        name: "this-filter-room-amenities",
-        text: "Bathtub"
-    },
-    coffee_tea_maker: {
-        name: "this-filter-room-amenities",
-        text: "Coffee/tea maker"
-    },
-    heating: {
-        name: "this-filter-room-amenities",
-        text: "Heating"
-    },
-    ironing_facilities: {
-        name: "this-filter-room-amenities",
-        text: "Ironing facilities"
-    },
-    kitchen: {
-        name: "this-filter-room-amenities",
-        text: "Kitchen"
-    },
-    outdoor_space_balcony: {
-        name: "this-filter-room-amenities",
-        text: "Balcony/terrace"
-    },
-    outdoor_space_terrace: {
-        name: "this-filter-room-amenities",
-        aria_label: "Balcony/terrace"
-    },
-    private_pool: {
-        name: "this-filter-room-amenities",
-        text: "Private pool"
-    },
-    refrigerator: {
-        name: "this-filter-room-amenities",
-        text: "Refrigerator"
-    },
-    television: {
-        name: "this-filter-room-amenities",
-        text: "TV"
-    },
-    washing_machine: {
-        name: "this-filter-room-amenities",
-        text: "Washing machine"
-    },
-    wifi: {
-        name: "this-filter-room-amenities",
-        text: "Internet access"
-    },
-
-
-
-    //
-    //Bed Preference
-    //
-
-    single_twin_beds: { name: "this-filter-bed-type", text: "Single/twin" },
-    double_bed: { name: "this-filter-bed-type", text: "Double" },
-    king_bed: { name: "this-filter-bed-type", text: "King" },
-    queen_bed: { name: "this-filter-bed-type", text: "Queen" },
-
-
-    // Cancellation => Payment options
-    free_cancellation: {
-        name: "this-filter-payment-options",
-        text: "Free cancellation"
-    },
-    // Payment Flexibility  =>Payment options
-    pay_at_hotel: {
-        name: "this-filter-payment-options",
-        text: "Pay at the hotel"
-    },
-    pay_later: {
-        name: "this-filter-payment-options",
-        text: "Book now, pay later"
-    },
-    pay_now: {
-        name: "this-filter-payment-options",
-        text: "Pay now"
-    },
-
-    // Discounts
-    vip: "VIP Access properties",
-    member: "Member Prices",
-    discounted: "Discounted properties",
-
-    // Guest Rating
-    guest_rating_9: {
-        name: "this-filter-guest-review-score",
-        text: "9+ Exceptional"
-    },
-    guest_rating_8: {
-        name: "this-filter-guest-review-score",
-        text: "8+ Excellent"
-    },
-    guest_rating_7: {
-        name: "this-filter-guest-review-score",
-        text: "7+ Very good"
-    },
-    guest_rating_6: {
-        name: "this-filter-guest-review-score",
-        text: "6+ Good"
-    },
-
     //
     // Property Type
     //
@@ -337,6 +274,64 @@ const AGODA_COM_MAP = {
     villa: {
         name: "this-filter-property-type",
         text: "Villa"
+    },
+
+
+    //
+    // Room amenities
+    //
+
+    air_conditioned: {
+        name: "this-filter-room-amenities",
+        text: "Air conditioning"
+    },
+    bathtub: {
+        name: "this-filter-room-amenities",
+        text: "Bathtub"
+    },
+    coffee_tea_maker: {
+        name: "this-filter-room-amenities",
+        text: "Coffee/tea maker"
+    },
+    heating: {
+        name: "this-filter-room-amenities",
+        text: "Heating"
+    },
+    ironing_facilities: {
+        name: "this-filter-room-amenities",
+        text: "Ironing facilities"
+    },
+    kitchen: {
+        name: "this-filter-room-amenities",
+        text: "Kitchen"
+    },
+    outdoor_space_balcony: {
+        name: "this-filter-room-amenities",
+        text: "Balcony/terrace"
+    },
+    outdoor_space_terrace: {
+        name: "this-filter-room-amenities",
+        aria_label: "Balcony/terrace"
+    },
+    private_pool: {
+        name: "this-filter-room-amenities",
+        text: "Private pool"
+    },
+    refrigerator: {
+        name: "this-filter-room-amenities",
+        text: "Refrigerator"
+    },
+    television: {
+        name: "this-filter-room-amenities",
+        text: "TV"
+    },
+    washing_machine: {
+        name: "this-filter-room-amenities",
+        text: "Washing machine"
+    },
+    wifi: {
+        name: "this-filter-room-amenities",
+        text: "Internet access"
     },
 
     // Property Brand
@@ -426,16 +421,16 @@ const AGODA_COM_MAP = {
         text: "Family/child friendly"
     },
     travel_experience_pet_friendly: [
-        { 
-            name: "this-filter-room-amenities", 
-            text: "Pets allowed in room" 
+        {
+            name: "this-filter-room-amenities",
+            text: "Pets allowed in room"
         },
         {
             name: "this-filter-property-amenities",
             text: "Pets allowed"
         }
     ],
-    travel_experience_business:{
+    travel_experience_business: {
         name: "this-filter-property-amenities",
         text: "Business facilities"
     },
@@ -461,7 +456,7 @@ const AGODA_COM_MAP = {
         name: "this-filter-room-offer",
         text: "Dinner included"
     },
-    meal_plan_gluten_free :  {
+    meal_plan_gluten_free: {
         name: "this-filter-room-offer",
         text: "Gluten-free"
     },
@@ -626,7 +621,7 @@ function applyFiltersInAgodaCom(smartFilters) {
                 });
             });
         }
-        
+
         else if (key === "discounts") {
             value.forEach(discount => {
                 const mappedDiscount = AGODA_COM_MAP[discount];
@@ -656,7 +651,7 @@ function applyFiltersInAgodaCom(smartFilters) {
                 }, 2000);
             }
         }
-        
+
         else if (key === "propertyBrands") {
             value.forEach(brand => {
                 const mappedBrand = AGODA_COM_MAP[brand];
@@ -728,16 +723,16 @@ function applyFiltersInAgodaCom(smartFilters) {
             value.forEach(type => {
                 let mappedTypes = AGODA_COM_MAP[type];
                 if (!mappedTypes) return;
-            
+
                 // Normalize to an array if it's a single object
                 if (!Array.isArray(mappedTypes)) {
                     mappedTypes = [mappedTypes];
                 }
-            
+
                 mappedTypes.forEach(mappedType => {
                     const filterSection = document.getElementById(mappedType.name);
                     if (!filterSection) return;
-            
+
                     filterSection.querySelectorAll('li').forEach(liElement => {
                         const text = liElement.innerText.trim();
                         if (text.startsWith(mappedType.text)) {
@@ -748,7 +743,7 @@ function applyFiltersInAgodaCom(smartFilters) {
                         }
                     });
                 });
-            });            
+            });
         }
     }
 }
