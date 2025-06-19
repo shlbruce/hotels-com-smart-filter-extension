@@ -1,13 +1,20 @@
 function handleSmartFilterClickOnHotelsCom(event) {
+    event.stopPropagation();
+    event.preventDefault();
 
-    event.stopPropagation(); // ⛔ Prevents event bubbling
-    event.preventDefault();  // ⛔ Prevents default action
+    const button = document.getElementById("smart-filter-button");
+    if (!button) return;
+
+    const originalText = button.textContent;
+    button.innerHTML = "🌀 Applying...";
+    button.disabled = true;
+    button.style.opacity = "0.6";
+    button.style.cursor = "not-allowed";
 
     chrome.storage.sync.get(["smartFilters"], function (result) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
             const buttons = document.querySelectorAll('button');
-
             for (const btn of buttons) {
                 if (btn.textContent.trim() === "Remove all filters") {
                     btn.click();
@@ -17,13 +24,25 @@ function handleSmartFilterClickOnHotelsCom(event) {
 
             setTimeout(() => {
                 applyFiltersInHotelsCom(smartFilters);
-            }, 2000);
 
+                // Wait an extra 2 seconds after applying filters
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.style.opacity = "1";
+                    button.style.cursor = "pointer";
+                }, 4000);
+            }, 2000);
         } else {
             console.warn("No smart filters found in storage.");
+            button.textContent = originalText;
+            button.disabled = false;
+            button.style.opacity = "1";
+            button.style.cursor = "pointer";
         }
     });
 }
+
 
 const HOTELS_COM_MAP = {
     // Room Accessibility
