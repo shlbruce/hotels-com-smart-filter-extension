@@ -116,7 +116,7 @@ const AGODA_COM_MAP = {
 
     location_rating_9: {
         name: "this-filter-location-score",
-        text: "9+ Exceptional"  
+        text: "9+ Exceptional"
     },
     location_rating_8: {
         name: "this-filter-location-score",
@@ -256,7 +256,7 @@ const AGODA_COM_MAP = {
     //
     // Property Brand
     //
-  
+
     best_western: {
         name: "this-filter-property-brand",
         text: "Best Western International"
@@ -473,7 +473,7 @@ const AGODA_COM_MAP = {
         text: "Business facilities"
     },
 
-    
+
 };
 
 
@@ -565,6 +565,43 @@ function applyFiltersInAgodaCom(smartFilters) {
                 }
             });
         }
+        // handle minPrice and maxPrice together
+        else if (key === "maxPrice") {
+            const inputMin = document.getElementById("price_box_0");
+            const inputMax = document.getElementById("price_box_1");
+            if (!inputMin || !inputMax) return;
+
+            // Simulate pressing Enter
+            const enterEvent = new KeyboardEvent("keydown", {
+                bubbles: true,
+                cancelable: true,
+                key: "Enter",
+                code: "Enter",
+                keyCode: 13,
+                which: 13
+            });
+
+            if (smartFilters.minPrice != null) {
+                // Set the value
+                inputMin.value = smartFilters.minPrice;
+
+                // Trigger input/change events if needed
+                inputMin.dispatchEvent(new Event("input", { bubbles: true }));
+                inputMin.dispatchEvent(new Event("change", { bubbles: true }));
+
+                inputMin.dispatchEvent(enterEvent);
+            }
+
+            if (smartFilters.maxPrice != null) {
+                inputMax.value = smartFilters.maxPrice;
+
+                // Trigger input/change events if needed
+                inputMax.dispatchEvent(new Event("input", { bubbles: true }));
+                inputMax.dispatchEvent(new Event("change", { bubbles: true }));
+
+                inputMax.dispatchEvent(enterEvent);
+            }
+        }
         else if (key === "meals") {
             value.forEach(type => {
                 const mappedType = AGODA_COM_MAP[type];
@@ -633,26 +670,6 @@ function applyFiltersInAgodaCom(smartFilters) {
                 });
             });
         }
-        // handle minPrice and maxPrice together
-        else if (key === "maxPrice") {
-            const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
-            const sliderMin = document.querySelector('input[type="range"][aria-label*="Minimum"]');
-            if (sliderMax && value != null) {
-                sliderMax.value = value;
-                // don't try to put MouseDown event, it will trigger sliderMax not work. 
-                // I guess mousedown take some time to process, then sliderMax.mouseup event will be too closed to sliderMin.mouseup
-                // then only one mouseup event is executed.
-                sliderMax.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-            }
-
-            if (sliderMin && smartFilters.minPrice != null) {
-                setTimeout(() => {
-                    sliderMin.value = smartFilters.minPrice || 0;
-                    sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-                }, 2000);
-            }
-        }
-
         else if (key === "propertyBrands") {
             value.forEach(type => {
                 const mappedType = AGODA_COM_MAP[type];
