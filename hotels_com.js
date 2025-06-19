@@ -128,7 +128,7 @@ const HOTELS_COM_MAP = {
     holiday_inn: "Holiday Inn",
     holiday_inn_express: "Holiday Inn Express Hotel",
     homewood_suites: "Homewood Suites by Hilton",
-    hyatt: "Hyatt Hotels",
+    hyatt_hotels: "Hyatt Hotels",
     hyatt_house: "Hyatt House",
     hyatt_place: "Hyatt Place",
     hyatt_regency: "Hyatt Regency",

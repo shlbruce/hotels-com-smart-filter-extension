@@ -254,6 +254,59 @@ const AGODA_COM_MAP = {
     },
 
     //
+    // Property Brand
+    //
+  
+    best_western: {
+        name: "this-filter-property-brand",
+        text: "Best Western International"
+    },
+    best_western_plus: {
+        name: "this-filter-property-brand",
+        text: "Best Western International"
+    },
+    choice_hotels: {
+        name: "this-filter-property-brand",
+        text: "Choice Hotels"
+    },
+    extended_stay_america: {
+        name: "this-filter-property-brand",
+        text: "Extended Stay America"
+    },
+    hilton_worldwide: {
+        name: "this-filter-property-brand",
+        text: "Hilton Worldwide"
+    },
+    hyatt_hotels: {
+        name: "this-filter-property-brand",
+        text: "Hyatt Hotels"
+    },
+    intercontinental_hotels_group: {
+        name: "this-filter-property-brand",
+        text: "InterContinental Hotels Group"
+    },
+    marriott: {
+        name: "this-filter-property-brand",
+        text: "Marriott Hotels and Resorts"
+    },
+    oyo: {
+        name: "this-filter-property-brand",
+        text: "OYO Rooms"
+    },
+    sonesta: {
+        name: "this-filter-property-brand",
+        text: "Sonesta"
+    },
+    travelstaytion: {
+        name: "this-filter-property-brand",
+        text: "TravelStaytion"
+    },
+    wyndham_hotels_resorts: {
+        name: "this-filter-property-brand",
+        text: "Wyndham Hotels & Resorts"
+    },
+
+    //
     // Property Type
     //
 
@@ -371,60 +424,6 @@ const AGODA_COM_MAP = {
         name: "this-filter-room-amenities",
         text: "Internet access"
     },
-
-    // Property Brand
-    aloft: "aloft",
-    autograph_collection: "Autograph Collection",
-    best_western: "Best Western",
-    best_western_plus: "Best Western Plus",
-    boyd: "Boyd Gaming",
-    caesars: "Caesars Entertainment",
-    club_quarters: "Club Quarters",
-    conrad: "Conrad",
-    country_inn: "Country Inn & Suites - by Choice Hotels",
-    courtyard_marriott: "Courtyard",
-    crowne_plaza: "Crowne Plaza Hotels & Resorts",
-    curio_collection_hilton: "Curio Collection",
-    doubletree: "Doubletree",
-    embassy_suites: "Embassy Suites",
-    eurostars: "Eurostars Hotels",
-    extended_stay_america: "Extended Stay America Suites",
-    fairfield_inn: "Fairfield Inn",
-    four_seasons: "Four Seasons",
-    golden_nugget: "Golden Nugget",
-    hampton: "Hampton Inn",
-    hilton: "Hilton Hotels",
-    hilton_garden_inn: "Hilton Garden Inn",
-    hilton_grand: "Hilton Grand Vacations",
-    holiday_inn: "Holiday Inn",
-    holiday_inn_express: "Holiday Inn Express Hotel",
-    homewood_suites: "Homewood Suites by Hilton",
-    hyatt: "Hyatt Hotels",
-    hyatt_house: "Hyatt House",
-    hyatt_place: "Hyatt Place",
-    hyatt_regency: "Hyatt Regency",
-    intercontinental: "InterContinental Hotels & Resorts",
-    la_quinta: "La Quinta Inn & Suites",
-    loews: "Loews",
-    lxr_hotels_resorts: "LXR Hotels & Resorts",
-    marriott: "Marriott Hotels & Resorts",
-    mgm: "MGM",
-    motel6: "Motel 6",
-    oyo: "OYO AMER",
-    renaissance: "Renaissance",
-    sofitel: "Sofitel",
-    sonesta: "Sonesta Hotels",
-    springhill_suites: "SpringHill Suites",
-    station: "Station Casinos",
-    super8: "Super 8",
-    trump: "Trump Hotels",
-    travelodge: "Travelodge by Wyndham",
-    venetian_las_vegas: "Venetian Las Vegas",
-    westgate: "Westgate Resorts",
-    westin: "Westin",
-    world_bw: "World Hotels BW",
-    wynn: "Wynn Resorts",
-    wyndham_extra_holidays: "Wyndham Extra Holidays",
 
     //
     // Star Ratings
@@ -634,35 +633,6 @@ function applyFiltersInAgodaCom(smartFilters) {
                 });
             });
         }
-        else if (key === "roomAmenities") {
-            const filterSection = document.getElementById("this-filter-room-amenities");
-            const allLi = filterSection.querySelectorAll('li');
-
-            value.forEach(type => {
-                const mappedType = AGODA_COM_MAP[type];
-                if (!mappedType) return;
-                allLi.forEach(liElement => {
-                    const text = liElement.innerText.trim();
-                    if (text.startsWith(mappedType.text)) {
-                        const checkbox = liElement.querySelector('input[type="checkbox"]');
-                        if (checkbox && !checkbox.checked) {
-                            checkbox.click();
-                        }
-                    }
-                });
-            });
-        }
-
-        else if (key === "discounts") {
-            value.forEach(discount => {
-                const mappedDiscount = AGODA_COM_MAP[discount];
-                if (!mappedDiscount) return;
-                const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${mappedDiscount}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
-            });
-        }
         // handle minPrice and maxPrice together
         else if (key === "maxPrice") {
             const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
@@ -684,27 +654,20 @@ function applyFiltersInAgodaCom(smartFilters) {
         }
 
         else if (key === "propertyBrands") {
-            value.forEach(brand => {
-                const mappedBrand = AGODA_COM_MAP[brand];
-                if (!mappedBrand) return;
-                if (mappedBrand === "Holiday Inn") {
-                    const checkboxes = document.querySelectorAll(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
-                    for (const checkbox of checkboxes) {
-                        const label = checkbox.getAttribute("aria-label") || "";
-                        if (!label.startsWith("Holiday Inn Express")) {
-                            if (!checkbox.checked) {
-                                checkbox.click();
-                            }
-                            break;
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
                         }
                     }
-                }
-                else {
-                    const checkbox = document.querySelector(`input[name="hotel_brand"][aria-label*="${mappedBrand}"]`);
-                    if (checkbox && !checkbox.checked) {
-                        checkbox.click();
-                    }
-                }
+                });
             });
         }
         else if (key === "propertyTypes") {
@@ -714,6 +677,24 @@ function applyFiltersInAgodaCom(smartFilters) {
 
                 const filterSection = document.getElementById(mappedType.name);
                 filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
+            });
+        }
+        else if (key === "roomAmenities") {
+            const filterSection = document.getElementById("this-filter-room-amenities");
+            const allLi = filterSection.querySelectorAll('li');
+
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+                allLi.forEach(liElement => {
                     const text = liElement.innerText.trim();
                     if (text.startsWith(mappedType.text)) {
                         const checkbox = liElement.querySelector('input[type="checkbox"]');
