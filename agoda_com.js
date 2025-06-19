@@ -61,11 +61,8 @@ function handleSmartFilterClickOnAgodaCom(event) {
     chrome.storage.sync.get(["smartFilters"], function (result) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
-            const clearButton = document.querySelector('span[label="CLEAR"]');
-            if (clearButton) {
-                clearButton.click();
-            }
 
+            uncheckAllFilters();
             markFiltersAgoda();
             clickShowAllAgoda();
 

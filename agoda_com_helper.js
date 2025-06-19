@@ -27,6 +27,14 @@ function markFiltersAgoda() {
     });
 }
 
+function uncheckAllFilters() {  
+    const filterSidebar = document.getElementById("searchPageLeftColumn");
+    const clearButtons = filterSidebar.querySelectorAll('span[label="CLEAR"]');
+    clearButtons.forEach(clearButton => {
+        clearButton.click();
+    });
+}
+
 function clickShowAllAgoda() {
     let filterSection = document.getElementById("this-filter-property-amenities");
     if (!filterSection) return;
