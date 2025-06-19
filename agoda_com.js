@@ -105,6 +105,10 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-amenities",
         text: "Air conditioning"
     },
+    early_check_in: {
+        name: "this-filter-room-offer",
+        text: "Early check-in"
+    },
     electric_charger: {
         name: "this-filter-property-amenities",
         text: "Air conditioning"
@@ -124,6 +128,10 @@ const AGODA_COM_MAP = {
     internet: {
         name: "this-filter-property-amenities",
         text: "Internet"
+    },
+    late_check_out: {
+        name: "this-filter-room-offer",
+        text: "Late check-out"
     },
     non_smoking_rooms: {
         name: "this-filter-property-amenities",
@@ -441,10 +449,22 @@ const AGODA_COM_MAP = {
     // travel_experience_wedding: { name: "travelerType", aria_label: "Wedding" },
 
     // Meals
-    meal_plan_breakfast: "Breakfast included",
-    meal_plan_dinner: "Dinner included",
-    meal_plan_lunch: "Lunch included",
-    meal_plan_all_inclusive: "All inclusive"
+    meal_plan_breakfast: {
+        name: "this-filter-room-offer",
+        text: "Breakfast included"
+    },
+    meal_plan_dinner: {
+        name: "this-filter-room-offer",
+        text: "Lunch included"
+    },
+    meal_plan_lunch: {
+        name: "this-filter-room-offer",
+        text: "Dinner included"
+    },
+    meal_plan_gluten_free :  {
+        name: "this-filter-room-offer",
+        text: "Gluten-free"
+    },
 };
 
 
@@ -462,6 +482,82 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
         }
         else if (key === "bedPreference") {
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
+            });
+        }
+        else if (key === "cancellation") {
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
+            });
+        }
+        else if (key === "guestRatings") {
+            if (value.length === 0) {
+                continue;
+            }
+            const minRating = value.reduce((min, current) => {
+                const currentNum = parseInt(current.split('_').pop(), 10);
+                const minNum = parseInt(min.split('_').pop(), 10);
+                return currentNum < minNum ? current : min;
+            });
+
+            const mappedType = AGODA_COM_MAP[minRating];
+            if (!mappedType) return;
+
+            const filterSection = document.getElementById(mappedType.name);
+            filterSection.querySelectorAll('li').forEach(liElement => {
+                const text = liElement.innerText.trim();
+                const cleaned = text.replace(/\s+/g, ' ');
+                if (cleaned.startsWith(mappedType.text)) {
+                    const checkbox = liElement.querySelector('input[type="radio"]');
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                }
+            });
+        }
+        else if (key === "meals") {
+            value.forEach(type => {
+                const mappedType = AGODA_COM_MAP[type];
+                if (!mappedType) return;
+
+                const filterSection = document.getElementById(mappedType.name);
+                filterSection.querySelectorAll('li').forEach(liElement => {
+                    const text = liElement.innerText.trim();
+                    if (text.startsWith(mappedType.text)) {
+                        const checkbox = liElement.querySelector('input[type="checkbox"]');
+                        if (checkbox && !checkbox.checked) {
+                            checkbox.click();
+                        }
+                    }
+                });
+            });
+        }
+        else if (key === "paymentFlexibility") {
             value.forEach(type => {
                 const mappedType = AGODA_COM_MAP[type];
                 if (!mappedType) return;
@@ -530,23 +626,7 @@ function applyFiltersInAgodaCom(smartFilters) {
                 });
             });
         }
-        else if (key === "cancellation") {
-            value.forEach(type => {
-                const mappedType = AGODA_COM_MAP[type];
-                if (!mappedType) return;
-
-                const filterSection = document.getElementById(mappedType.name);
-                filterSection.querySelectorAll('li').forEach(liElement => {
-                    const text = liElement.innerText.trim();
-                    if (text.startsWith(mappedType.text)) {
-                        const checkbox = liElement.querySelector('input[type="checkbox"]');
-                        if (checkbox && !checkbox.checked) {
-                            checkbox.click();
-                        }
-                    }
-                });
-            });
-        }
+        
         else if (key === "discounts") {
             value.forEach(discount => {
                 const mappedDiscount = AGODA_COM_MAP[discount];
@@ -554,31 +634,6 @@ function applyFiltersInAgodaCom(smartFilters) {
                 const checkbox = document.querySelector(`input[name="rewards"][aria-label*="${mappedDiscount}"]`);
                 if (checkbox && !checkbox.checked) {
                     checkbox.click();
-                }
-            });
-        }
-        else if (key === "guestRatings") {
-            if (value.length === 0) {
-                continue;
-            }
-            const minRating = value.reduce((min, current) => {
-                const currentNum = parseInt(current.split('_').pop(), 10);
-                const minNum = parseInt(min.split('_').pop(), 10);
-                return currentNum < minNum ? current : min;
-            });
-
-            const mappedType = AGODA_COM_MAP[minRating];
-            if (!mappedType) return;
-
-            const filterSection = document.getElementById(mappedType.name);
-            filterSection.querySelectorAll('li').forEach(liElement => {
-                const text = liElement.innerText.trim();
-                const cleaned = text.replace(/\s+/g, ' ');
-                if (cleaned.startsWith(mappedType.text)) {
-                    const checkbox = liElement.querySelector('input[type="radio"]');
-                    if (checkbox && !checkbox.checked) {
-                        checkbox.click();
-                    }
                 }
             });
         }
@@ -601,33 +656,7 @@ function applyFiltersInAgodaCom(smartFilters) {
                 }, 2000);
             }
         }
-        else if (key === "meals") {
-            value.forEach(meal => {
-                const mappedMeal = AGODA_COM_MAP[meal];
-                if (!mappedMeal) return;
-                const checkbox = document.querySelector(`input[name="mealPlan"][aria-label*="${mappedMeal}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
-            });
-        }
-        else if (key === "paymentFlexibility") {
-            value.forEach(type => {
-                const mappedType = AGODA_COM_MAP[type];
-                if (!mappedType) return;
-
-                const filterSection = document.getElementById(mappedType.name);
-                filterSection.querySelectorAll('li').forEach(liElement => {
-                    const text = liElement.innerText.trim();
-                    if (text.startsWith(mappedType.text)) {
-                        const checkbox = liElement.querySelector('input[type="checkbox"]');
-                        if (checkbox && !checkbox.checked) {
-                            checkbox.click();
-                        }
-                    }
-                });
-            });
-        }
+        
         else if (key === "propertyBrands") {
             value.forEach(brand => {
                 const mappedBrand = AGODA_COM_MAP[brand];
