@@ -255,10 +255,6 @@ const BOOKING_COM_MAP = {
         name: "roomfacility",
         aria_label: "Fireplace"
     },
-    television: {
-        name: "roomfacility",
-        aria_label: "Flat-screen TV"
-    },
     game_console: {
         name: "roomfacility",
         aria_label: "Game console"
@@ -326,6 +322,10 @@ const BOOKING_COM_MAP = {
     sofa_bed: {
         name: "roomfacility",
         aria_label: "Sofa bed"
+    },
+    television: {
+        name: "roomfacility",
+        aria_label: "TV"
     },
     toilet: {
         name: "roomfacility",
@@ -612,17 +612,29 @@ function applyFiltersInBookingCom(smartFilters) {
             });
         }
         else if (key === "roomAmenities") {
-            value.forEach(amenity => {
-                const mappedAmenity = BOOKING_COM_MAP[amenity];
-                if (!mappedAmenity) return;
-                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
-                console.log("Looking for room amenity:", amenity, mappedAmenity, checkbox);
-                if (checkbox && !checkbox.checked) {
-                    console.log("Clicking room amenity:", amenity, mappedAmenity);
-                    checkbox.click();
+            const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+        
+            (async () => {
+                let clickCount = 0;
+                for (const amenity of value) {
+                    const mappedAmenity = BOOKING_COM_MAP[amenity];
+                    if (!mappedAmenity) continue;
+        
+                    const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
+                    console.log("Looking for room amenity:", amenity, mappedAmenity, checkbox);
+        
+                    if (checkbox && !checkbox.checked) {
+                        console.log("Clicking room amenity:", amenity, mappedAmenity);
+                        checkbox.click();
+                        clickCount++;
+                    }
+        
+                    if (clickCount > 0 && clickCount % 2 === 0) {
+                        await delay(2000); // Wait 1 second after every 5 clicks
+                    }
                 }
-            });
-        }
+            })();
+        }        
         else if (key === "starRatings") {
             value.forEach(rating => {
                 const mappedRating = BOOKING_COM_MAP[rating];
