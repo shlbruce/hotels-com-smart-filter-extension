@@ -59,6 +59,8 @@ function addSmartFilterButtonOnBookingCom() {
     button.addEventListener("click", handleSmartFilterClickOnBookingCom);
 
     filterHeading.insertAdjacentElement("beforebegin", container);
+
+    clickShowAllBookingCom();
 }
 
 function handleSmartFilterClickOnBookingCom(event) {
@@ -88,8 +90,6 @@ function handleSmartFilterClickOnBookingCom(event) {
                 uncheckAllFiltersBookingCom();
                 console.warn("Clear filters button not found.");
             }
-
-            clickShowAllBookingCom();
 
             setTimeout(() => {
                 applyFiltersInBookingCom(smartFilters);
