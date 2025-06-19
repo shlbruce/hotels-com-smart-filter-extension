@@ -91,6 +91,10 @@ function handleSmartFilterClickOnBookingCom(event) {
                 console.warn("Clear filters button not found.");
             }
 
+            // sometime, clickShowAllBookingCom in add button function doesn't work
+            // but we still need that one, because when I run this method here, the page will jump to filters section
+            // I try to avoid this as less as possible.
+            clickShowAllBookingCom();
             setTimeout(() => {
                 applyFiltersInBookingCom(smartFilters);
 
@@ -251,7 +255,7 @@ const BOOKING_COM_MAP = {
         name: "roomfacility",
         aria_label: "Fireplace"
     },
-    flat_screen_tv: {
+    television: {
         name: "roomfacility",
         aria_label: "Flat-screen TV"
     },
@@ -512,38 +516,6 @@ function applyFiltersInBookingCom(smartFilters) {
                 });
             });
         }
-        else if (key === "propertyAccessibility") {
-            value.forEach(accessibility => {
-                const mappedAccessibility = BOOKING_COM_MAP[accessibility];
-                if (!mappedAccessibility) return;
-                mappedAccessibility.aria_label.forEach(label => {
-                    let checkbox = document.querySelector(`input[name*='${mappedAccessibility.name}'][aria-label*='${label}']`);
-                    if (checkbox && !checkbox.checked) {
-                        checkbox.click();
-                    }
-                });
-            });
-        }
-        else if (key === "propertyAmenities") {
-            value.forEach(amenity => {
-                const mappedAmenity = BOOKING_COM_MAP[amenity];
-                if (!mappedAmenity) return;
-                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
-            });
-        }
-        else if (key === "roomAmenities") {
-            value.forEach(amenity => {
-                const mappedAmenity = BOOKING_COM_MAP[amenity];
-                if (!mappedAmenity) return;
-                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
-                }
-            });
-        }
         else if (key === "bedPreference") {
             value.forEach(preference => {
                 const mappedPreference = BOOKING_COM_MAP[preference];
@@ -594,6 +566,28 @@ function applyFiltersInBookingCom(smartFilters) {
                 }
             });
         }
+        else if (key === "propertyAccessibility") {
+            value.forEach(accessibility => {
+                const mappedAccessibility = BOOKING_COM_MAP[accessibility];
+                if (!mappedAccessibility) return;
+                mappedAccessibility.aria_label.forEach(label => {
+                    let checkbox = document.querySelector(`input[name*='${mappedAccessibility.name}'][aria-label*='${label}']`);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                });
+            });
+        }
+        else if (key === "propertyAmenities") {
+            value.forEach(amenity => {
+                const mappedAmenity = BOOKING_COM_MAP[amenity];
+                if (!mappedAmenity) return;
+                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
         else if (key === "propertyBrands") {
             value.forEach(brand => {
                 const mappedBrand = BOOKING_COM_MAP[brand];
@@ -613,6 +607,18 @@ function applyFiltersInBookingCom(smartFilters) {
                 if (!mappedType) return;
                 const checkbox = document.querySelector(`input[name*="${mappedType.name}"][aria-label*="${mappedType.aria_label}"]`);
                 if (checkbox && !checkbox.checked) {
+                    checkbox.click();
+                }
+            });
+        }
+        else if (key === "roomAmenities") {
+            value.forEach(amenity => {
+                const mappedAmenity = BOOKING_COM_MAP[amenity];
+                if (!mappedAmenity) return;
+                const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
+                console.log("Looking for room amenity:", amenity, mappedAmenity, checkbox);
+                if (checkbox && !checkbox.checked) {
+                    console.log("Clicking room amenity:", amenity, mappedAmenity);
                     checkbox.click();
                 }
             });

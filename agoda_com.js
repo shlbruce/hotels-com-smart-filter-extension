@@ -62,7 +62,7 @@ function handleSmartFilterClickOnAgodaCom(event) {
         const smartFilters = result.smartFilters;
         if (smartFilters) {
 
-            uncheckAllFilters();
+            uncheckAllFiltersAgoda();
             markFiltersAgoda();
             clickShowAllAgoda();
 

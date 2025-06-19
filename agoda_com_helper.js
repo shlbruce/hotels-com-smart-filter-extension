@@ -27,7 +27,7 @@ function markFiltersAgoda() {
     });
 }
 
-function uncheckAllFilters() {  
+function uncheckAllFiltersAgoda() {  
     const filterSidebar = document.getElementById("searchPageLeftColumn");
     const clearButtons = filterSidebar.querySelectorAll('span[label="CLEAR"]');
     clearButtons.forEach(clearButton => {
