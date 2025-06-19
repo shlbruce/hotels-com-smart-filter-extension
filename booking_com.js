@@ -62,9 +62,17 @@ function addSmartFilterButtonOnBookingCom() {
 }
 
 function handleSmartFilterClickOnBookingCom(event) {
+    event.stopPropagation();
+    event.preventDefault();
 
-    event.stopPropagation(); // ⛔ Prevents event bubbling
-    event.preventDefault();  // ⛔ Prevents default action
+    const button = document.getElementById("smart-filter-button");
+    if (!button) return;
+
+    const originalText = button.textContent;
+    button.innerHTML = "🌀 Applying...";
+    button.disabled = true;
+    button.style.opacity = "0.6";
+    button.style.cursor = "not-allowed";
 
     chrome.storage.sync.get(["smartFilters"], function (result) {
         const smartFilters = result.smartFilters;
@@ -76,8 +84,7 @@ function handleSmartFilterClickOnBookingCom(event) {
 
             if (clearFiltersBtn) {
                 clearFiltersBtn.click();
-            }
-            else {
+            } else {
                 uncheckAllFiltersBookingCom();
                 console.warn("Clear filters button not found.");
             }
@@ -86,13 +93,25 @@ function handleSmartFilterClickOnBookingCom(event) {
 
             setTimeout(() => {
                 applyFiltersInBookingCom(smartFilters);
-            }, 2000);
 
+                // Wait an extra 2 seconds after applying filters
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.style.opacity = "1";
+                    button.style.cursor = "pointer";
+                }, 1500);
+            }, 2000);
         } else {
             console.warn("No smart filters found in storage.");
+            button.textContent = originalText;
+            button.disabled = false;
+            button.style.opacity = "1";
+            button.style.cursor = "pointer";
         }
     });
 }
+
 const BOOKING_COM_MAP = {
 
     // Room Accessibility
