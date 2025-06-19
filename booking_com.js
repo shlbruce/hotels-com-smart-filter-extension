@@ -114,6 +114,24 @@ function handleSmartFilterClickOnBookingCom(event) {
 
 const BOOKING_COM_MAP = {
 
+    //
+    //Bed Preference
+    //
+
+    single_twin_beds: { name: "tdb", aria_label: "Twin beds" },
+    double_bed: { name: "tdb", aria_label: "Double bed" },
+    king_bed: { name: "tdb", aria_label: "King bed" },
+    queen_bed: { name: "tdb", aria_label: "Queen bed" },
+
+    // Cancellation => Reservation policy
+    free_cancellation: { name: "fc", aria_label: "Free cancellation" },
+
+    // Guest Rating => Guest review score
+    guest_rating_9: { name: "review_score", aria_label: "Wonderful: 9+" },
+    guest_rating_8: { name: "review_score", aria_label: "Very Good: 8+" },
+    guest_rating_7: { name: "review_score", aria_label: "Good: 7+" },
+    guest_rating_6: { name: "review_score", aria_label: "Pleasant: 6+" },
+
     // Room Accessibility
 
     accessible_bathroom: {
@@ -330,24 +348,6 @@ const BOOKING_COM_MAP = {
         aria_label: "Free Wifi"
     },
 
-    //
-    //Bed Preference
-    //
-
-    single_twin_beds: { name: "tdb", aria_label: "Twin beds" },
-    double_bed: { name: "tdb", aria_label: "Double bed" },
-    king_bed: { name: "tdb", aria_label: "King bed" },
-    queen_bed: { name: "tdb", aria_label: "Queen bed" },
-
-    // Cancellation => Reservation policy
-    free_cancellation: { name: "fc", aria_label: "Free cancellation" },
-
-    // Guest Rating => Guest review score
-    guest_rating_9: { name: "review_score", aria_label: "Wonderful: 9+" },
-    guest_rating_8: { name: "review_score", aria_label: "Very Good: 8+" },
-    guest_rating_7: { name: "review_score", aria_label: "Good: 7+" },
-    guest_rating_6: { name: "review_score", aria_label: "Pleasant: 6+" },
-
     // Payment Flexibility => Reservation policy 
     no_prepayment: { name: "fc", aria_label: "No prepayment" },
     online_payment: { name: "pmt", aria_label: "Accepts online payments" },
@@ -359,6 +359,8 @@ const BOOKING_COM_MAP = {
 
     apartment: { name: "ht_", aria_label: "Apartments" },
     bnb: { name: "ht_", aria_label: "Bed and Breakfasts" },
+    boats: { name: "ht_", aria_label: "Boats" },
+    chalets: { name: "ht_", aria_label: "Chalets" },
     entire_home: { name: "privacy_type", aria_label: "Entire homes & apartments" },
     guesthouse: { name: "ht_", aria_label: "Guesthouses" },
     hostel: { name: "ht_", aria_label: "Hostels" },
@@ -482,6 +484,7 @@ const BOOKING_COM_MAP = {
     starRating_4: { name: "class=", aria_label: "4 stars" },
     starRating_3: { name: "class=", aria_label: "3 stars" },
     starRating_2: { name: "class=", aria_label: "2 stars" },
+    starRating_1: { name: "class=", aria_label: "1 star" },
 
     // Traveler Experience  => Travel group
     travel_experience_adults_only: { name: "stay_type", aria_label: "Adults only" },

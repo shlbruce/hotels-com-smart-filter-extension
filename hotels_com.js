@@ -106,19 +106,26 @@ const HOTELS_COM_MAP = {
 
 
     // Property Type
-    hotel: "Hotel",
-    resort: "Resort",
-    bed_and_breakfast: "Bed & breakfast",
-    condo: "Condo",
-    motel: "Motel",
-    vacation_home: "Private vacation home",
-    aparthotel: "Aparthotel",
     apartment: "Apartment",
+    aparthotel: "Aparthotel",
+    bed_and_breakfast: "Bed & breakfast",
+    camping: "Camping",
+    condo: "Condo",
     condo_resort: "Condo resort",
-    villa: "Villa",
     cottage: "Cottage",
+    farm: "Farm",
     guesthouse: "Guesthouse",
     hostel: "Hostel/Backpacker accommodation",
+    hotel: "Hotel",
+    houseboat: "Houseboat",
+    inn: "Inn",
+    lodge: "Lodge",
+    motel: "Motel",
+    residence: "Residence",
+    resort: "Resort",
+    vacation_home: "Private vacation home",
+    villa: "Villa",
+
 
     // Property Brand
     aloft: "aloft",
@@ -374,9 +381,24 @@ function applyFiltersInHotelsCom(smartFilters) {
             value.forEach(type => {
                 const mappedType = HOTELS_COM_MAP[type];
                 if (!mappedType) return;
-                const checkbox = document.querySelector(`input[name="lodging"][aria-label*="${mappedType}"]`);
-                if (checkbox && !checkbox.checked) {
-                    checkbox.click();
+
+                if (mappedType === "Condo") {
+                    const checkboxes = document.querySelectorAll(`input[name="lodging"][aria-label*="${mappedType}"]`);
+                    for (const checkbox of checkboxes) {
+                        const label = checkbox.getAttribute("aria-label") || "";
+                        if (!label.startsWith("Condo resort")) {
+                            if (!checkbox.checked) {
+                                checkbox.click();
+                            }
+                            break;
+                        }
+                    }
+                }
+                else {
+                    const checkbox = document.querySelector(`input[name="lodging"][aria-label*="${mappedType}"]`);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
                 }
             });
         }

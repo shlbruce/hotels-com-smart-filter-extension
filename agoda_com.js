@@ -338,9 +338,17 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-type",
         text: "Guesthouse/bed and breakfast"
     },
+    boats: {
+        name: "this-filter-property-type",
+        text: "Boat/cruise"
+    },
     capsule_hotel: {
         name: "this-filter-property-type",
         text: "Capsule hotel"
+    },
+    country_house: {
+        name: "this-filter-property-type",
+        text: "Country house"
     },
     entire_home: {
         name: "this-filter-property-type",
@@ -349,6 +357,10 @@ const AGODA_COM_MAP = {
     guesthouse: {
         name: "this-filter-property-type",
         text: "Guesthouse/bed and breakfast"
+    },
+    holiday_caravan_park: {
+        name: "this-filter-property-type",
+        text: "Holiday park/caravan park"
     },
     homestay: {
         name: "this-filter-property-type",

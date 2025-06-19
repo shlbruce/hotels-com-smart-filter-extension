@@ -28,11 +28,20 @@ function markFiltersAgoda() {
 }
 
 function clickShowAllAgoda() {
-    let filterPropertyAmenities = document.getElementById("this-filter-property-amenities");
-    if (!filterPropertyAmenities) return;
+    let filterSection = document.getElementById("this-filter-property-amenities");
+    if (!filterSection) return;
 
-    filterPropertyAmenities = filterPropertyAmenities.parentElement;
-    const button = filterPropertyAmenities.querySelector('button[aria-label*="more for Property facilities"]');
+    filterSection = filterSection.parentElement;
+    let button = filterSection.querySelector('button[aria-label*="more for Property facilities"]');
+    if (button) {
+        button.click();
+    }
+
+    filterSection = document.getElementById("this-filter-property-type");
+    if (!filterSection) return;
+
+    filterSection = filterSection.parentElement;
+    button = filterSection.querySelector('button[aria-label*="more for Property type"]');
     if (button) {
         button.click();
     }
