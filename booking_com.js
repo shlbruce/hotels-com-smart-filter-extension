@@ -370,7 +370,14 @@ const BOOKING_COM_MAP = {
     villa: { name: "ht_", aria_label: "Villas" },
 
     // Property Brand => Brands
-
+    ac_hotel: {
+        name: "chaincode",
+        aria_label: ["AC Hotels by Marriott"]
+    },
+    aloft: {
+        name: "chaincode",
+        aria_label: ["Aloft"]
+    },
     autograph_collection: {
         name: "chaincode",
         aria_label: ["Autograph Collection"]
@@ -403,6 +410,10 @@ const BOOKING_COM_MAP = {
         name: "chaincode",
         aria_label: ["Eurostars Hotels"]
     },
+    extended_stay_america: {
+        name: "chaincode",
+        aria_label: ["Extended Stay America Suites", "Extended Stay America Premier Suites"]
+    },
     hampton: {
         name: "chaincode",
         aria_label: ["Hampton Inn"]
@@ -421,7 +432,7 @@ const BOOKING_COM_MAP = {
     },
     holiday_inn_express: {
         name: "chaincode",
-        aria_label: ["Holiday Inn Express Hotel"]
+        aria_label: ["Holiday Inn Express"]
     },
     homewood_suites: {
         name: "chaincode",
@@ -445,7 +456,7 @@ const BOOKING_COM_MAP = {
     },
     la_quinta: {
         name: "chaincode",
-        aria_label: ["La Quinta Inn & Suites"]
+        aria_label: ["La Quinta Inn & Suites", "La Quinta by Wyndham"]
     },
     lxr_hotels_resorts: {
         name: "chaincode",
@@ -459,6 +470,14 @@ const BOOKING_COM_MAP = {
         name: "chaincode",
         aria_label: ["Renaissance Hotels & Resorts"]
     },
+    residence_inn: {
+        name: "chaincode",
+        aria_label: ["Residence Inn"]
+    },
+    springhill_suites: {
+        name: "chaincode",
+        aria_label: ["SpringHill Suites"]
+    },
     sonesta: {
         name: "chaincode",
         aria_label: ["Sonesta Hotels"]
@@ -466,6 +485,10 @@ const BOOKING_COM_MAP = {
     sofitel: {
         name: "chaincode",
         aria_label: ["Sofitel"]
+    },
+    staybridge_suites: {
+        name: "chaincode",
+        aria_label: ["Staybridge Suites"]
     },
     travelodge: {
         name: "chaincode",
@@ -588,9 +611,11 @@ function applyFiltersInBookingCom(smartFilters) {
             value.forEach(brand => {
                 const mappedBrand = BOOKING_COM_MAP[brand];
                 if (!mappedBrand) return;
+                console.log("Processing brand:", brand, mappedBrand);
                 mappedBrand.aria_label.forEach(label => {
                     const checkbox = document.querySelector(`input[name*="${mappedBrand.name}"][aria-label*="${label}"]`);
                     if (checkbox && !checkbox.checked) {
+                        console.log("Clicking brand:", brand, mappedBrand, label);
                         checkbox.click();
                     }
                 }
@@ -613,9 +638,9 @@ function applyFiltersInBookingCom(smartFilters) {
                 const mappedAmenity = BOOKING_COM_MAP[amenity];
                 if (!mappedAmenity) return;
                 const checkbox = document.querySelector(`input[name*="${mappedAmenity.name}"][aria-label*="${mappedAmenity.aria_label}"]`);
-                console.log("Looking for room amenity:", amenity, mappedAmenity, checkbox);
+                //console.log("Looking for room amenity:", amenity, mappedAmenity, checkbox);
                 if (checkbox && !checkbox.checked) {
-                    console.log("Clicking room amenity:", amenity, mappedAmenity);
+                    //console.log("Clicking room amenity:", amenity, mappedAmenity);
                     checkbox.click();
                 }
             });
