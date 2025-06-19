@@ -739,15 +739,6 @@ function applyFiltersInAgodaCom(smartFilters) {
                 });
             });
         }
-        else if (key === "stayOption") {
-            const mappedValue = AGODA_COM_MAP[value];
-            if (mappedValue) {
-                const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${mappedValue}"]`);
-                if (radio && !radio.checked) {
-                    radio.click(); // Simulate real user interaction
-                }
-            }
-        }
         else if (key === "travelerExperiences") {
             value.forEach(type => {
                 let mappedTypes = AGODA_COM_MAP[type];

@@ -371,15 +371,6 @@ function applyFiltersInHotelsCom(smartFilters) {
                 }
             });
         }
-        else if (key === "stayOption") {
-            const mappedValue = HOTELS_COM_MAP[value];
-            if (mappedValue) {
-                const radio = document.querySelector(`input[name="stay_options_group"][aria-label*="${mappedValue}"]`);
-                if (radio && !radio.checked) {
-                    radio.click(); // Simulate real user interaction
-                }
-            }
-        }
         else if (key === "travelerExperiences") {
             value.forEach(experience => {
                 const mappedExperience = HOTELS_COM_MAP[experience];
