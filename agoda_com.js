@@ -111,6 +111,23 @@ const AGODA_COM_MAP = {
     },
 
     //
+    // Location Rating
+    //
+
+    location_rating_9: {
+        name: "this-filter-location-score",
+        text: "9+ Exceptional"  
+    },
+    location_rating_8: {
+        name: "this-filter-location-score",
+        text: "8+ Excellent"
+    },
+    location_rating_7: {
+        name: "this-filter-location-score",
+        text: "7+ Very good"
+    },
+
+    //
     // Meals
     //
 
@@ -412,7 +429,7 @@ const AGODA_COM_MAP = {
     //
     // Star Ratings
     //
-    
+
     starRating_5: {
         name: "this-filter-property-rating",
         text: "5-Star rating"
@@ -519,6 +536,22 @@ function applyFiltersInAgodaCom(smartFilters) {
             });
 
             const mappedType = AGODA_COM_MAP[minRating];
+            if (!mappedType) return;
+
+            const filterSection = document.getElementById(mappedType.name);
+            filterSection.querySelectorAll('li').forEach(liElement => {
+                const text = liElement.innerText.trim();
+                const cleaned = text.replace(/\s+/g, ' ');
+                if (cleaned.startsWith(mappedType.text)) {
+                    const checkbox = liElement.querySelector('input[type="radio"]');
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.click();
+                    }
+                }
+            });
+        }
+        else if (key === "locationRating") {
+            const mappedType = AGODA_COM_MAP[value];
             if (!mappedType) return;
 
             const filterSection = document.getElementById(mappedType.name);
