@@ -33,7 +33,7 @@ function markFiltersBookingCom(filterSidebar) {
     FILTER_MARKS_BOOKING_COM.forEach(({ keyword, id }) => {
         const div = filterSidebar.querySelector(`div[id*="${keyword}"]`);
         if (div) {
-            div.id = id;
+            div.parentElement.id = id;
         } else {
             console.log(`${id} not found`);
         }
@@ -56,31 +56,56 @@ function uncheckAllFiltersBookingCom() {
 }
 
 
-function clickShowAllBookingCom() {
-    const filterSiderBar = document.getElementById("this-filter-sidebar");
-    if (!filterSiderBar) return;
-
-    const amenitiesShowAllButton = filterSiderBar.querySelector('button[aria-controls*="filter_group_hotelfacility"]');
-
-    if (amenitiesShowAllButton) {
-        amenitiesShowAllButton.click();
-    } else {
-        console.log("amenitiesShowAllButton is not found");
+function showAllPropertyBrandsBookingCom() {
+    const brandsFilter = document.getElementById("this-filter-brands");
+    if (!brandsFilter) {
+        return;
     }
-
-    const roomAmenitiesShowAllButton = filterSiderBar.querySelector('button[aria-controls*="filter_group_roomfacility"]');
-
-    if (roomAmenitiesShowAllButton) {
-        roomAmenitiesShowAllButton.click();
-    } else {
-        console.log("roomAmenitiesShowAllButton is not found");
-    }
-
-    const brandsShowAllButton = filterSiderBar.querySelector('button[aria-controls*="filter_group_chaincode"]');
+    const brandsShowAllButton = brandsFilter.querySelector('button[aria-controls*="filter_group_chaincode"]');
 
     if (brandsShowAllButton) {
-        brandsShowAllButton.click();
+        if (!brandsShowAllButton.innerText.trim().includes("Show less")) {
+            brandsShowAllButton.click();
+        }
     } else {
         console.log("brandsShowAllButton is not found");
+    }
+}
+
+function showAllPropertyAmenitiesBookingCom() {
+    
+    const amenitiesFilter = document.getElementById("this-filter-amenities");
+    if (!amenitiesFilter) {
+        return;
+    }
+
+    const propertyAmenitiesShowAllButton = amenitiesFilter.querySelector('button[aria-controls*="filter_group_hotelfacility"]');
+
+    if (propertyAmenitiesShowAllButton) {
+        if (!propertyAmenitiesShowAllButton.innerText.trim().includes("Show less")) {
+            propertyAmenitiesShowAllButton.click();
+        }
+    } else {
+        console.log("propertyAmenitiesShowAllButton is not found");
+    }
+}
+
+
+function showAllRoomAmenitiesBookingCom() {
+    
+    const roomAmenitiesFilter = document.getElementById("this-filter-room-amenities");
+
+    if (!roomAmenitiesFilter) {
+        return;
+    }
+
+    const roomAmenitiesShowAllButton = roomAmenitiesFilter.querySelector('button[aria-controls*="filter_group_roomfacility"]');
+
+    if (roomAmenitiesShowAllButton) {
+        if (!roomAmenitiesShowAllButton.innerText.trim().includes("Show less")) {
+            roomAmenitiesShowAllButton.click();
+        }
+    } else {
+        console.log("roomAmenitiesShowAllButton is not found");
     }
 }
