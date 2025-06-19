@@ -111,6 +111,27 @@ const AGODA_COM_MAP = {
     },
 
     //
+    // Meals
+    //
+
+    meal_plan_breakfast: {
+        name: "this-filter-room-offer",
+        text: "Breakfast included"
+    },
+    meal_plan_dinner: {
+        name: "this-filter-room-offer",
+        text: "Lunch included"
+    },
+    meal_plan_lunch: {
+        name: "this-filter-room-offer",
+        text: "Dinner included"
+    },
+    meal_plan_gluten_free: {
+        name: "this-filter-room-offer",
+        text: "Gluten-free"
+    },
+
+    //
     // Payment Flexibility  =>Payment options
     //
     pay_at_hotel: {
@@ -388,7 +409,10 @@ const AGODA_COM_MAP = {
     wynn: "Wynn Resorts",
     wyndham_extra_holidays: "Wyndham Extra Holidays",
 
+    //
     // Star Ratings
+    //
+    
     starRating_5: {
         name: "this-filter-property-rating",
         text: "5-Star rating"
@@ -410,12 +434,10 @@ const AGODA_COM_MAP = {
         text: "1-Star rating"
     },
 
-    // Stay Option
-    stay_options_any: "Any",
-    stay_options_hotels: "Hotels",
-    stay_options_homes: "Homes",
-
+    //
     // Traveler Experience
+    //
+
     travel_experience_family_friendly: {
         name: "this-filter-property-amenities",
         text: "Family/child friendly"
@@ -434,32 +456,8 @@ const AGODA_COM_MAP = {
         name: "this-filter-property-amenities",
         text: "Business facilities"
     },
-    // travel_experience_adults_only: { name: "travelerType", aria_label: "Adults only" },
-    // travel_experience_lgbtq: { name: "travelerType", aria_label: "LGBTQ welcoming" },
-    // travel_experience_luxury: { name: "travelerType", aria_label: "Luxury" },
-    // travel_experience_beach: { name: "travelerType", aria_label: "Beach" },
-    // travel_experience_romantic: { name: "travelerType", aria_label: "Romantic" },
-    // travel_experience_eco: { name: "travelerType", aria_label: "Eco-certified" },
-    // travel_experience_budget: { name: "travelerType", aria_label: "Budget" },
-    // travel_experience_wedding: { name: "travelerType", aria_label: "Wedding" },
 
-    // Meals
-    meal_plan_breakfast: {
-        name: "this-filter-room-offer",
-        text: "Breakfast included"
-    },
-    meal_plan_dinner: {
-        name: "this-filter-room-offer",
-        text: "Lunch included"
-    },
-    meal_plan_lunch: {
-        name: "this-filter-room-offer",
-        text: "Dinner included"
-    },
-    meal_plan_gluten_free: {
-        name: "this-filter-room-offer",
-        text: "Gluten-free"
-    },
+    
 };
 
 
