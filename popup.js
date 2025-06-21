@@ -1,22 +1,25 @@
 function setupTabPanels() {
   const generalTabButton = document.getElementById("general-tab-button");
   const propertyTypeTabButton = document.getElementById("property-type-tab-button");
+  const amenitiesTabButton = document.getElementById("amenities-tab-button");
+
   const generalTabContent = document.getElementById("general-tab");
   const propertyTypeTabContent = document.getElementById("property-type-tab");
+  const amenitiesTabContent = document.getElementById("amenities-tab");
 
-  generalTabButton.addEventListener("click", () => {
-    generalTabButton.classList.add("active");
-    propertyTypeTabButton.classList.remove("active");
-    generalTabContent.style.display = "block";
-    propertyTypeTabContent.style.display = "none";
-  });
+  function activateTab(activeButton, activeContent) {
+    // Reset all
+    [generalTabButton, propertyTypeTabButton, amenitiesTabButton].forEach(btn => btn.classList.remove("active"));
+    [generalTabContent, propertyTypeTabContent, amenitiesTabContent].forEach(tab => tab.style.display = "none");
 
-  propertyTypeTabButton.addEventListener("click", () => {
-    propertyTypeTabButton.classList.add("active");
-    generalTabButton.classList.remove("active");
-    propertyTypeTabContent.style.display = "block";
-    generalTabContent.style.display = "none";
-  });
+    // Activate selected
+    activeButton.classList.add("active");
+    activeContent.style.display = "block";
+  }
+
+  generalTabButton.addEventListener("click", () => activateTab(generalTabButton, generalTabContent));
+  propertyTypeTabButton.addEventListener("click", () => activateTab(propertyTypeTabButton, propertyTypeTabContent));
+  amenitiesTabButton.addEventListener("click", () => activateTab(amenitiesTabButton, amenitiesTabContent));
 }
 
 function addSaveFilterListener() {
