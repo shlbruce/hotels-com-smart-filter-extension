@@ -74,14 +74,9 @@ function setupTabPanels() {
     tab2.style.display = "block";
     tab1.style.display = "none";
   });
-
-  document.getElementById("tabForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const val1 = document.getElementById("input1").value;
-    const val2 = document.getElementById("input2").value;
-    alert(`Input 1: ${val1}\nInput 2: ${val2}`);
-  });
 }
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   
   setupTabPanels();

@@ -1,48 +1,713 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      width: 350px;
-      padding: 10px;
-    }
-  </style>
-  <script src="scripts/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+    <script src="scripts/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
-  <h5>Smart Filter Tabs</h5>
+    <h5>Smart Filter Tabs</h5>
 
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab">Tab 1</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab">Tab 2</button>
-    </li>
-  </ul>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button"
+                role="tab">Tab 1</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button"
+                role="tab">Tab 2</button>
+        </li>
+    </ul>
 
-  <div class="tab-content mt-3">
-    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
-      <label>Input 1</label>
-      <input class="form-control" id="input1" type="text">
+    <form id="smartFiltersForm">
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                <div class="form-grid">
+
+                    <!-- Total Price -->
+                    <div class="section">
+                        <label><strong>Total Price</strong></label>
+                        <div class="price-inputs">
+                            <input type="number" id="minPrice" name="minPrice" placeholder="Min ($)" min="0" />
+                            <input type="number" id="maxPrice" name="maxPrice" placeholder="Max ($)" min="0" />
+                        </div>
+                    </div>
+
+                    <!-- Availability -->
+                    <div class="section">
+                        <label><strong>Availability</strong></label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="availability" value="available_only">
+                            Only show available properties
+                        </label>
+                    </div>
+
+                    <!-- Cancellation Options -->
+                    <div class="section">
+                        <label><strong>Cancellation & Refunds</strong></label>
+                        <label class="checkbox"><input type="checkbox" value="fully_refundable" name="cancellation">
+                            Fully
+                            refundable property</label>
+                        <label class="checkbox"><input type="checkbox" value="free_cancellation" name="cancellation">
+                            Free
+                            cancellation</label>
+                    </div>
+
+                    <!-- Payment Flexibility -->
+                    <div class="section">
+                        <label><strong>Payment Flexibility</strong></label>
+                        <label class="checkbox"><input type="checkbox" value="pay_later"
+                                name="paymentFlexibility">Reserve
+                            now,
+                            pay later</label>
+                        <label class="checkbox"><input type="checkbox" value="no_prepayment"
+                                name="paymentFlexibility">No
+                            prepayment</label>
+                        <label class="checkbox"><input type="checkbox" value="online_payment"
+                                name="paymentFlexibility">Accepts
+                            online payments</label>
+                        <label class="checkbox"><input type="checkbox" value="apple_pay" name="paymentFlexibility">Apple
+                            Pay</label>
+                        <label class="checkbox"><input type="checkbox" value="hotels_com_gift_card"
+                                name="paymentFlexibility">
+                            Pay with Hotels.com gift card</label>
+                        <label class="checkbox"><input type="checkbox" value="pay_now" name="paymentFlexibility">
+                            Pay now</label>
+                        <label class="checkbox"><input type="checkbox" value="pay_at_hotel" name="paymentFlexibility">
+                            Pay at the hotel</label>
+                    </div>
+
+                    <!-- Guest Rating -->
+                    <div class="section">
+                        <label><strong>Guest Rating</strong></label>
+                        <label class="option">
+                            <input type="checkbox" name="guestRating" value="guest_rating_9"> Wonderful 9+
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="guestRating" value="guest_rating_8"> Very good 8+
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="guestRating" value="guest_rating_7"> Good 7+
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="guestRating" value="guest_rating_6"> Pleasant: 6+
+                        </label>
+                    </div>
+
+                    <!-- Star Rating -->
+                    <div class="section">
+                        <label><strong>Star Rating</strong></label>
+                        <label class="checkbox"><input type="checkbox" name="starRating" value="starRating_5"> 5
+                            ★</label>
+                        <label class="checkbox"><input type="checkbox" name="starRating" value="starRating_4"> 4
+                            ★</label>
+                        <label class="checkbox"><input type="checkbox" name="starRating" value="starRating_3"> 3
+                            ★</label>
+                        <label class="checkbox"><input type="checkbox" name="starRating" value="starRating_2"> 2
+                            ★</label>
+                        <label class="checkbox"><input type="checkbox" name="starRating" value="starRating_1"> 1
+                            ★</label>
+                    </div>
+
+                    <!-- Property Type -->
+                    <div class="section full-width">
+                        <label><strong>Property Type</strong></label>
+                        <div class="options-grid">
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="apartment">
+                                Apartment</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="aparthotel">
+                                Aparthotel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType"
+                                    value="bed_and_breakfast"> Bed &
+                                breakfast</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="boats">
+                                Boats</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="camping">
+                                Camping</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="capsule_hotel">
+                                Capsule
+                                hotel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="chalets">
+                                Chalets</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="condo">
+                                Condo</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="condo_resort">
+                                Condo
+                                resort</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="cottage">
+                                Cottage</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="country_house">
+                                Country
+                                house</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="entire_home">
+                                Entire
+                                homes</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="farm">
+                                Farm</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="guesthouse">
+                                Guesthouse</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType"
+                                    value="holiday_caravan_park">
+                                Holiday park/caravan park</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="homestay">
+                                Homestays</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="hostel">
+                                Hostel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="hotel">
+                                Hotel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="houseboat">
+                                Houseboat</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="inn"> Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="lodge">
+                                Lodge</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="motel">
+                                Motel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="residence">
+                                Residence</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="resort">
+                                Resort</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="resort_villa">
+                                Resort
+                                villa</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType"
+                                    value="serviced_apartment">
+                                Serviced
+                                apartment</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="vacation_home">
+                                Private
+                                vacation home</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyType" value="villa">
+                                Villa</label>
+                        </div>
+                    </div>
+
+                    <!-- Traveler Experience -->
+                    <div class="section">
+                        <label><strong>Traveler Experience</strong></label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_family_friendly"> Family friendly</label>
+                        <label class="checkbox"><input name="travelerExperience" type="checkbox"
+                                value="travel_experience_pet_friendly"> Pet friendly</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_adults_only"> Adults
+                            only</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_lgbtq">
+                            LGBTQ
+                            welcoming</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_luxury">
+                            Luxury</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_business">
+                            Business
+                            friendly</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_beach">
+                            Beach</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_romantic">
+                            Romantic</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_eco">
+                            Eco-certified</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_budget">
+                            Budget</label>
+                        <label class="checkbox"><input type="checkbox" name="travelerExperience"
+                                value="travel_experience_wedding">
+                            Wedding</label>
+                    </div>
+
+                    <!-- Meal Plans Available -->
+
+                    <div class="section">
+                        <label><strong>Meals & Dietary Options</strong></label>
+                        <label class="checkbox"><input type="checkbox" name="meals" value="meal_plan_breakfast">
+                            Breakfast
+                            included</label>
+                        <label class="checkbox"><input type="checkbox" name="meals" value="meal_plan_dinner"> Dinner
+                            included</label>
+                        <label class="checkbox"><input type="checkbox" name="meals" value="meal_plan_lunch"> Lunch
+                            included</label>
+                        <label class="checkbox"><input type="checkbox" name="meals" value="meal_plan_all_inclusive">
+                            All inclusive</label>
+                        <label class="checkbox"><input type="checkbox" name="meals" value="meal_plan_gluten_free">
+                            Gluten free</label>
+                    </div>
+
+                    <!-- Property Amenities -->
+                    <div class="section">
+                        <label><strong>Property Amenities</strong></label>
+                        <div class="options-grid">
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="airport_shuttle">
+                                Airport shuttle</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="bar">
+                                Bar</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="casino">
+                                Casino</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="early_check_in">
+                                Early check-in</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="electric_charger">
+                                Electric car charging</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="family_rooms"> Family
+                                rooms</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="front_desk_24h">
+                                24-hour front desk</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="golf_course">
+                                Golf
+                                course</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="gym">
+                                Gym</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="hot_tub"> Hot
+                                tub/Jacuzzi</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="internet">
+                                Internet</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="late_check_out"> Late
+                                check-out</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="night_club">
+                                Nightclub</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="non_smoking_rooms">
+                                Non-smoking rooms</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="parking">
+                                Parking</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="pool">
+                                Pool</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="restaurant">
+                                Restaurant</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="room_service"> Room
+                                service</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox"
+                                    value="smoking_area">
+                                Smoking area</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="spa">
+                                Spa</label>
+                            <label class="checkbox"><input name="propertyAmenities" type="checkbox" value="water_park">
+                                Water
+                                park</label>
+                        </div>
+                    </div>
+
+                    <!-- Room Amenities-->
+                    <div class="section">
+                        <label><strong>Room Amenities</strong></label>
+                        <div class="options-grid">
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="air_conditioned">
+                                Air
+                                conditioned</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="barbecue">
+                                Barbecue</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="bathtub">
+                                Bathtub</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="coffee_tea_maker">
+                                Coffee/tea maker</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="cribs">
+                                Cribs</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="fireplace">
+                                Fireplace</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="game_console">
+                                Game
+                                console</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="heating">
+                                Heating</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="hot_tub"> Hot
+                                tub</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="ironing_facilities">
+                                Ironing facilities</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="kitchen">
+                                Kitchen</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="lake_view"> Lake
+                                view</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="microwave">
+                                Microwave</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="ocean_view">
+                                Ocean
+                                view</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="outdoor_space">
+                                Outdoor
+                                space</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="outdoor_space_balcony">
+                                Outdoor space - Balcony</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="outdoor_space_garden">
+                                Outdoor space - Garden</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="outdoor_space_patio">
+                                Outdoor space - Patio</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="outdoor_space_terrace">
+                                Outdoor space - Terrace</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox"
+                                    value="private_bathroom">
+                                Private bathroom</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="private_pool">
+                                Private
+                                pool</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="reading_light">
+                                Reading
+                                light</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="refrigerator">
+                                Refrigerator</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="sauna">
+                                Sauna</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="shower">
+                                Shower</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="sofa_bed"> Sofa
+                                bed</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="television">
+                                TV</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="toilet">
+                                Toilet</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="towels">
+                                Towels</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="view">
+                                View</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="washer_dryer">
+                                Washer and
+                                dryer</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="washing_machine">
+                                Washing
+                                machine</label>
+                            <label class="checkbox"><input name="roomAmenities" type="checkbox" value="wifi"> Wifi
+                                included</label>
+                        </div>
+                    </div>
+
+                    <!-- Bed Preference -->
+                    <div class="section">
+                        <label><strong>Bed Preference</strong></label>
+                        <label class="checkbox"><input name="bedPreference" type="checkbox" value="single_twin_beds">
+                            Single/Twin beds</label>
+                        <label class="checkbox"><input name="bedPreference" type="checkbox" value="double_bed"> Double
+                            bed</label>
+                        <label class="checkbox"><input name="bedPreference" type="checkbox" value="queen_bed"> Queen
+                            bed</label>
+                        <label class="checkbox"><input name="bedPreference" type="checkbox" value="king_bed"> King
+                            bed</label>
+                    </div>
+
+                    <!-- Location Rating -->
+                    <div class="section">
+                        <label><strong>Location rating</strong></label>
+
+                        <label class="option"><input type="radio" name="locationRating" value="location_rating_9"> 9+
+                            Exceptional</label>
+                        <label class="option"><input type="radio" name="locationRating" value="location_rating_8"> 8+
+                            Excellent</label>
+                        <label class="option"><input type="radio" name="locationRating" value="location_rating_7"> 7+
+                            Very
+                            good</label>
+
+                    </div>
+
+
+                    <!-- Property Accessibility -->
+                    <div class="section">
+                        <label><strong>Property Accessibility</strong></label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="auditory_guidance">
+                            Auditory guidance</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="bathroom_emergency_cord">
+                            Bathroom emergency cord</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility" value="elevator">
+                            Elevator</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="facilities_disabled_guests">
+                            Facilities for disabled guests</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="lowered_sink">
+                            Lowered sink</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="raised_toilet">
+                            Raised toilet</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="service_animals">
+                            Service animals allowed</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="sign_language"> Sign
+                            language-capable staff</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility" value="stair_free">
+                            Stair-free path to entrance</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="toilet_grab_rails">
+                            Toilet with grab rails</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="visual_braille">
+                            Visual aids (Braille)</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="visual_tactile">
+                            Visual aids (tactile signs)</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="wheelchair">Wheelchair
+                            accessible property</label>
+                        <label class="checkbox"><input type="checkbox" name="propertyAccessibility"
+                                value="wheelchair_parking">Wheelchair accessible parking</label>
+                    </div>
+
+                    <!-- Room Accessibility -->
+                    <div class="section">
+                        <label><strong>Room Accessibility</strong></label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility" value="accessible_bathroom">
+                            Accessible bathroom</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility" value="adapted_bath">
+                            Adapted
+                            bath</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility"
+                                value="emergency_cord_bathroom">
+                            Emergency cord in bathroom</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility"
+                                value="entire_unit_ground_floor">
+                            Entire unit located on ground floor</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility" value="in_room"> In-room
+                            accessibility</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility" value="roll_in_shower">
+                            Roll-in
+                            shower</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility" value="shower_chair"> Shower
+                            chair</label>
+                        <label class="checkbox"><input type="checkbox" name="accessibility" value="walk_in_shower">
+                            Walk-in
+                            shower</label>
+                    </div>
+
+                    <!-- Property Brand -->
+                    <div class="section full-width">
+                        <label><strong>Property Brand</strong></label>
+                        <div class="options-grid">
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="ac_hotel"> AC
+                                Hotel by Marriott</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="aloft">
+                                aloft</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="autograph_collection">
+                                Autograph Collection</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="best_western">
+                                Best
+                                Western</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="best_western_plus"> Best
+                                Western Plus</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="boyd"> Boyd
+                                Gaming</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="caesars"> Caesars
+                                Entertainment</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="choice_hotels">
+                                Choice
+                                Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="club_quarters">
+                                Club
+                                Quarters</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="comfort_inn">
+                                Comfort Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="comfort_suites">
+                                Comfort Suites</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="conrad">
+                                Conrad</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="country_inn">
+                                Country Inn
+                                & Suites - by Choice Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="courtyard_marriott">
+                                Courtyard by Marriott</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="crowne_plaza">
+                                Crowne
+                                Plaza Hotels & Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="curio_collection_hilton">
+                                Curio Collection by Hilton</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="days_inn"> Days
+                                Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="doubletree">
+                                Doubletree</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="embassy_suites">
+                                Embassy
+                                Suites</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="eurostars">
+                                Eurostars
+                                Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="extended_stay_america">
+                                Extended Stay America Suites</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="fairfield_inn">
+                                Fairfield
+                                Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="four_seasons">
+                                Four
+                                Seasons</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="golden_nugget">
+                                Golden
+                                Nugget</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hampton"> Hampton
+                                Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hilton"> Hilton
+                                Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="hilton_garden_inn">
+                                Hilton Garden Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hilton_grand">
+                                Hilton
+                                Grand Vacations</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="hilton_worldwide"> Hilton
+                                Worldwide</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="holiday_inn">
+                                Holiday Inn
+                                Hotels & Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="holiday_inn_express">
+                                Holiday Inn Express Hotel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="homewood_suites">
+                                Homewood Suites by Hilton</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hyatt_hotels">
+                                Hyatt
+                                Hotels</label>
+
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hyatt_house">
+                                Hyatt
+                                House</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hyatt_place">
+                                Hyatt
+                                Place</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="hyatt_regency">
+                                Hyatt
+                                Regency</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="intercontinental">
+                                InterContinental Hotels & Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="intercontinental_hotels_group"> InterContinental Hotels Group</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="kimpton_hotels">
+                                Kimpton Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="la_quinta"> La
+                                Quinta by Wyndham</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="loews">
+                                Loews</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="lxr_hotels_resorts"> LXR
+                                Hotels & Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="marriott">
+                                Marriott
+                                Hotels & Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="mgm"> MGM</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="motel6"> Motel
+                                6</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="oyo"> OYO
+                                Rooms</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="radisson">
+                                Radisson - by Choice Hotels </label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="renaissance">
+                                Renaissance
+                                Hotels & Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="residence_inn">
+                                Residence Inn</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="sonesta"> Sonesta
+                                Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="sofitel">
+                                Sofitel</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="springhill_suites">
+                                SpringHill Suites</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="staybridge_suites">
+                                Staybridge Suites</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="station"> Station
+                                Casinos</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="super8"> Super
+                                8</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="think_hotel_group">
+                                Think Hotel Group MG</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="travelodge">
+                                Travelodge
+                                by Wyndham</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="travelstaytion">
+                                Travelstaytion</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="trump"> Trump
+                                Hotels</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="venetian_las_vegas">
+                                Venetian Las Vegas</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="westgate">
+                                Westgate
+                                Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="westin">
+                                Westin</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="world_bw"> World
+                                Hotels
+                                BW</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand" value="wynn"> Wynn
+                                Resorts</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="wyndham_extra_holidays">
+                                Wyndham Extra Holidays</label>
+                            <label class="checkbox"><input type="checkbox" name="propertyBrand"
+                                    value="wyndham_hotels_resorts">
+                                Wyndham Hotels & Resorts</label>
+                        </div>
+                    </div>
+
+                    <!-- One Key Benefits and Discounts -->
+                    <div class="section">
+                        <label><strong>One Key Benefits and Discounts</strong></label>
+                        <label class="checkbox"><input type="checkbox" name="discounts" value="vip"> VIP Access
+                            properties</label>
+                        <label class="checkbox"><input type="checkbox" name="discounts" value="member"> Member
+                            Prices</label>
+                        <label class="checkbox"><input type="checkbox" name="discounts" value="discounted"> Discounted
+                            properties</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tab-pane fade" id="tab2" role="tabpanel">
+                <label>Input 2</label>
+                <input class="form-control" id="input2" type="text">
+            </div>
+        </div>
+        <div class="button-footer">
+            <button type="submit">Save Filters</button>
+            <button type="button" id="resetFiltersButton">Reset Filters</button>
+        </div>
+    </form>
+
+    <div id="confirmResetModal">
+        <div class="modal-content">
+            <p>Are you sure you want to reset all filters?</p>
+            <div class="modal-actions">
+                <button id="confirmYes">Yes</button>
+                <button id="confirmNo">No</button>
+            </div>
+        </div>
     </div>
-    <div class="tab-pane fade" id="tab2" role="tabpanel">
-      <label>Input 2</label>
-      <input class="form-control" id="input2" type="text">
+
+    <div id="confirmationPanel">
+        Preferences saved!
     </div>
-  </div>
-
-  <button class="btn btn-primary mt-3" id="submitBtn">Submit</button>
-
-  <script>
-    document.getElementById("submitBtn").addEventListener("click", () => {
-      const val1 = document.getElementById("input1").value;
-      const val2 = document.getElementById("input2").value;
-      alert(`Input 1: ${val1}\nInput 2: ${val2}`);
-    });
-  </script>
+    
+    <script>
+        document.getElementById("submitBtn").addEventListener("click", () => {
+            const val1 = document.getElementById("input1").value;
+            const val2 = document.getElementById("input2").value;
+            alert(`Input 1: ${val1}\nInput 2: ${val2}`);
+        });
+    </script>
 </body>
+
 </html>
