@@ -685,72 +685,94 @@
             </div>
             <div class="tab-pane fade" id="faq-tab" role="tabpanel">
                 <h4>Frequently Asked Questions</h4>
-              
-                <div class="faq-entry">
-                  <button class="faq-toggle" type="button">
-                    <span class="toggle-icon">+</span> Why are there multiple similar options like "Outdoor space" and "Outdoor space – Balcony"?
-                  </button>
-                  <div class="faq-answer" style="display: none;">
-                    <p>
-                      Different hotel booking websites label amenities and filters in slightly different ways.
-                      For instance, <strong>Hotels.com</strong> might list a general option like <strong>“Outdoor space,”</strong>
-                      while <strong>Booking.com</strong> separates it into more specific options like <strong>“Balcony”</strong> and <strong>“Garden.”</strong>
-                    </p>
-                    <p>
-                      To make your filters work reliably, the Smart Filter extension includes <strong>multiple versions</strong> of similar options. That way, you can cover all possible variations.
-                    </p>
-                    <p><strong>✅ Tip:</strong> Just select the options that best match your intent. The Smart Filter extension will automatically apply the right equivalent on each site.</p>
-                    <p>
-                      For example, if you’re looking for a garden, select both <strong>“Outdoor space”</strong> and <strong>“Outdoor space – Garden”</strong> to ensure it works across all supported platforms.
-                    </p>
-                  </div>
-                </div>
-              
-                <div class="faq-entry">
-                  <button class="faq-toggle" type="button">
-                    <span class="toggle-icon">+</span> Why are some filters or options missing?
-                  </button>
-                  <div class="faq-answer" style="display: none;">
-                    <p>
-                      To keep things simple and user-friendly, the extension focuses on the <strong>most commonly used filters</strong> across booking platforms.
-                      Some less common or niche options are omitted to avoid overwhelming users.
-                    </p>
-                    <p>
-                      If you think a particular filter is important, feel free to reach out! If more users request the same filter, it will likely be added in a future update.
-                    </p>
-                  </div>
-                </div>
-              
+
                 <div class="faq-entry">
                     <button class="faq-toggle" type="button">
-                      <span class="toggle-icon">+</span> The Smart Filters didn’t work as expected. What should I do?
+                        <span class="toggle-icon">+</span> Why are there multiple similar options like "Outdoor space"
+                        and "Outdoor space – Balcony"?
                     </button>
                     <div class="faq-answer" style="display: none;">
-                      <p>There are two common reasons why Smart Filters might not work as expected:</p>
-                  
-                      <p><strong>1. Browser is running slowly</strong></p>
-                      <p>
-                        Smart Filters rely on the content being fully loaded before they can apply correctly. If your browser is lagging, some filters may not be visible in time—causing the extension to miss them.
-                      </p>
-                      <p><strong>Try the following:</strong></p>
-                      <ul>
-                        <li>Close unused browser tabs to free up memory</li>
-                        <li>Reload the webpage and try applying Smart Filters again</li>
-                        <li>Increase the "Smart Filter Delay (ms)" setting in the extension</li>
-                      </ul>
-                  
-                      <p><strong>2. The website layout changed</strong></p>
-                      <p>
-                        If Smart Filters work on most websites but fail on one specific site, it's likely that site recently updated its layout, breaking the filter mapping.
-                      </p>
-                      <p>
-                        Please report it to us at <a href="mailto:contact@talx2me.com">contact@talx2me.com</a> so we can fix it quickly.
-                      </p>
+                        <p>
+                            Different hotel booking websites label amenities and filters in slightly different ways.
+                            For instance, <strong>Hotels.com</strong> might list a general option like <strong>“Outdoor
+                                space,”</strong>
+                            while <strong>Booking.com</strong> separates it into more specific options like
+                            <strong>“Balcony”</strong> and <strong>“Garden.”</strong>
+                        </p>
+                        <p>
+                            To make your filters work reliably, the Smart Filter extension includes <strong>multiple
+                                versions</strong> of similar options. That way, you can cover all possible variations.
+                        </p>
+                        <p><strong>✅ Tip:</strong> Just select the options that best match your intent. The Smart Filter
+                            extension will automatically apply the right equivalent on each site.</p>
+                        <p>
+                            For example, if you’re looking for a garden, select both <strong>“Outdoor space”</strong>
+                            and <strong>“Outdoor space – Garden”</strong> to ensure it works across all supported
+                            platforms.
+                        </p>
                     </div>
-                  </div>
-                  
+                </div>
+
+                <div class="faq-entry">
+                    <button class="faq-toggle" type="button">
+                        <span class="toggle-icon">+</span> Why are some filters or options missing?
+                    </button>
+                    <div class="faq-answer" style="display: none;">
+                        <p>
+                            To keep things simple and user-friendly, the extension focuses on the <strong>most commonly
+                                used filters</strong> across booking platforms.
+                            Some less common or niche options are omitted to avoid overwhelming users.
+                        </p>
+                        <p>
+                            If you think a particular filter is important, feel free to reach out! If more users request
+                            the same filter, it will likely be added in a future update.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-entry">
+                    <button class="faq-toggle" type="button">
+                        <span class="toggle-icon">+</span> The Smart Filters didn’t work as expected. What should I do?
+                    </button>
+                    <div class="faq-answer" style="display: none;">
+                        <p>There are two common reasons why Smart Filters might not work as expected:</p>
+
+                        <p><strong>1. Browser is running slowly</strong></p>
+                        <p>
+                            Smart Filters rely on the content being fully loaded before they can apply correctly. If
+                            your browser is lagging, some filters may not be visible in time—causing the extension to
+                            miss them.
+                        </p>
+                        <p><strong>Try the following:</strong></p>
+                        <ul>
+                            <li>Close unused browser tabs to free up memory</li>
+                            <li>Reload the webpage and try applying Smart Filters again</li>
+                            <li>If the Smart Filter doesn’t work reliably, try increasing the delay time below to give
+                                the page more time to load filters:</li>
+                            <div style="margin-top: 8px; margin-left: 16px;">
+                                <label for="faqDelayInput" style="font-weight: 600;">
+                                    ⏱️ Smart Filter Delay (ms)
+                                </label>
+                                <input type="number" id="smartFilterDelay" placeholder="1000" value="1000"
+                                    style="width: 100%; max-width: 160px; padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; margin-top: 4px;" />
+                            </div>
+
+                        </ul>
+
+                        <p><strong>2. The website layout changed</strong></p>
+                        <p>
+                            If Smart Filters work on most websites but fail on one specific site, it's likely that site
+                            recently updated its layout, breaking the filter mapping.
+                        </p>
+                        <p>
+                            Please report it to us at <a href="mailto:contact@talx2me.com">contact@talx2me.com</a> so we
+                            can fix it quickly.
+                        </p>
+                    </div>
+                </div>
+
                 <p>More helpful answers will appear here.</p>
-              </div>
+            </div>
 
         </div>
         <div class="button-footer">
