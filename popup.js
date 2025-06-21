@@ -55,7 +55,37 @@ document.getElementById("smartFiltersForm").addEventListener("submit", async (e)
 });
 
 
+function setupTabPanels() {
+  const tabBtn1 = document.getElementById("tabBtn1");
+  const tabBtn2 = document.getElementById("tabBtn2");
+  const tab1 = document.getElementById("tab1");
+  const tab2 = document.getElementById("tab2");
+
+  tabBtn1.addEventListener("click", () => {
+    tabBtn1.classList.add("active");
+    tabBtn2.classList.remove("active");
+    tab1.style.display = "block";
+    tab2.style.display = "none";
+  });
+
+  tabBtn2.addEventListener("click", () => {
+    tabBtn2.classList.add("active");
+    tabBtn1.classList.remove("active");
+    tab2.style.display = "block";
+    tab1.style.display = "none";
+  });
+
+  document.getElementById("tabForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val1 = document.getElementById("input1").value;
+    const val2 = document.getElementById("input2").value;
+    alert(`Input 1: ${val1}\nInput 2: ${val2}`);
+  });
+}
 document.addEventListener("DOMContentLoaded", async () => {
+  
+  setupTabPanels();
+  
   const data = await chrome.storage.sync.get("smartFilters");
   const filters = data.smartFilters || {};
 
