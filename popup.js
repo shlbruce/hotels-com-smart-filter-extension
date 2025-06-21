@@ -4,7 +4,8 @@ function setupTabPanels() {
     document.getElementById("property-type-tab-button"),
     document.getElementById("amenities-tab-button"),
     document.getElementById("accessibility-tab-button"),
-    document.getElementById("property-brand-tab-button")
+    document.getElementById("property-brand-tab-button"),
+    document.getElementById("faq-tab-button")
   ];
 
   const tabContents = [
@@ -12,7 +13,8 @@ function setupTabPanels() {
     document.getElementById("property-type-tab"),
     document.getElementById("amenities-tab"),
     document.getElementById("accessibility-tab"),
-    document.getElementById("property-brand-tab")
+    document.getElementById("property-brand-tab"),
+    document.getElementById("faq-tab")
   ];
 
   tabButtons.forEach((button, index) => {
