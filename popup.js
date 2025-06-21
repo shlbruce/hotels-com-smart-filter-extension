@@ -1,39 +1,29 @@
 function setupTabPanels() {
-  const generalTabButton = document.getElementById("general-tab-button");
-  const propertyTypeTabButton = document.getElementById("property-type-tab-button");
-  const amenitiesTabButton = document.getElementById("amenities-tab-button");
-  const accessibilityTabButton = document.getElementById("accessibility-tab-button");
+  const tabButtons = [
+    document.getElementById("general-tab-button"),
+    document.getElementById("property-type-tab-button"),
+    document.getElementById("amenities-tab-button"),
+    document.getElementById("accessibility-tab-button"),
+    document.getElementById("property-brand-tab-button")
+  ];
 
-  const generalTabContent = document.getElementById("general-tab");
-  const propertyTypeTabContent = document.getElementById("property-type-tab");
-  const amenitiesTabContent = document.getElementById("amenities-tab");
-  const accessibilityTabContent = document.getElementById("accessibility-tab");
+  const tabContents = [
+    document.getElementById("general-tab"),
+    document.getElementById("property-type-tab"),
+    document.getElementById("amenities-tab"),
+    document.getElementById("accessibility-tab"),
+    document.getElementById("property-brand-tab")
+  ];
 
-  function activateTab(activeButton, activeContent) {
-    // Reset all tabs
-    [
-      generalTabButton,
-      propertyTypeTabButton,
-      amenitiesTabButton,
-      accessibilityTabButton
-    ].forEach(btn => btn.classList.remove("active"));
+  tabButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      tabButtons.forEach(btn => btn.classList.remove("active"));
+      tabContents.forEach(tc => tc.style.display = "none");
 
-    [
-      generalTabContent,
-      propertyTypeTabContent,
-      amenitiesTabContent,
-      accessibilityTabContent
-    ].forEach(tab => tab.style.display = "none");
-
-    // Activate selected tab
-    activeButton.classList.add("active");
-    activeContent.style.display = "block";
-  }
-
-  generalTabButton.addEventListener("click", () => activateTab(generalTabButton, generalTabContent));
-  propertyTypeTabButton.addEventListener("click", () => activateTab(propertyTypeTabButton, propertyTypeTabContent));
-  amenitiesTabButton.addEventListener("click", () => activateTab(amenitiesTabButton, amenitiesTabContent));
-  accessibilityTabButton.addEventListener("click", () => activateTab(accessibilityTabButton, accessibilityTabContent));
+      button.classList.add("active");
+      tabContents[index].style.display = "block";
+    });
+  });
 }
 
 function addSaveFilterListener() {
