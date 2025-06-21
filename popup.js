@@ -1,21 +1,21 @@
 function setupTabPanels() {
-  const tabBtn1 = document.getElementById("tab1-tab");
-  const tabBtn2 = document.getElementById("tab2-tab");
-  const tab1 = document.getElementById("tab1");
-  const tab2 = document.getElementById("tab2");
+  const generalTabButton = document.getElementById("general-tab-button");
+  const propertyTypeTabButton = document.getElementById("property-type-tab-button");
+  const generalTabContent = document.getElementById("general-tab");
+  const propertyTypeTabContent = document.getElementById("property-type-tab");
 
-  tabBtn1.addEventListener("click", () => {
-    tabBtn1.classList.add("active");
-    tabBtn2.classList.remove("active");
-    tab1.style.display = "block";
-    tab2.style.display = "none";
+  generalTabButton.addEventListener("click", () => {
+    generalTabButton.classList.add("active");
+    propertyTypeTabButton.classList.remove("active");
+    generalTabContent.style.display = "block";
+    propertyTypeTabContent.style.display = "none";
   });
 
-  tabBtn2.addEventListener("click", () => {
-    tabBtn2.classList.add("active");
-    tabBtn1.classList.remove("active");
-    tab2.style.display = "block";
-    tab1.style.display = "none";
+  propertyTypeTabButton.addEventListener("click", () => {
+    propertyTypeTabButton.classList.add("active");
+    generalTabButton.classList.remove("active");
+    propertyTypeTabContent.style.display = "block";
+    generalTabContent.style.display = "none";
   });
 }
 
