@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Hotels.com Filter Memory",
+  "name": "Smart Filters for Hotels",
   "version": "1.0",
-  "description": "Remembers your filter preferences on Hotels.com",
+  "description": "Quickly apply common hotel filters—like price, amenities, and more—across popular booking websites.",
   "permissions": [
     "storage"
   ],
