@@ -1,21 +1,32 @@
 {
-    "manifest_version": 3,
-    "name": "Hotels.com Filter Memory",
-    "version": "1.0",
-    "description": "Remembers your filter preferences on Hotels.com",
-    "permissions": ["storage"],
-    "content_scripts": [
-      {
-        "matches": [
-            "*://www.hotels.com/*",
-            "*://www.booking.com/*",
-            "*://www.expedia.com/*",
-            "*://www.agoda.com/*"
-        ],
-        "js": ["agoda_com.js", "agoda_com_helper.js", "booking_com.js", "booking_com_helper.js", "content.js", "helper.js", "hotels_com.js", "popup.js"]
-      }
-    ],
-    "action": {
-      "default_popup": "popup.html"
+  "manifest_version": 3,
+  "name": "Hotels.com Filter Memory",
+  "version": "1.0",
+  "description": "Remembers your filter preferences on Hotels.com",
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.hotels.com/*",
+        "*://www.booking.com/*",
+        "*://www.expedia.com/*",
+        "*://www.agoda.com/*"
+      ],
+      "js": [
+        "agoda_com.js",
+        "agoda_com_helper.js",
+        "booking_com.js",
+        "booking_com_helper.js",
+        "content.js",
+        "helper.js",
+        "hotels_com.js",
+        "popup.js"
+      ]
     }
+  ],
+  "action": {
+    "default_popup": "popup.html"
   }
+}
