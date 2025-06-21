@@ -28,6 +28,19 @@ function setupTabPanels() {
   });
 }
 
+function addFAQToggleListeners() {
+  document.querySelectorAll('.faq-toggle').forEach(toggleBtn => {
+    toggleBtn.addEventListener('click', () => {
+      const icon = toggleBtn.querySelector('.toggle-icon');
+      const answer = toggleBtn.nextElementSibling;
+      const isOpen = answer.style.display === 'block';
+
+      icon.textContent = isOpen ? '+' : '-';
+      answer.style.display = isOpen ? 'none' : 'block';
+    });
+  });
+}
+
 function addSaveFilterListener() {
   document.getElementById("smartFiltersForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -129,6 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   addSaveFilterListener();
   addResetFilterListener();
+  addFAQToggleListeners();
 });
 
 function addResetFilterListener() {
