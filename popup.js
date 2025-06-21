@@ -1,63 +1,6 @@
-document.getElementById("smartFiltersForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const locationRating = document.querySelector('input[name="locationRating"]:checked')?.value;
-  const guestRatings = [...document.querySelectorAll('input[name="guestRating"]:checked')].map(cb => cb.value);
-  const minPrice = document.getElementById("minPrice").value || null;
-  const maxPrice = document.getElementById("maxPrice").value || null;
-  const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
-  const propertyAmenities = [...document.querySelectorAll('input[name="propertyAmenities"]:checked')].map(cb => cb.value);
-  const roomAmenities = [...document.querySelectorAll('input[name="roomAmenities"]:checked')].map(cb => cb.value);
-  const bedPreference = [...document.querySelectorAll('input[name="bedPreference"]:checked')].map(cb => cb.value);
-  const paymentFlexibility = [...document.querySelectorAll('input[name="paymentFlexibility"]:checked')].map(cb => cb.value);
-  const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
-  const propertyTypes = [...document.querySelectorAll('input[name="propertyType"]:checked')].map(cb => cb.value);
-  const propertyBrands = [...document.querySelectorAll('input[name="propertyBrand"]:checked')].map(cb => cb.value);
-  const travelerExperiences = [...document.querySelectorAll('input[name="travelerExperience"]:checked')].map(cb => cb.value);
-  const availability = [...document.querySelectorAll('input[name="availability"]:checked')].map(cb => cb.value);
-  const accessibility = [...document.querySelectorAll('input[name="accessibility"]:checked')].map(cb => cb.value);
-  const propertyAccessibility = [...document.querySelectorAll('input[name="propertyAccessibility"]:checked')].map(cb => cb.value);
-  const discounts = [...document.querySelectorAll('input[name="discounts"]:checked')].map(cb => cb.value);
-  const meals = [...document.querySelectorAll('input[name="meals"]:checked')].map(cb => cb.value);
-
-  await chrome.storage.sync.set({
-    smartFilters: {
-      locationRating,
-      guestRatings,
-      minPrice,
-      maxPrice,
-      starRatings,
-      propertyAmenities,
-      roomAmenities,
-      bedPreference,
-      paymentFlexibility,
-      cancellation,
-      propertyTypes,
-      propertyBrands,
-      travelerExperiences,
-      availability,
-      accessibility,
-      propertyAccessibility,
-      discounts,
-      meals
-    }
-  }).then(() => {
-    console.log("smartFilters saved successfully");
-  }).catch((err) => {
-    console.error("Failed to save smartFilters:", err);
-  });
-
-  const panel = document.getElementById("confirmationPanel");
-  panel.style.display = "block";
-  setTimeout(() => {
-    panel.style.display = "none";
-  }, 2500);
-});
-
-
 function setupTabPanels() {
-  const tabBtn1 = document.getElementById("tabBtn1");
-  const tabBtn2 = document.getElementById("tabBtn2");
+  const tabBtn1 = document.getElementById("tab1-tab");
+  const tabBtn2 = document.getElementById("tab2-tab");
   const tab1 = document.getElementById("tab1");
   const tab2 = document.getElementById("tab2");
 
@@ -76,11 +19,69 @@ function setupTabPanels() {
   });
 }
 
+function addSaveFilterListener() {
+  document.getElementById("smartFiltersForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const locationRating = document.querySelector('input[name="locationRating"]:checked')?.value;
+    const guestRatings = [...document.querySelectorAll('input[name="guestRating"]:checked')].map(cb => cb.value);
+    const minPrice = document.getElementById("minPrice").value || null;
+    const maxPrice = document.getElementById("maxPrice").value || null;
+    const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
+    const propertyAmenities = [...document.querySelectorAll('input[name="propertyAmenities"]:checked')].map(cb => cb.value);
+    const roomAmenities = [...document.querySelectorAll('input[name="roomAmenities"]:checked')].map(cb => cb.value);
+    const bedPreference = [...document.querySelectorAll('input[name="bedPreference"]:checked')].map(cb => cb.value);
+    const paymentFlexibility = [...document.querySelectorAll('input[name="paymentFlexibility"]:checked')].map(cb => cb.value);
+    const cancellation = [...document.querySelectorAll('input[name="cancellation"]:checked')].map(cb => cb.value);
+    const propertyTypes = [...document.querySelectorAll('input[name="propertyType"]:checked')].map(cb => cb.value);
+    const propertyBrands = [...document.querySelectorAll('input[name="propertyBrand"]:checked')].map(cb => cb.value);
+    const travelerExperiences = [...document.querySelectorAll('input[name="travelerExperience"]:checked')].map(cb => cb.value);
+    const availability = [...document.querySelectorAll('input[name="availability"]:checked')].map(cb => cb.value);
+    const accessibility = [...document.querySelectorAll('input[name="accessibility"]:checked')].map(cb => cb.value);
+    const propertyAccessibility = [...document.querySelectorAll('input[name="propertyAccessibility"]:checked')].map(cb => cb.value);
+    const discounts = [...document.querySelectorAll('input[name="discounts"]:checked')].map(cb => cb.value);
+    const meals = [...document.querySelectorAll('input[name="meals"]:checked')].map(cb => cb.value);
+
+    await chrome.storage.sync.set({
+      smartFilters: {
+        locationRating,
+        guestRatings,
+        minPrice,
+        maxPrice,
+        starRatings,
+        propertyAmenities,
+        roomAmenities,
+        bedPreference,
+        paymentFlexibility,
+        cancellation,
+        propertyTypes,
+        propertyBrands,
+        travelerExperiences,
+        availability,
+        accessibility,
+        propertyAccessibility,
+        discounts,
+        meals
+      }
+    }).then(() => {
+      console.log("smartFilters saved successfully");
+    }).catch((err) => {
+      console.error("Failed to save smartFilters:", err);
+    });
+
+    const panel = document.getElementById("confirmationPanel");
+    panel.style.display = "block";
+    setTimeout(() => {
+      panel.style.display = "none";
+    }, 2500);
+  });
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
-  
+
   setupTabPanels();
-  
+
   const data = await chrome.storage.sync.get("smartFilters");
   const filters = data.smartFilters || {};
 
@@ -116,41 +117,45 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (filters.availability) {
     document.querySelector(`input[name="availability"][value="${filters.availability}"]`)?.click();
   }
+
+  addSaveFilterListener();
+  addResetFilterListener();
 });
 
-
-document.getElementById("resetFiltersButton").addEventListener("click", () => {
-  const confirmModal = document.getElementById("confirmResetModal");
-  const confirmYes = document.getElementById("confirmYes");
-  const confirmNo = document.getElementById("confirmNo");
-
+function addResetFilterListener() {
   document.getElementById("resetFiltersButton").addEventListener("click", () => {
-    confirmModal.style.display = "flex";
+    const confirmModal = document.getElementById("confirmResetModal");
+    const confirmYes = document.getElementById("confirmYes");
+    const confirmNo = document.getElementById("confirmNo");
+
+    document.getElementById("resetFiltersButton").addEventListener("click", () => {
+      confirmModal.style.display = "flex";
+    });
+
+    confirmYes.addEventListener("click", () => {
+      const form = document.getElementById("smartFiltersForm");
+
+      form.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
+        input.value = '';
+      });
+
+      form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+      });
+
+      form.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.checked = radio.defaultChecked;
+      });
+
+      chrome.storage.sync.remove("smartFilters", () => {
+        console.log("smartFilters reset");
+      });
+
+      confirmModal.style.display = "none";
+    });
+
+    confirmNo.addEventListener("click", () => {
+      confirmModal.style.display = "none";
+    });
   });
-
-  confirmYes.addEventListener("click", () => {
-    const form = document.getElementById("smartFiltersForm");
-
-    form.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
-      input.value = '';
-    });
-
-    form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-      checkbox.checked = false;
-    });
-
-    form.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.checked = radio.defaultChecked;
-    });
-
-    chrome.storage.sync.remove("smartFilters", () => {
-      console.log("smartFilters reset");
-    });
-
-    confirmModal.style.display = "none";
-  });
-
-  confirmNo.addEventListener("click", () => {
-    confirmModal.style.display = "none";
-  });
-});
+}
