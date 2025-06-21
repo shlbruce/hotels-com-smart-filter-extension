@@ -49,6 +49,7 @@ function addSaveFilterListener() {
     const guestRatings = [...document.querySelectorAll('input[name="guestRating"]:checked')].map(cb => cb.value);
     const minPrice = document.getElementById("minPrice").value || null;
     const maxPrice = document.getElementById("maxPrice").value || null;
+    const smartFilterDelay = document.getElementById("smartFilterDelay").value || 1000;
     const starRatings = [...document.querySelectorAll('input[name="starRating"]:checked')].map(cb => cb.value);
     const propertyAmenities = [...document.querySelectorAll('input[name="propertyAmenities"]:checked')].map(cb => cb.value);
     const roomAmenities = [...document.querySelectorAll('input[name="roomAmenities"]:checked')].map(cb => cb.value);
@@ -66,24 +67,25 @@ function addSaveFilterListener() {
 
     await chrome.storage.sync.set({
       smartFilters: {
-        locationRating,
-        guestRatings,
-        minPrice,
-        maxPrice,
-        starRatings,
-        propertyAmenities,
-        roomAmenities,
-        bedPreference,
-        paymentFlexibility,
-        cancellation,
-        propertyTypes,
-        propertyBrands,
-        travelerExperiences,
-        availability,
         accessibility,
-        propertyAccessibility,
+        availability,
+        bedPreference,
+        cancellation,
         discounts,
-        meals
+        guestRatings,
+        locationRating,
+        meals,
+        maxPrice,
+        minPrice,
+        paymentFlexibility,
+        propertyAccessibility,
+        propertyAmenities,
+        propertyBrands,
+        propertyTypes,
+        roomAmenities,
+        smartFilterDelay,
+        starRatings,
+        travelerExperiences
       }
     }).then(() => {
       console.log("smartFilters saved successfully");
@@ -109,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById("minPrice").value = filters.minPrice || "";
   document.getElementById("maxPrice").value = filters.maxPrice || "";
+  document.getElementById("smartFilterDelay").value = filters.smartFilterDelay || "";
 
   if (filters.locationRating) {
     document.querySelector(`input[name="locationRating"][value="${filters.locationRating}"]`)?.click();
