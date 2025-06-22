@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Hotels.com Filter Memory",
+  "name": "Smart Filters for Hotels",
   "version": "1.0",
-  "description": "Remembers your filter preferences on Hotels.com",
+  "description": "Quickly apply common hotel filters—like price, amenities, and more—across popular booking websites.",
   "permissions": [
     "storage"
   ],
@@ -26,6 +26,11 @@
       ]
     }
   ],
+  "icons": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
   "action": {
     "default_popup": "popup.html"
   }
