@@ -22,6 +22,7 @@ function handleSmartFilterClickOnHotelsCom(event) {
                 }
             }
 
+            const smartFilterDelay = smartFilters.smartFilterDelay;
             setTimeout(() => {
                 applyFiltersInHotelsCom(smartFilters);
 
@@ -31,8 +32,8 @@ function handleSmartFilterClickOnHotelsCom(event) {
                     button.disabled = false;
                     button.style.opacity = "1";
                     button.style.cursor = "pointer";
-                }, 4000);
-            }, 2000);
+                }, smartFilterDelay * 4);
+            }, smartFilterDelay * 2);
         } else {
             console.warn("No smart filters found in storage.");
             button.textContent = originalText;
@@ -327,19 +328,20 @@ function applyFiltersInHotelsCom(smartFilters) {
         else if (key === "maxPrice") {
             const sliderMax = document.querySelector('input[type="range"][aria-label*="Maximum"]');
             const sliderMin = document.querySelector('input[type="range"][aria-label*="Minimum"]');
+
+            if (sliderMin && smartFilters.minPrice != null) {
+                sliderMin.value = smartFilters.minPrice;
+                sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+            }
+
             if (sliderMax && value != null) {
-                sliderMax.value = value;
+                setTimeout(() => {
+                    sliderMax.value = value;
                 // don't try to put MouseDown event, it will trigger sliderMax not work. 
                 // I guess mousedown take some time to process, then sliderMax.mouseup event will be too closed to sliderMin.mouseup
                 // then only one mouseup event is executed.
                 sliderMax.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-            }
-
-            if (sliderMin && smartFilters.minPrice != null) {
-                setTimeout(() => {
-                    sliderMin.value = smartFilters.minPrice || 0;
-                    sliderMin.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-                }, 2000);
+                }, smartFilters.smartFilterDelay * 4);
             }
         }
         else if (key === "meals") {

@@ -89,6 +89,7 @@ function handleSmartFilterClickOnBookingCom(event) {
                 console.warn("Clear filters button not found.");
             }
 
+            const smartFilterDelay = smartFilters.smartFilterDelay || 1000;
             setTimeout(() => {
                 applyFiltersInBookingCom(smartFilters);
 
@@ -98,8 +99,8 @@ function handleSmartFilterClickOnBookingCom(event) {
                     button.disabled = false;
                     button.style.opacity = "1";
                     button.style.cursor = "pointer";
-                }, 1500);
-            }, 2000);
+                }, smartFilterDelay * 1.5);
+            }, smartFilterDelay * 2);
         } else {
             console.warn("No smart filters found in storage.");
             button.textContent = originalText;
@@ -685,6 +686,6 @@ function applyFiltersInBookingCom(smartFilters) {
             sliderMin.dispatchEvent(new Event('input', { bubbles: true }));
             sliderMin.dispatchEvent(new Event('change', { bubbles: true }));
         }
-    }, 1000);
+    }, smartFilters.smartFilterDelay);
 
 }

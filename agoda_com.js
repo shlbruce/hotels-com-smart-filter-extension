@@ -66,6 +66,7 @@ function handleSmartFilterClickOnAgodaCom(event) {
             markFiltersAgoda();
             clickShowAllAgoda();
 
+            const smartFilterDelay = smartFilters.smartFilterDelay;
             setTimeout(() => {
                 applyFiltersInAgodaCom(smartFilters);
 
@@ -75,8 +76,8 @@ function handleSmartFilterClickOnAgodaCom(event) {
                     button.disabled = false;
                     button.style.opacity = "1";
                     button.style.cursor = "pointer";
-                }, 1000);
-            }, 2000);
+                }, smartFilterDelay);
+            }, smartFilterDelay * 2);
         } else {
             console.warn("No smart filters found in storage.");
             button.textContent = originalText;
