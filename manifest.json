@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Smart Filters for Hotels",
   "version": "1.1",
-  "description": "Tired of clicking the same hotel filters over and over? Set them once—price, amenities, and all—and let Smart Filter do the rest across your favorite booking sites. Just one click, and you're travel-ready!",
+  "description": "Tired of clicking the same hotel filters? Set them once—Smart Filter applies them across sites. One click and you’re travel-ready!",
   "permissions": [
     "storage"
   ],

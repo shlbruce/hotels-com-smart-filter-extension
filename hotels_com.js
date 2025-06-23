@@ -35,7 +35,7 @@ function handleSmartFilterClickOnHotelsCom(event) {
                 }, smartFilterDelay * 4);
             }, smartFilterDelay * 2);
         } else {
-            console.warn("No smart filters found in storage.");
+            //console.warn("No smart filters found in storage.");
             button.textContent = originalText;
             button.disabled = false;
             button.style.opacity = "1";
